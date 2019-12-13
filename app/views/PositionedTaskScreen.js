@@ -10,7 +10,6 @@ import {
   BackHandler,
   PermissionsAndroid,
 } from 'react-native';
-import { nextTask } from '../redux/actions';
 import { CameraKitCameraScreen } from 'react-native-camera-kit';
 
 class PositionedTaskScreen extends Component {
@@ -131,7 +130,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      nextTask,
+      
     },
     dispatch,
   );

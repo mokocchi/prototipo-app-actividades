@@ -10,10 +10,8 @@ import {
   TouchableOpacity,
   PermissionsAndroid,
   Alert,
-  ScrollView,
 } from 'react-native';
 import {Button} from 'react-native-elements';
-import {mapScreen} from '../functions';
 import {nextTask, setTaskResult, addCollectedCode} from '../redux/actions';
 import {CameraKitCameraScreen} from 'react-native-camera-kit';
 

@@ -4,18 +4,12 @@ import { bindActionCreators } from 'redux';
 import {
   View,
   Text,
-  Image,
   StyleSheet,
   BackHandler,
-  TouchableOpacity,
-  PermissionsAndroid,
-  Alert,
   ScrollView,
 } from 'react-native';
 import { Button } from 'react-native-elements';
-import { mapScreen } from '../functions';
 import { nextTask } from '../redux/actions';
-import { CameraKitCameraScreen } from 'react-native-camera-kit';
 
 class MyBagScreen extends Component {
   componentDidMount() {

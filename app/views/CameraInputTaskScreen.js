@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {View, Text, Image, StyleSheet, Button, BackHandler, TextInput} from 'react-native';
 import ImagePicker from 'react-native-image-picker'
-import {mapScreen} from '../functions';
-import {nextTask, setTaskResult} from '../redux/actions';
+import {setTaskResult} from '../redux/actions';
 
 class CameraInputTaskScreen extends Component {
   componentDidMount() {
@@ -92,7 +91,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      nextTask,
       setTaskResult
     },
     dispatch,

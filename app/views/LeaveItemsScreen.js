@@ -4,11 +4,6 @@ import {bindActionCreators} from 'redux';
 import {View, Text, StyleSheet, Button, BackHandler} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {setCurrentTask} from '../redux/actions';
-import {mapScreen} from '../functions';
-import {
-  TouchableHighlight,
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
 
 class LeaveItemsScreen extends Component {
   componentDidMount() {

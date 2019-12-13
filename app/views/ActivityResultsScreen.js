@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, Image, StyleSheet, Button, BackHandler, ScrollView } from 'react-native';
-import { mapScreen } from '../functions';
-import { nextTask } from '../redux/actions';
+import { View, Text, StyleSheet, Button, BackHandler, ScrollView } from 'react-native';
 
 class ActivityResultsScreen extends Component {
   componentDidMount() {
@@ -63,14 +61,14 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { model, currentTask, taskResults } = state;
-  return { model, currentTask, taskResults };
+  const { model, taskResults } = state;
+  return { model, taskResults };
 };
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      nextTask,
+      
     },
     dispatch,
   );

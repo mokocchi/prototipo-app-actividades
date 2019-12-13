@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {View, Text, Image, StyleSheet, Button, BackHandler} from 'react-native';
-import {mapScreen} from '../functions';
+import {View, Text, StyleSheet, Button, BackHandler} from 'react-native';
 import { setTaskResult } from '../redux/actions';
 
 class SimpleTaskScreen extends Component {

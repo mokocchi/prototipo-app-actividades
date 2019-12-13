@@ -4,11 +4,6 @@ import {bindActionCreators} from 'redux';
 import {View, Text, StyleSheet, Button, BackHandler} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {setCurrentTask, setTaskResult} from '../redux/actions';
-import {mapScreen} from '../functions';
-import {
-  TouchableHighlight,
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
 
 class CountersTaskScreen extends Component {
   componentDidMount() {
@@ -81,7 +76,7 @@ class CountersTaskScreen extends Component {
                 if(task.byWeight){
                     this.props.navigate("ResultByWeight",{result: this.state.counters})
                 } else {
-                    this.props.navigation.navigate(mapScreen('TaskResult'));
+                    this.props.navigation.navigate('TaskResult');
                 }
             }
           }}></Button>

@@ -4,13 +4,11 @@ import { bindActionCreators } from 'redux';
 import {
   View,
   Text,
-  Image,
   StyleSheet,
   Button,
   BackHandler,
   TextInput,
 } from 'react-native';
-import { mapScreen } from '../functions';
 import { setTaskResult } from '../redux/actions';
 
 class TextInputTaskScreen extends Component {

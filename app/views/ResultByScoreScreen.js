@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {View, Text, Image, StyleSheet, Button, BackHandler} from 'react-native';
-import {mapScreen} from '../functions';
-import {nextTask} from '../redux/actions';
 import {ScrollView} from 'react-native-gesture-handler';
 
 class ResultByScoreScreen extends Component {
@@ -75,7 +73,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      nextTask,
     },
     dispatch,
   );

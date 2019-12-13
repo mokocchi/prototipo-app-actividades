@@ -4,13 +4,10 @@ import { connect } from 'react-redux';
 import {
   View,
   Text,
-  Image,
   StyleSheet,
   Button,
   BackHandler,
 } from 'react-native';
-
-import { mapScreen } from '../functions'
 
 class SendAnswersScreen extends Component {
     componentDidMount() {

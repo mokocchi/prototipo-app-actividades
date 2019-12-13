@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { View, Text, StyleSheet, Button, BackHandler, Picker } from 'react-native';
-import { ListItem } from 'react-native-elements';
-import { setCurrentTask, setTaskResult } from '../redux/actions';
-import { mapScreen } from '../functions';
-import {
-  TouchableHighlight,
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
+import { setTaskResult } from '../redux/actions';
 
 class SelectInputTaskScreen extends Component {
   componentDidMount() {
@@ -84,7 +78,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      setCurrentTask,
       setTaskResult
     },
     dispatch,

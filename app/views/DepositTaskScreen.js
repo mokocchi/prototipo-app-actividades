@@ -4,7 +4,6 @@ import {bindActionCreators} from 'redux';
 import {View, Text, StyleSheet, Button, BackHandler} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {setCurrentTask, setTaskResult, removeCollectedCode} from '../redux/actions';
-import {mapScreen} from '../functions';
 
 class DepositTaskScreen extends Component {
   componentDidMount() {
