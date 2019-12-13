@@ -42,7 +42,6 @@ class ChooseTaskScreen extends Component {
                 onPress={() => {
                     const taskIndex = this.props.model.tasks.findIndex((item) => task.code == item.code);
                     this.props.setCurrentTask(taskIndex);
-                    console.log("index: " + taskIndex);
                     this.props.navigation.navigate(mapScreen(this.props.model.tasks[taskIndex].type));
                 }
                 }

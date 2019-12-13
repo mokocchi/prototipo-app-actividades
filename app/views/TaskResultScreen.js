@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { View, Text, Image, StyleSheet, Button, BackHandler } from 'react-native';
 import { mapScreen } from '../functions';
-import { nextTask } from '../redux/actions';
+import { nextTask, setCurrentTask } from '../redux/actions';
 
 class TaskResultScreen extends Component {
   componentDidMount() {
@@ -46,6 +46,7 @@ class TaskResultScreen extends Component {
               this.props.navigation.navigate(
                 mapScreen(this.nextTaskType(activity)),
                 );
+                this.props.nextTask();
             } else {
               const tasks = this.props.model.tasks;
               const forcedJump = task.jumps.find((jump) => jump.on == "ALL");
@@ -56,17 +57,50 @@ class TaskResultScreen extends Component {
                   if (forcedJump.to.length > 1) {
                     this.props.navigation.navigate("ChooseTask", { "options": forcedJump.to });
                   } else {
-                    const type = tasks.find((item) => item.code == forcedJump.to[0]).type;
+                    const targetTask = tasks.find((item) => item.code == forcedJump.to[0]);
                     this.props.navigation.navigate(
-                      mapScreen(type),
+                      mapScreen(targetTask.type),
                     );
+                    const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
+                    this.props.setCurrentTask(taskIndex);
                   }
                 }
               } else {
-                //conditional jump
+                const answer = this.props.navigation.getParam('answer', null);
+                for (let index = 0; index < task.jumps.length; index++) {
+                  const jump = task.jumps[index];
+                  if (jump.answer == answer) {
+                    if (jump.on == "YES") {
+                      if (jump.to.length > 1) {
+                        this.props.navigation.navigate("ChooseTask", { "options": jump.to });
+                      } else {
+                        const targetTask = tasks.find((item) => item.code == jump.to[0]);
+                        this.props.navigation.navigate(
+                          mapScreen(targetTask.type),
+                        );
+                        const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
+                        this.props.setCurrentTask(taskIndex);
+                      }
+                      break;
+                    }
+                  } else {
+                    if (jump.on == "NO") {
+                      if (jump.to.length > 1) {
+                        this.props.navigation.navigate("ChooseTask", { "options": jump.to });
+                      } else {
+                        const targetTask = tasks.find((item) => item.code == jump.to[0]);
+                        this.props.navigation.navigate(
+                          mapScreen(targetTask.type),
+                        );
+                        const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
+                        this.props.setCurrentTask(taskIndex);
+                      }
+                      break;
+                    }
+                  }
+                }
               }
             }
-            this.props.nextTask();
           }}></Button>
         <Button
           title="Ver respuestas"
@@ -100,7 +134,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      nextTask,
+      nextTask, setCurrentTask
     },
     dispatch,
   );
