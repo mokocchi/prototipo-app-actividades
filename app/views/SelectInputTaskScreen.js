@@ -55,7 +55,7 @@ class SelectInputTaskScreen extends Component {
           title="Continuar"
           onPress={() => {
             this.props.setTaskResult(task.code, this.state.value, task.type);
-            this.props.navigation.navigate("TaskResult", {"answer":this.state.value});
+            this.props.navigation.navigate("TaskResult", {"answer":[this.state.value]});
           }}></Button>
       </View>
     );

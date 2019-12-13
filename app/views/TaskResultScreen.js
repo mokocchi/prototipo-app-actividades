@@ -32,16 +32,16 @@ class TaskResultScreen extends Component {
   }
 
   findDestination(activity, task) {
-    if(task.jumps.length == 0) {
+    if (task.jumps.length == 0) {
       this.props.navigation.navigate(
         mapScreen(this.nextTaskType(activity)),
-        );
-        this.props.nextTask();
+      );
+      this.props.nextTask();
     } else {
       const tasks = this.props.model.tasks;
       const forcedJump = task.jumps.find((jump) => jump.on == "ALL");
-      if(forcedJump){
-        if(forcedJump.to[0] == "END") {
+      if (forcedJump) {
+        if (forcedJump.to[0] == "END") {
           this.props.navigation.navigate("SendAnswers");
         } else {
           if (forcedJump.to.length > 1) {
@@ -56,18 +56,34 @@ class TaskResultScreen extends Component {
           }
         }
       } else {
-        const answer = this.props.navigation.getParam('answer', null);
-        for (let index = 0; index < task.jumps.length; index++) {
-          const jump = task.jumps[index];
-          if (jump.answer == answer) {
-            if (jump.on == "YES") {
-              if (jump.to.length > 1) {
-                this.props.navigation.navigate("ChooseTask", { "options": jump.to });
-              } else {
-                if (jump.to[0] == "END") {
-                  this.props.navigation.navigate("SendAnswers");
+        const answers = this.props.navigation.getParam('answer', []);
+        for (let index = 0; index < answers.length; index++) {
+          const answer = answers[index];
+          for (let index = 0; index < task.jumps.length; index++) {
+            const jump = task.jumps[index];
+            if (jump.answer == answer) {
+              if (jump.on == "YES") {
+                if (jump.to.length > 1) {
+                  this.props.navigation.navigate("ChooseTask", { "options": jump.to });
                 } else {
-
+                  if (jump.to[0] == "END") {
+                    this.props.navigation.navigate("SendAnswers");
+                  } else {
+                    const targetTask = tasks.find((item) => item.code == jump.to[0]);
+                    this.props.navigation.navigate(
+                      mapScreen(targetTask.type),
+                    );
+                    const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
+                    this.props.setCurrentTask(taskIndex);
+                  }
+                }
+                return;
+              }
+            } else {
+              if (jump.on == "NO") {
+                if (jump.to.length > 1) {
+                  this.props.navigation.navigate("ChooseTask", { "options": jump.to });
+                } else {
                   const targetTask = tasks.find((item) => item.code == jump.to[0]);
                   this.props.navigation.navigate(
                     mapScreen(targetTask.type),
@@ -75,22 +91,8 @@ class TaskResultScreen extends Component {
                   const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
                   this.props.setCurrentTask(taskIndex);
                 }
+                return;
               }
-              break;
-            }
-          } else {
-            if (jump.on == "NO") {
-              if (jump.to.length > 1) {
-                this.props.navigation.navigate("ChooseTask", { "options": jump.to });
-              } else {
-                const targetTask = tasks.find((item) => item.code == jump.to[0]);
-                this.props.navigation.navigate(
-                  mapScreen(targetTask.type),
-                );
-                const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
-                this.props.setCurrentTask(taskIndex);
-              }
-              break;
             }
           }
         }

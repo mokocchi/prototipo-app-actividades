@@ -43,7 +43,7 @@ class MultipleChoiceTaskResultScreen extends Component {
         <Button
           title="Continuar"
           onPress={() => {
-            this.props.navigation.navigate('TaskResult');
+            this.props.navigation.navigate('TaskResult', {"answer": result});
           }}></Button>
       </View>
     );

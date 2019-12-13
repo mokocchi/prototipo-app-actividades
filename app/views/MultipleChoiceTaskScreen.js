@@ -89,7 +89,7 @@ class MultipleChoiceTaskScreen extends Component {
             if(task.correctAnswers){
               this.props.navigation.navigate('MultipleChoiceTaskResult', {result: result});
             } else {
-              this.props.navigation.navigate("TaskResult");
+              this.props.navigation.navigate("TaskResult", {"answer": result});
             }
 
           }}></Button>
