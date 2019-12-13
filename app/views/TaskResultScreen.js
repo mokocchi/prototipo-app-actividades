@@ -74,12 +74,17 @@ class TaskResultScreen extends Component {
                       if (jump.to.length > 1) {
                         this.props.navigation.navigate("ChooseTask", { "options": jump.to });
                       } else {
-                        const targetTask = tasks.find((item) => item.code == jump.to[0]);
-                        this.props.navigation.navigate(
-                          mapScreen(targetTask.type),
-                        );
-                        const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
-                        this.props.setCurrentTask(taskIndex);
+                        if (jump.to[0] == "END") {
+                          this.props.navigation.navigate("SendAnswers");
+                        } else {
+
+                          const targetTask = tasks.find((item) => item.code == jump.to[0]);
+                          this.props.navigation.navigate(
+                            mapScreen(targetTask.type),
+                          );
+                          const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
+                          this.props.setCurrentTask(taskIndex);
+                        }
                       }
                       break;
                     }

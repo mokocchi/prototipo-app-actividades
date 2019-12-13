@@ -1,0 +1,198 @@
+{
+    "language": "ES",
+    "educationalActivity": {
+        "name": "Prototipo#2.3",
+        "goal": "El propósito de esta actividad es probar bifurcación condicional negativa y múltiple",
+        "sequential": true
+    },
+    "tasks": [
+        {
+            "code": "01",
+            "name": "Nombre",
+            "instruction": "¿Cuál es tu nombre?",
+            "type": "textInput",
+            "jumps": []
+        },
+        {
+            "code": "02",
+            "name": "Edad",
+            "instruction": "¿Cuál es tu edad?",
+            "type": "numberInput",
+            "jumps": []
+        },
+        {
+            "code": "03",
+            "name": "Mascota",
+            "instruction": "¿Cuántas mascotas tenés?",
+            "type": "select",
+            "options": [
+                {
+                    "code": "01",
+                    "text": "Ninguna"
+                },
+                {
+                    "code": "02",
+                    "text": "Una"
+                },
+                {
+                    "code": "03",
+                    "text": "Dos"
+                },
+                {
+                    "code": "04",
+                    "text": "Tres o más"
+                }
+            ],
+            "jumps": [
+                {
+                    "on": "YES",
+                    "to": [
+                        "04"
+                    ],
+                    "answer": "01"
+                },
+                {
+                    "on": "NO",
+                    "to": [
+                        "05"
+                    ],
+                    "answer": "01"
+                }
+            ]
+        },
+        {
+            "code": "04",
+            "name": "Sin mascota",
+            "instruction": "¿Por qué no tenés mascota?",
+            "type": "multiple",
+            "options": [
+                {
+                    "code": "01",
+                    "text": "No tengo lugar"
+                },
+                {
+                    "code": "02",
+                    "text": "Mi familia no quiere"
+                },
+                {
+                    "code": "03",
+                    "text": "Soy alérgico"
+                },
+                {
+                    "code": "04",
+                    "text": "No me gustan"
+                },
+                {
+                    "code": "05",
+                    "text": "Otro"
+                }
+            ],
+            "jumps": [
+                {
+                    "on": "ALL",
+                    "to": [
+                        "06"
+                    ],
+                    "answer": null
+                }
+            ]
+        },
+        {
+            "code": "05",
+            "name": "Mascotero",
+            "instruction": "¿Qué te gusta de tu mascota?",
+            "type": "textInput",
+            "jumps": []
+        },
+        {
+            "code": "06",
+            "name": "Otras preguntas",
+            "instruction": "Vamos a hacer algunas preguntas más",
+            "type": "select",
+            "options": [
+                {
+                    "code": "01",
+                    "text": "Está bien"
+                },
+                {
+                    "code": "02",
+                    "text": "No más preguntas"
+                }
+            ],
+            "jumps": [
+                {
+                    "on": "YES",
+                    "to": [
+                        "07",
+                        "08",
+                        "09"
+                    ],
+                    "answer": "01"
+                },
+                {
+                    "on": "YES",
+                    "to": [
+                        "END"
+                    ],
+                    "answer": "02"
+                }
+            ]
+        },
+        {
+            "code": "07",
+            "name": "Vivienda",
+            "instruction": "¿Dónde vivís?",
+            "type": "select",
+            "options": [
+                {
+                    "code": "01",
+                    "text": "Casa"
+                },
+                {
+                    "code": "02",
+                    "text": "Departamento"
+                }
+            ],
+            "jumps": [
+                {
+                    "on": "ALL",
+                    "to": [
+                        "END"
+                    ],
+                    "answer": null
+                }
+            ]
+        },
+        {
+            "code": "08",
+            "name": "Plantas",
+            "instruction": "¿Tenés plantas?",
+            "type": "select",
+            "options": [
+                {
+                    "code": "01",
+                    "text": "Sí"
+                },
+                {
+                    "code": "02",
+                    "text": "No"
+                }
+            ],
+            "jumps": [
+                {
+                    "on": "ALL",
+                    "to": [
+                        "END"
+                    ],
+                    "answer": null
+                }
+            ]
+        },
+        {
+            "code":"09",
+            "name":"Número",
+            "instruction": "Sacale una foto al número de tu casa",
+            "type": "cameraInput"
+        }
+    ]
+}
