@@ -22,11 +22,13 @@ import DepositTaskResultScreen from '../views/DepositTaskResultScreen';
 import MultipleChoiceTaskResultScreen from '../views/MultipleChoiceTaskResultScreen';
 import SendAnswersScreen from '../views/SendAnswersScreen';
 import SelectInputTaskScreen from '../views/SelectInputTaskScreen';
+import SelectFileScreen from '../views/SelectFileScreen';
 
 export default createAppContainer(
   createSwitchNavigator(
     {
       Splash: SplashScreen,
+      SelectFile: SelectFileScreen,
       Welcome: WelcomeScreen,
       ChooseTask: ChooseTaskScreen,
       TaskResult: TaskResultScreen,
