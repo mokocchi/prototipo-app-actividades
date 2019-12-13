@@ -1,0 +1,125 @@
+{
+    "language": "ES",
+    "educationalActivity": {
+        "name": "Prototipo#1.1",
+        "goal": "El propósito de esta actividad es probar distintos tipos de tareas",
+        "sequential": true
+    },
+    "tasks": [
+        {
+            "code": "sustantivos",
+            "name": "Sustantivos",
+            "instruction": "Subrayen los sustantivos del texto Nº124",
+            "type": "simple"
+        },
+        {
+            "code": "foto sustantivos",
+            "name": "Foto sustantivos",
+            "instruction": "Saquen una foto al texto subrayado",
+            "type": "cameraInput"
+        },
+        {
+            "code": "sustantivo favorito",
+            "name": "Sustantivo Favorito",
+            "instruction": "Escriban su sustantivo favorito del texto",
+            "type": "textInput"
+        },
+        {
+            "code": "reptiles",
+            "name": "Reptiles",
+            "instruction": "¿Cuáles de estos son reptiles?",
+            "type": "multiple",
+            "count": false,
+            "options": [
+                {"code": "tortuga", "text":"Tortuga"}, {"code": "perro", "text": "Perro"}, {"code": "sapo", "text": "Sapo"}, {"code": "vibora", "text": "Víbora"}, {"code": "picaflor", "text": "Picaflor"}
+            ],
+            "correctAnswers": ["tortuga", "vibora"]
+        },
+        {
+            "code": "buscando animales",
+            "name": "Buscando animales",
+            "instruction": "¿Cuántos de estos animales vieron en el paseo?",
+            "type": "counters",
+            "count": true,
+            "options": [{"code": "perro", "text": "Perro"}, {"code": "gato", "text": "Gato"}, {"code": "pajaro", "text": "Pájaro"}, {"code": "lagartija", "text": "Lagartija"}],
+            "byScore": [
+                {
+                    "name": "Rareza",
+                    "message": "Cuanto más alto el número, más difícil de ver el animal",
+                    "scores": {
+                        "perro": 1,
+                        "gato": 2,
+                        "pajaro": 2,
+                        "lagartija": 10
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Elementos para ver información (mediante pantalla)",
+            "instruction": "Recolectar aquel o aquellos elementos que pueden ser usados para  VER información (mediante pantalla)",
+            "code": "ver información",
+            "type": "collect",
+            "elements": [{
+                "name": "Monitor",
+                "code": "monitor_t2",
+                "deposits": ["otros"]
+              },
+              {
+                "name": "Cañon o Proyector",
+                "code": "cañon o proyector_t2",
+                "deposits": ["otros"]
+              },
+              {
+                "name": "Impresora",
+                "code": "impresora_t2",
+                "deposits": ["otros"]
+              },
+              {
+                "name": "Reproductor de DVD",
+                "code": "reproductor de DVD_t2",
+                "deposits": ["otros"]
+              },
+              {
+                "name": "Tablet",
+                "code": "tablet_t2",
+                "deposits": ["ebasura"]
+              },
+              {
+                "name": "Notebook",
+                "code": "notebook_t2",
+                "deposits": ["ebasura"]
+              }],
+              "validElements": [
+                "monitor_t2",
+                "cañon o proyector_t2",
+                "tablet_t2",
+                "notebook_t2"
+              ]
+        },
+        {
+            "name": "Elementos con CPU",
+            "instruction": "Depositar los elementos que tienen CPU",
+            "code": "ebasura",
+            "type": "deposit"
+        },
+        {
+            "name": "Elementos sin CPU",
+            "instruction": "Depositar los elementos que no tienen CPU",
+            "code": "otros",
+            "type": "deposit"
+        },
+        {
+            "code": "telefono de contacto",
+            "name": "Teléfono de contacto",
+            "instruction": "Escriban un teléfono para contactarlos",
+            "type": "numberInput"
+        },
+        {
+            "code": "ubicacion",
+            "name": "Ubicación",
+            "instruction": "Indiquen dónde se encuentran",
+            "type": "GPSInput"
+        }
+    ]
+}
