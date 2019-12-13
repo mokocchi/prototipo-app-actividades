@@ -47,7 +47,9 @@ class ChooseTaskScreen extends Component {
                 }
                 />
             ))}
-            <Button title="Terminar" color="green" onPress={()=>this.props.navigation.navigate("SendAnswers")}></Button>
+            {
+                this.props.model.educationalActivity.sequential? null : <Button title="Terminar" color="green" onPress={()=>this.props.navigation.navigate("SendAnswers")}></Button>
+            }
         </View>
     );
   }

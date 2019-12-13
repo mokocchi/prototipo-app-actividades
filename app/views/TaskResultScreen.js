@@ -31,6 +31,73 @@ class TaskResultScreen extends Component {
     }
   }
 
+  findDestination(activity, task) {
+    if(task.jumps.length == 0) {
+      this.props.navigation.navigate(
+        mapScreen(this.nextTaskType(activity)),
+        );
+        this.props.nextTask();
+    } else {
+      const tasks = this.props.model.tasks;
+      const forcedJump = task.jumps.find((jump) => jump.on == "ALL");
+      if(forcedJump){
+        if(forcedJump.to[0] == "END") {
+          this.props.navigation.navigate("SendAnswers");
+        } else {
+          if (forcedJump.to.length > 1) {
+            this.props.navigation.navigate("ChooseTask", { "options": forcedJump.to });
+          } else {
+            const targetTask = tasks.find((item) => item.code == forcedJump.to[0]);
+            this.props.navigation.navigate(
+              mapScreen(targetTask.type),
+            );
+            const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
+            this.props.setCurrentTask(taskIndex);
+          }
+        }
+      } else {
+        const answer = this.props.navigation.getParam('answer', null);
+        for (let index = 0; index < task.jumps.length; index++) {
+          const jump = task.jumps[index];
+          if (jump.answer == answer) {
+            if (jump.on == "YES") {
+              if (jump.to.length > 1) {
+                this.props.navigation.navigate("ChooseTask", { "options": jump.to });
+              } else {
+                if (jump.to[0] == "END") {
+                  this.props.navigation.navigate("SendAnswers");
+                } else {
+
+                  const targetTask = tasks.find((item) => item.code == jump.to[0]);
+                  this.props.navigation.navigate(
+                    mapScreen(targetTask.type),
+                  );
+                  const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
+                  this.props.setCurrentTask(taskIndex);
+                }
+              }
+              break;
+            }
+          } else {
+            if (jump.on == "NO") {
+              if (jump.to.length > 1) {
+                this.props.navigation.navigate("ChooseTask", { "options": jump.to });
+              } else {
+                const targetTask = tasks.find((item) => item.code == jump.to[0]);
+                this.props.navigation.navigate(
+                  mapScreen(targetTask.type),
+                );
+                const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
+                this.props.setCurrentTask(taskIndex);
+              }
+              break;
+            }
+          }
+        }
+      }
+    }
+  }
+
   render() {
     var results = false;
     const activity = this.props.model.educationalActivity;
@@ -42,70 +109,7 @@ class TaskResultScreen extends Component {
         <Button
           title="Continuar"
           onPress={() => {
-            if(task.jumps.length == 0) {
-              this.props.navigation.navigate(
-                mapScreen(this.nextTaskType(activity)),
-                );
-                this.props.nextTask();
-            } else {
-              const tasks = this.props.model.tasks;
-              const forcedJump = task.jumps.find((jump) => jump.on == "ALL");
-              if(forcedJump){
-                if(forcedJump.to[0] == "END") {
-                  this.props.navigation.navigate("SendAnswers");
-                } else {
-                  if (forcedJump.to.length > 1) {
-                    this.props.navigation.navigate("ChooseTask", { "options": forcedJump.to });
-                  } else {
-                    const targetTask = tasks.find((item) => item.code == forcedJump.to[0]);
-                    this.props.navigation.navigate(
-                      mapScreen(targetTask.type),
-                    );
-                    const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
-                    this.props.setCurrentTask(taskIndex);
-                  }
-                }
-              } else {
-                const answer = this.props.navigation.getParam('answer', null);
-                for (let index = 0; index < task.jumps.length; index++) {
-                  const jump = task.jumps[index];
-                  if (jump.answer == answer) {
-                    if (jump.on == "YES") {
-                      if (jump.to.length > 1) {
-                        this.props.navigation.navigate("ChooseTask", { "options": jump.to });
-                      } else {
-                        if (jump.to[0] == "END") {
-                          this.props.navigation.navigate("SendAnswers");
-                        } else {
-
-                          const targetTask = tasks.find((item) => item.code == jump.to[0]);
-                          this.props.navigation.navigate(
-                            mapScreen(targetTask.type),
-                          );
-                          const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
-                          this.props.setCurrentTask(taskIndex);
-                        }
-                      }
-                      break;
-                    }
-                  } else {
-                    if (jump.on == "NO") {
-                      if (jump.to.length > 1) {
-                        this.props.navigation.navigate("ChooseTask", { "options": jump.to });
-                      } else {
-                        const targetTask = tasks.find((item) => item.code == jump.to[0]);
-                        this.props.navigation.navigate(
-                          mapScreen(targetTask.type),
-                        );
-                        const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
-                        this.props.setCurrentTask(taskIndex);
-                      }
-                      break;
-                    }
-                  }
-                }
-              }
-            }
+            this.findDestination(activity, task);
           }}></Button>
         <Button
           title="Ver respuestas"
