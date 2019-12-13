@@ -44,30 +44,16 @@ class TaskResultScreen extends Component {
         if (forcedJump.to[0] == "END") {
           this.props.navigation.navigate("SendAnswers");
         } else {
-          if (forcedJump.to.length > 1) {
-            this.props.navigation.navigate("ChooseTask", { "options": forcedJump.to });
-          } else {
-            const targetTask = tasks.find((item) => item.code == forcedJump.to[0]);
-            this.props.navigation.navigate(
-              mapScreen(targetTask.type),
-            );
-            const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
-            this.props.setCurrentTask(taskIndex);
-          }
+          this.jump(forcedJump, tasks);
         }
       } else {
         const answers = this.props.navigation.getParam('answer', []);
         const jumpWhenNone = task.jumps.find((jump) => jump.on == "NONE");
-        if(jumpWhenNone && (answers.length == 0)) {
+        if (jumpWhenNone && (answers.length == 0)) {
           if (jumpWhenNone.to.length > 1) {
             this.props.navigation.navigate("ChooseTask", { "options": forcedJump.to });
           } else {
-            const targetTask = tasks.find((item) => item.code == jumpWhenNone.to[0]);
-            this.props.navigation.navigate(
-              mapScreen(targetTask.type),
-            );
-            const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
-            this.props.setCurrentTask(taskIndex);
+            this.jump(jumpWhenNone, tasks);
             return;
           }
         }
@@ -83,12 +69,7 @@ class TaskResultScreen extends Component {
                   if (jump.to[0] == "END") {
                     this.props.navigation.navigate("SendAnswers");
                   } else {
-                    const targetTask = tasks.find((item) => item.code == jump.to[0]);
-                    this.props.navigation.navigate(
-                      mapScreen(targetTask.type),
-                    );
-                    const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
-                    this.props.setCurrentTask(taskIndex);
+                    this.jump(jump, tasks)
                   }
                 }
                 return;
@@ -115,6 +96,18 @@ class TaskResultScreen extends Component {
         );
         this.props.nextTask();
       }
+    }
+  }
+
+  jump(jump, tasks) {
+    if (jump.to.length > 1) {
+      this.props.navigation.navigate("ChooseTask", { "options": jump.to });
+    }
+    else {
+      const targetTask = tasks.find((item) => item.code == jump.to[0]);
+      this.props.navigation.navigate(mapScreen(targetTask.type));
+      const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
+      this.props.setCurrentTask(taskIndex);
     }
   }
 
