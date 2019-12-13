@@ -21,7 +21,7 @@ class SplashScreen extends Component {
                 }
                 )
                 if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-                    RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo1/configuracion/ConfiguracionPrototipo4.json').then(data => {
+                    RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo2/configuracion/ConfiguracionPrototipo2.1.json').then(data => {
                         that.props.loadModel(JSON.parse(data));
                         that.props.navigation.navigate('Welcome');
                     })

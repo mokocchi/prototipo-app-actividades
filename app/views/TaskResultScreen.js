@@ -42,9 +42,18 @@ class TaskResultScreen extends Component {
         <Button
           title="Continuar"
           onPress={() => {
-            this.props.navigation.navigate(
-              mapScreen(this.nextTaskType(activity)),
-            );
+            if(task.jumps.length == 0) {
+              this.props.navigation.navigate(
+                mapScreen(this.nextTaskType(activity)),
+                );
+            } else {
+              forcedJump = task.jumps.find((jump) => jump.on == "ALL");
+              if(forcedJump.to[0] == "END") {
+                this.props.navigation.navigate("SendAnswers");
+              } else {
+                this.props.navigation.navigate("ChooseTask", {"options":forcedJump.to});
+              }
+            }
             this.props.nextTask();
           }}></Button>
         <Button

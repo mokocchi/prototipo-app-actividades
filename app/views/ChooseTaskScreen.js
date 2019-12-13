@@ -25,7 +25,12 @@ class ChooseTaskScreen extends Component {
     }
 
     render() {
-        const tasks = this.props.model.tasks;
+        const options = this.props.navigation.getParam('options', []);
+        tasks = this.props.model.tasks;
+        if(options.length != 0) {
+            tasks = tasks.filter((task) => options.includes(task.code));
+        }
+        
     return (
         <View style={styles.container}>
             <Text>Elige una tarea para comenzar</Text>
@@ -35,8 +40,10 @@ class ChooseTaskScreen extends Component {
                 title={ task.name }
                 color={this.props.taskResults.find((item)=> item.code == task.code)? "orange" : "blue"}
                 onPress={() => {
-                    this.props.setCurrentTask(index);
-                    this.props.navigation.navigate(mapScreen(tasks[index].type));
+                    const taskIndex = this.props.model.tasks.findIndex((item) => task.code == item.code);
+                    this.props.setCurrentTask(taskIndex);
+                    console.log("index: " + taskIndex);
+                    this.props.navigation.navigate(mapScreen(this.props.model.tasks[taskIndex].type));
                 }
                 }
                 />
