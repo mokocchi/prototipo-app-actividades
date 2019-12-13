@@ -11,7 +11,7 @@
             "name": "Sustantivos",
             "instruction": "Subrayen los sustantivos del texto Nº124",
             "type": "simple",
-            "jumps" :[{"on":"ALL","to":["sustantivo favorito"], "answer": null}]
+            "jumps" :[]
         },
         {
             "code": "foto sustantivos",
@@ -32,7 +32,7 @@
             "code": "11",
             "name": "Gustos",
             "instruction": "¿Qué te gusta más?",
-            "type": "radio",
+            "type": "select",
             "options": [
                 {
                     "code": "1",

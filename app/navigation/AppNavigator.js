@@ -21,6 +21,7 @@ import CollectTaskResultScreen from '../views/CollectTaskResultScreen';
 import DepositTaskResultScreen from '../views/DepositTaskResultScreen';
 import MultipleChoiceTaskResultScreen from '../views/MultipleChoiceTaskResultScreen';
 import SendAnswersScreen from '../views/SendAnswersScreen';
+import SelectInputTaskScreen from '../views/SelectInputTaskScreen';
 
 export default createAppContainer(
   createSwitchNavigator(
@@ -33,6 +34,7 @@ export default createAppContainer(
       SimpleTask: SimpleTaskScreen,
       TextInputTask: TextInputTaskScreen,
       CameraInputTask: CameraInputTaskScreen,
+      SelectInputTask: SelectInputTaskScreen,
       MultipleChoiceTask: MultipleChoiceTaskScreen,
       MultipleChoiceTaskResult: MultipleChoiceTaskResultScreen,
       CountersTask: CountersTaskScreen,
