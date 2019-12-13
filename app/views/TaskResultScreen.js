@@ -48,10 +48,14 @@ class TaskResultScreen extends Component {
                 );
             } else {
               forcedJump = task.jumps.find((jump) => jump.on == "ALL");
-              if(forcedJump.to[0] == "END") {
-                this.props.navigation.navigate("SendAnswers");
+              if(forcedJump){
+                if(forcedJump.to[0] == "END") {
+                  this.props.navigation.navigate("SendAnswers");
+                } else {
+                  this.props.navigation.navigate("ChooseTask", {"options":forcedJump.to});
+                }
               } else {
-                this.props.navigation.navigate("ChooseTask", {"options":forcedJump.to});
+                //conditional jump
               }
             }
             this.props.nextTask();
