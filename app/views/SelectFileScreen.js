@@ -47,9 +47,14 @@ class SelectFileScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            value: null
-        };
+        const files = this.props.navigation.getParam("files", [])
+        if(files.length > 0){
+            this.state = {
+                value: files[0]
+            };
+        } else {
+            this.state = "";
+        }
     }
 
     render() {
@@ -68,12 +73,15 @@ class SelectFileScreen extends Component {
                             <Picker.Item key={index} label={file} value={file} />
                         )}
                     </Picker>
+                    {
+                        files.length > 0 ? null : <Text>No hay archivos disponibles</Text>
+                    }
                 </View>
 
                 <Button
                     title="Continuar"
                     onPress={() => {
-                        if(this.state.value != null) {
+                        if(this.state.value != "") {
                             this.loadJSON(this);
                         }
                     }}></Button>
