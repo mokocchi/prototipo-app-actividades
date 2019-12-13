@@ -47,12 +47,20 @@ class TaskResultScreen extends Component {
                 mapScreen(this.nextTaskType(activity)),
                 );
             } else {
-              forcedJump = task.jumps.find((jump) => jump.on == "ALL");
+              const tasks = this.props.model.tasks;
+              const forcedJump = task.jumps.find((jump) => jump.on == "ALL");
               if(forcedJump){
                 if(forcedJump.to[0] == "END") {
                   this.props.navigation.navigate("SendAnswers");
                 } else {
-                  this.props.navigation.navigate("ChooseTask", {"options":forcedJump.to});
+                  if (forcedJump.to.length > 1) {
+                    this.props.navigation.navigate("ChooseTask", { "options": forcedJump.to });
+                  } else {
+                    const type = tasks.find((item) => item.code == forcedJump.to[0]).type;
+                    this.props.navigation.navigate(
+                      mapScreen(type),
+                    );
+                  }
                 }
               } else {
                 //conditional jump
