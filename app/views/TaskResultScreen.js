@@ -57,6 +57,20 @@ class TaskResultScreen extends Component {
         }
       } else {
         const answers = this.props.navigation.getParam('answer', []);
+        const jumpWhenNone = task.jumps.find((jump) => jump.on == "NONE");
+        if(jumpWhenNone && (answers.length == 0)) {
+          if (jumpWhenNone.to.length > 1) {
+            this.props.navigation.navigate("ChooseTask", { "options": forcedJump.to });
+          } else {
+            const targetTask = tasks.find((item) => item.code == jumpWhenNone.to[0]);
+            this.props.navigation.navigate(
+              mapScreen(targetTask.type),
+            );
+            const taskIndex = this.props.model.tasks.findIndex((item) => targetTask.code == item.code);
+            this.props.setCurrentTask(taskIndex);
+            return;
+          }
+        }
         for (let index = 0; index < answers.length; index++) {
           const answer = answers[index];
           for (let index = 0; index < task.jumps.length; index++) {
@@ -96,6 +110,10 @@ class TaskResultScreen extends Component {
             }
           }
         }
+        this.props.navigation.navigate(
+          mapScreen(this.nextTaskType(activity)),
+        );
+        this.props.nextTask();
       }
     }
   }

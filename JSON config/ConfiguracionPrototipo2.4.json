@@ -1,0 +1,97 @@
+{
+    "language": "ES",
+    "educationalActivity": {
+        "name": "Prototipo#2.4",
+        "goal": "El propósito de esta actividad es probar bifurcación condicional desde multiple choice",
+        "sequential": true
+    },
+    "tasks": [
+        {
+            "code": "01",
+            "name": "Opciones",
+            "instruction": "Elegí los números que te gusten",
+            "type": "multiple",
+            "options": [
+                {
+                    "code": "01",
+                    "text": "Uno"
+                },
+                {
+                    "code": "02",
+                    "text": "Dos"
+                },
+                {
+                    "code": "03",
+                    "text": "Tres"
+                },
+                {
+                    "code": "04",
+                    "text": "Cuatro"
+                }
+            ],
+            "jumps": [{"on": "YES", "to":["03"], "answer": "01"},
+            {"on": "YES", "to":["04"], "answer": "04" },
+            {"on": "NONE", "to": ["05"], "answer": null}]
+        },
+        {
+            "code": "02",
+            "name": "Sorpresa",
+            "instruction": "Por descarte, elegiste el dos y/o el tres",
+            "type": "simple",
+            "jumps": [
+                {
+                    "on": "ALL",
+                    "to": [
+                        "END"
+                    ],
+                    "answer": null
+                }
+            ]
+        },
+        {
+            "code": "03",
+            "name": "Uno",
+            "instruction": "Elegiste (al menos) el número uno",
+            "type": "simple",
+            "jumps": [
+                {
+                    "on": "ALL",
+                    "to": [
+                        "END"
+                    ],
+                    "answer": null
+                }
+            ]
+        },
+        {
+            "code": "04",
+            "name": "Cuatro",
+            "instruction": "Elegiste al menos la cuatro (y la uno no)",
+            "type": "simple",
+            "jumps": [
+                {
+                    "on": "ALL",
+                    "to": [
+                        "END"
+                    ],
+                    "answer": null
+                }
+            ]
+        },
+        {
+            "code": "05",
+            "name": "Nada",
+            "instruction": "Parece que no te gustan los números",
+            "type": "simple",
+            "jumps": [
+                {
+                    "on": "ALL",
+                    "to": [
+                        "END"
+                    ],
+                    "answer": null
+                }
+            ]
+        }
+    ]
+}
