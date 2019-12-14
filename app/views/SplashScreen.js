@@ -24,7 +24,6 @@ class SplashScreen extends Component {
                     RNFS.readDir(RNFS.ExternalStorageDirectoryPath + '/Prototipo2/configuracion')
                         .then((result) => {
                             result = result.map((file) => file.name);
-                            console.log(result);
                             that.props.navigation.navigate("SelectFile", {files: result});
                         })
                 } else {

@@ -18,7 +18,9 @@ class SelectFileScreen extends Component {
                 if (granted === PermissionsAndroid.RESULTS.GRANTED) {
                     const file = that.state.value;
                     RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo2/configuracion/' + file).then(data => {
-                        that.props.loadModel(JSON.parse(data));
+                        parsedJSON = JSON.parse(data)
+                        that.props.loadModel(parsedJSON);
+                        that.props.screenProps.setLocale(parsedJSON.language);
                         that.props.navigation.navigate('Welcome');
                     })
                         .catch(err => {
@@ -48,7 +50,7 @@ class SelectFileScreen extends Component {
     constructor(props) {
         super(props);
         const files = this.props.navigation.getParam("files", [])
-        if(files.length > 0){
+        if (files.length > 0) {
             this.state = {
                 value: files[0]
             };
@@ -58,10 +60,11 @@ class SelectFileScreen extends Component {
     }
 
     render() {
+        let { t, locale } = this.props.screenProps;
         const files = this.props.navigation.getParam("files", [])
         return (
             <View style={styles.container}>
-                <Text style={styles.text}>Configuraciones disponibles</Text>
+                <Text style={styles.text}>{t("SelectFile_001")}</Text>
                 <Text style={styles.text}>Elegí una configuración para empezar</Text>
                 <View>
                     <Picker
@@ -81,7 +84,7 @@ class SelectFileScreen extends Component {
                 <Button
                     title="Continuar"
                     onPress={() => {
-                        if(this.state.value != "") {
+                        if (this.state.value != "") {
                             this.loadJSON(this);
                         }
                     }}></Button>
