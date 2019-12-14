@@ -6,19 +6,19 @@ import * as RNFS from 'react-native-fs';
 import { loadModel } from '../redux/actions';
 
 class SelectFileScreen extends Component {
-    loadJSON(that) {
+    loadJSON(that,t) {
         async function requestStoragePermission() {
             try {
                 const granted = await PermissionsAndroid.request(
                     PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE, {
-                    'title': 'Permisos',
-                    'message': 'Se necesita permiso para usar el almacenamiento'
+                    'title': t("SelectFile_002"),
+                    'message': t("SelectFile_003")
                 }
                 )
                 if (granted === PermissionsAndroid.RESULTS.GRANTED) {
                     const file = that.state.value;
                     RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo2/configuracion/' + file).then(data => {
-                        parsedJSON = JSON.parse(data)
+                        parsedJSON = JSON.parse(data);
                         that.props.loadModel(parsedJSON);
                         that.props.screenProps.setLocale(parsedJSON.language);
                         that.props.navigation.navigate('Welcome');
@@ -60,12 +60,12 @@ class SelectFileScreen extends Component {
     }
 
     render() {
-        let { t, locale } = this.props.screenProps;
+        let { t } = this.props.screenProps;
         const files = this.props.navigation.getParam("files", [])
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>{t("SelectFile_001")}</Text>
-                <Text style={styles.text}>Elegí una configuración para empezar</Text>
+                <Text style={styles.text}>{t("SelectFile_004")}</Text>
                 <View>
                     <Picker
                         selectedValue={this.state.value}
@@ -77,15 +77,15 @@ class SelectFileScreen extends Component {
                         )}
                     </Picker>
                     {
-                        files.length > 0 ? null : <Text>No hay archivos disponibles</Text>
+                        files.length > 0 ? null : <Text>{t("SelectFile_005")}</Text>
                     }
                 </View>
 
                 <Button
-                    title="Continuar"
+                    title={t("SelectFile_006")}
                     onPress={() => {
                         if (this.state.value != "") {
-                            this.loadJSON(this);
+                            this.loadJSON(this, t);
                         }
                     }}></Button>
             </View>
