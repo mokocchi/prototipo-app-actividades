@@ -10,7 +10,7 @@ import {
   BackHandler,
 } from 'react-native';
 
-import { mapScreen } from '../functions'
+import { mapScreen } from '../utils/functions'
 
 class WelcomeScreen extends Component {
     componentDidMount() {

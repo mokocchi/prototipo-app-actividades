@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { View, Text, Image, StyleSheet, Button, BackHandler } from 'react-native';
-import { mapScreen } from '../functions';
+import { mapScreen } from '../utils/functions';
 import { nextTask, setCurrentTask } from '../redux/actions';
 
 class TaskResultScreen extends Component {

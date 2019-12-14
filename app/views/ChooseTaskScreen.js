@@ -9,7 +9,7 @@ import {
   BackHandler
 } from 'react-native';
 import { setCurrentTask } from '../redux/actions'
-import { mapScreen } from '../functions'
+import { mapScreen } from '../utils/functions'
 
 class ChooseTaskScreen extends Component {
     componentDidMount() {
