@@ -18,13 +18,14 @@ class SimpleTaskScreen extends Component {
   }
 
   render() {
+    t = this.props.screenProps.t;
     const task = this.props.model.tasks[this.props.currentTask];
     return (
       <View style={styles.container}>
         <Text style={styles.text}>{task.name}</Text>
         <Text style={styles.text}>{task.instruction}</Text>
         <Button
-          title="Continuar"
+          title={t("SimpleTask_001")}
           onPress={() => {
             this.props.setTaskResult(task.code, true, task.type);
             this.props.navigation.navigate("TaskResult");

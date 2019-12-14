@@ -35,12 +35,13 @@ class CollectTaskScreen extends Component {
 
   startScanner(that) {
     async function requestCameraPermission() {
+      const t = that.props.screenProps.t;
       try {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.CAMERA,
           {
-            title: 'Permisos',
-            message: 'Se necesita permiso para usar la cámara',
+            title: t("CollectTask_001"),
+            message: t("CollectTask_002"),
           },
         );
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
@@ -56,11 +57,12 @@ class CollectTaskScreen extends Component {
   }
 
   onQR_Code_Scan_Done(code, task) {
+    const t = this.props.screenProps.t;
     this.setState({startScanner: false});
     if (!task.elements.find(item => item.code == code)) {
-      Alert.alert('Lo siento!', 'Este elemento no puede ser recolectado ahora');
+      Alert.alert(t("CollectTask_003"), t("CollectTask_004"))
     } else if (this.state.codes.includes(code)) {
-      Alert.alert('Lo siento!', 'Este elemento ya fue recolectado');
+      Alert.alert(t("CollectTask_005"), t("CollectTask_012"));
     } else {
       this.setState({
         codes: [...this.state.codes, code],
@@ -69,6 +71,7 @@ class CollectTaskScreen extends Component {
   }
 
   render() {
+    const t = this.props.screenProps.t;
     const task = this.props.model.tasks[this.props.currentTask];
     if (this.state.startScanner) {
       return (
@@ -80,7 +83,7 @@ class CollectTaskScreen extends Component {
             }
           />
           <Button
-            title="Volver"
+            title={t("CollectTask_006")}
             onPress={() => this.setState({startScanner: false})}
           />
         </View>
@@ -90,17 +93,17 @@ class CollectTaskScreen extends Component {
         <View style={styles.container}>
           <View style={styles.topBar}>
             <TouchableOpacity style={styles.button}>
-              <Text style={{color: '#FFF', fontSize: 14}}>Más Info.</Text>
+              <Text style={{color: '#FFF', fontSize: 14}}>{t("CollectTask_007")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
                 this.props.navigation.navigate('MyBag', {codes: this.state.codes});
               }}>
-              <Text style={{color: '#FFF', fontSize: 14}}>Mi Bolsa</Text>
+              <Text style={{color: '#FFF', fontSize: 14}}>{t("CollectTask_008")}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
-              <Text style={{color: '#FFF', fontSize: 14}}>Ayuda</Text>
+              <Text style={{color: '#FFF', fontSize: 14}}>{t("CollectTask_009")}</Text>
             </TouchableOpacity>
           </View>
 
@@ -108,7 +111,7 @@ class CollectTaskScreen extends Component {
           <Text style={{}}>{task.instruction}</Text>
 
           <Button
-            title={`Recolectar\n elemento`}
+            title={t("CollectTask_010")}
             onPress={() => {
               this.startScanner(this);
             }}
@@ -122,7 +125,7 @@ class CollectTaskScreen extends Component {
               alignItems: 'center',
             }}>
             <Button
-              title="Finalizar tarea"
+              title={t("CollectTask_011")}
               onPress={() => {
                 this.props.setTaskResult(task.code, this.state.codes, task.type);
                 this.state.codes.map(code => this.props.addCollectedCode(code));

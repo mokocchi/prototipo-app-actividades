@@ -112,20 +112,20 @@ class TaskResultScreen extends Component {
   }
 
   render() {
-    var results = false;
+    t = this.props.screenProps.t;
     const activity = this.props.model.educationalActivity;
     const task = this.props.model.tasks[this.props.currentTask];
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Tarea terminada</Text>
-        <Text style={styles.text}>{results ? "Elijan una opción para continuar" : "Vamos a la siguiente tarea"}</Text>
+        <Text style={styles.text}>{t("TaskResult_001")}</Text>
+        <Text style={styles.text}>{t("TaskResult_002")}</Text>
         <Button
-          title="Continuar"
+          title={t("TaskResult_003")}
           onPress={() => {
             this.findDestination(activity, task);
           }}></Button>
         <Button
-          title="Ver respuestas"
+          title={t("TaskResult_004")}
           onPress={() => {
             this.props.navigation.navigate("ActivityResults");
           }}></Button>

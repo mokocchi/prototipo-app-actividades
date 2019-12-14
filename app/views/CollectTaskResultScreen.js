@@ -19,6 +19,7 @@ class CollectTaskResultScreen extends Component {
   }
 
   render() {
+    const t = this.props.screenProps.t;
     const result = this.props.navigation.getParam('result', []);
     const task = this.props.model.tasks[this.props.currentTask];
     const correctlyCollected = result.filter(code => task.validElements.includes(code));
@@ -27,20 +28,20 @@ class CollectTaskResultScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Elementos correctamente recolectados</Text>
+        <Text style={styles.text}>{t("CollectTaskResult_001")}</Text>
         <ScrollView>
           {correctlyCollected.map((item, index) => <Text key={index}>{task.elements.find(elem => elem.code == item).name}</Text>)}
         </ScrollView>
-        <Text style={styles.text}>Elementos incorrectamente recolectados</Text>
+        <Text style={styles.text}>{t("CollectTaskResult_002")}</Text>
         <ScrollView>
           {wronglyCollected.map((item, index) => <Text key={index}>{task.elements.find(elem => elem.code == item).name}</Text>)}
         </ScrollView>
-        <Text style={styles.text}>Elementos que debían ser recolectados</Text>
+        <Text style={styles.text}>{t("CollectTaskResult_003")}</Text>
         <ScrollView>
           {wronglyLeft.map((item, index) => <Text key={index}>{task.elements.find(elem => elem.code == item).name}</Text>)}
         </ScrollView>
         <Button
-          title="Continuar"
+          title={t("CollectTaskResult_004")}
           onPress={() => {
             this.props.navigation.navigate('TaskResult');
           }}></Button>

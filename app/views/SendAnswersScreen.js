@@ -23,13 +23,13 @@ class SendAnswersScreen extends Component {
     }
 
     render() {
+    const t = this.props.screenProps.t;
     const activity = this.props.model.educationalActivity;
-    const nextScreen = activity.sequential ? this.props.model.tasks[0].type : "choose";
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{activity.name}</Text>
-            <Text style={styles.text}>Terminaste la actividad. Se enviarán tus respuestas.</Text>           
-            <Button title="Enviar" onPress={()=>this.props.navigation.navigate("")} />
+            <Text style={styles.text}>{t("SendAnswers_001")}</Text>           
+            <Button title={t("SendAnswers_002")} onPress={()=>this.props.navigation.navigate("")} />
         </View>
     );
   }

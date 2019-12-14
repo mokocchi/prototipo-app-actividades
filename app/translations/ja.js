@@ -11,7 +11,81 @@ export default {
 
     "Welcome_001": "始めましょう",
 
-    "ActivityResults_001": "問題:",
+    "SimpleTask_001": "続く",
+
+    "TaskResult_001": "課題に回答しました",
+    "TaskResult_002": "次の課題へ行きましょう",
+    "TaskResult_003": "続く",
+    "TaskResult_004": "回答を見る",
+
+    "CameraInputTask_001": "写真を撮る",
+    "CameraInputTask_002": "続く",
+
+    "TextInputTask_001": "数値を入力してください",
+    "TextInputTask_002": "文を入力してください",
+    "TextInputTask_003": "続く",
+
+    "ChooseTask_001": "課題を選択する",
+    "ChooseTask_002": "終了",
+
+    "MultipleChoiceTask_001": "続く",
+
+    "MultipleChoiceTaskResult_001": "選択は正解だった要素",
+    "MultipleChoiceTaskResult_002": "選択は不正解だった要素",
+    "MultipleChoiceTaskResult_003": "選択はずだった要素",
+    "MultipleChoiceTaskResult_004": "続く",
+
+    "CountersTask_001": "続く",
+
+    "ResultByScore_001": "合計:",
+    "ResultByScore_002": "続く",
+
+    "SendAnswers_001": "アクティビティが終了しました。回答が送信されます。",
+    "SendAnswers_002": "提出",
+
+    "CollectTask_001": "権限",
+    "CollectTask_002": "カメラの権限が必要です",
+    "CollectTask_003": '残念!',
+    "CollectTask_004": 'この要素は今は取れません',
+    "CollectTask_005": '残念!',
+    "CollectTask_006": "戻る",
+    "CollectTask_007": "プラスアルファ",
+    "CollectTask_008": "バッグ",
+    "CollectTask_009": "ヘルプ",
+    "CollectTask_010": "要素を取る",
+    "CollectTask_011": "課題を終了する",
+    "CollectTask_012": 'この要素はもう取ってある',
+
+    "CollectTaskResult_001": "取得は正解だった要素",
+    "CollectTaskResult_002": "取得は不正解だった要素",
+    "CollectTaskResult_003": "取るはずだった要素",
+    "CollectTaskResult_004": "続く",
+
+    "PositionedTask_001": '権限',
+    "PositionedTask_002": 'カメラの権限が必要です',
+    "PositionedTask_003": '残念！このコードは違います',
+    "PositionedTask_004": "戻る",
+    "PositionedTask_005": "この地図はアクティビティを続く先を表す",
+    "PositionedTask_006": "このタスクへ:",
+    "PositionedTask_007": "コードリーダーを開く",
+    
+    "MyBag_001": "要素を返す",
+    "MyBag_002": "戻る",
+  
+    "LeaveItems_001" : "選択の要素を返す",
+    "LeaveItems_002" : "戻る",
+
+    "DepositTask_001": "要素を残す",
+    "DepositTask_002": "選択の要素を残す",
+    "DepositTask_003": "何も残さない",
+
+    "DepositTaskResult_001": "残すのは正解だった要素",
+    "DepositTaskResult_002": "残すのは不正解だった要素",
+    "DepositTaskResult_003": "続く",
+
+
+
+    "ActivityResults_001": "課題:",
     "ActivityResults_002": "答え:",
     "ActivityResults_003": "戻る",
 }

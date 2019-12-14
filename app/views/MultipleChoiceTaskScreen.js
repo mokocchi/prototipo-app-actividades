@@ -27,7 +27,7 @@ class MultipleChoiceTaskScreen extends Component {
   }
 
   render() {
-    const activity = this.props.model.educationalActivity;
+    const t = this.props.screenProps.t;
     const task = this.props.model.tasks[this.props.currentTask];
     return (
       <View style={styles.container}>
@@ -77,7 +77,7 @@ class MultipleChoiceTaskScreen extends Component {
         </View>
 
         <Button
-          title="Continuar"
+          title={t("MultipleChoiceTask_001")}
           onPress={() => {
             var result = task.options.filter((item, index) => this.state.checked[index]).map(item => item.code);
             this.props.setTaskResult(task.code, result, task.type);

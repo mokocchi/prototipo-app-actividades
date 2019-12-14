@@ -42,6 +42,7 @@ class CameraInputTaskScreen extends Component {
   }
 
   render() {
+    const t = this.props.screenProps.t;
     const { photo } = this.state;
     const activity = this.props.model.educationalActivity;
     const task = this.props.model.tasks[this.props.currentTask];
@@ -50,7 +51,7 @@ class CameraInputTaskScreen extends Component {
         <Text style={styles.text}>{task.name}</Text>
         <Text style={styles.text}>{task.instruction}</Text>
         { photo == null ?  
-          (<Button title="Sacar foto" onPress={this.handleTakePhoto} />)
+          (<Button title={t("CameraInputTask_001")} onPress={this.handleTakePhoto} />)
           : (
           <Image
             source={{ uri: photo.uri }}
@@ -58,7 +59,7 @@ class CameraInputTaskScreen extends Component {
           />
         )}
         <Button
-          title="Continuar"
+          title={t("CameraInputTask_002")}
           onPress={() => {
             if(photo){
               this.props.setTaskResult(task.code, photo, task.type)
