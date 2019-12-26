@@ -17,7 +17,7 @@ class SelectFileScreen extends Component {
                 )
                 if (granted === PermissionsAndroid.RESULTS.GRANTED) {
                     const file = that.state.value;
-                    RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo2/configuracion/' + file).then(data => {
+                    RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo3/configuracion/' + file).then(data => {
                         parsedJSON = JSON.parse(data);
                         that.props.loadModel(parsedJSON);
                         that.props.screenProps.setLocale(parsedJSON.language);

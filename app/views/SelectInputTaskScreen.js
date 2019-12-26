@@ -21,7 +21,7 @@ class SelectInputTaskScreen extends Component {
     super(props);
     const task = this.props.model.tasks[this.props.currentTask];
     this.state = {
-      value: task.options[0].code
+      value: task.elements[0].code
     };
   }
 
@@ -40,8 +40,8 @@ class SelectInputTaskScreen extends Component {
            onValueChange={(itemValue, itemIndex) =>
             this.setState({value: itemValue})}
            >
-            {task.options.map((option, index) =>
-              <Picker.Item key={index} label={option.text} value={option.code} />
+            {task.elements.map((option, index) =>
+              <Picker.Item key={index} label={option.name} value={option.code} />
             )}
           </Picker>
         </View>

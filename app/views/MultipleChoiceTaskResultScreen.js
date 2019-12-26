@@ -21,23 +21,23 @@ class MultipleChoiceTaskResultScreen extends Component {
     const t = this.props.screenProps.t;
     const result = this.props.navigation.getParam('result', []);
     const task = this.props.model.tasks[this.props.currentTask];
-    const correctlySelected = result.filter(code => task.correctAnswers.includes(code));
-    const wronglySelected = result.filter(code => !task.correctAnswers.includes(code));
-    const wronglyLeft = task.correctAnswers.filter(elem => !result.includes(elem));
+    const correctlySelected = result.filter(code => task.validElements.includes(code));
+    const wronglySelected = result.filter(code => !task.validElements.includes(code));
+    const wronglyLeft = task.validElements.filter(elem => !result.includes(elem));
 
     return (
       <View style={styles.container}>
         <Text style={styles.text}>{t("MultipleChoiceTaskResult_001")}</Text>
         <ScrollView>
-          {correctlySelected.map((item, index) => <Text key={index}>{task.options.find(elem => elem.code == item).text}</Text>)}
+          {correctlySelected.map((item, index) => <Text key={index}>{task.elements.find(elem => elem.code == item).name}</Text>)}
         </ScrollView>
     <Text style={styles.text}>{t("MultipleChoiceTaskResult_002")}</Text>
         <ScrollView>
-          {wronglySelected.map((item, index) => <Text key={index}>{task.options.find(elem => elem.code == item).text}</Text>)}
+          {wronglySelected.map((item, index) => <Text key={index}>{task.elements.find(elem => elem.code == item).name}</Text>)}
         </ScrollView>
         <Text style={styles.text}>{t("MultipleChoiceTaskResult_003")}</Text>
         <ScrollView>
-          {wronglyLeft.map((item, index) => <Text key={index}>{task.options.find(elem => elem.code == item).text}</Text>)}
+          {wronglyLeft.map((item, index) => <Text key={index}>{task.elements.find(elem => elem.code == item).name}</Text>)}
         </ScrollView>
         <Button
           title={t("MultipleChoiceTaskResult_004")}

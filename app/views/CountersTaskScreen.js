@@ -19,12 +19,12 @@ class CountersTaskScreen extends Component {
   }
 
   check(event) {
-    alert(option.code);
+    alert(element.code);
   }
 
   constructor(props) {
     super(props);
-    const counters = props.model.tasks[props.currentTask].options.map(item => 0);
+    const counters = props.model.tasks[props.currentTask].elements.map(item => 0);
     this.state = {
       counters: counters,
     };
@@ -39,10 +39,10 @@ class CountersTaskScreen extends Component {
         <Text style={styles.text}>{task.instruction}</Text>
 
         <View>
-          {task.options.map((option, index) => (
+          {task.elements.map((element, index) => (
             <ListItem
               key={index}
-              title={option.text}
+              title={element.name}
               bottomDivider
               input={{
                 keyboardType: 'decimal-pad',
@@ -69,7 +69,7 @@ class CountersTaskScreen extends Component {
           title={t("CountersTask_001")}
           onPress={() => {
             if(task.byScore) {
-                const result = task.options.map((option, index)=>({[option.code]: parseInt(this.state.counters[index])}));
+                const result = task.elements.map((element, index)=>({[element.code]: parseInt(this.state.counters[index])}));
                 this.props.setTaskResult(task.code, result, task.type);
                 this.props.navigation.navigate('ResultByScore', {result: result});    
             } else {

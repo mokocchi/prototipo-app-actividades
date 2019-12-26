@@ -22,14 +22,14 @@ class ResultByScoreScreen extends Component {
     const result = this.props.navigation.getParam('result', []);
     const task = this.props.model.tasks[this.props.currentTask];
     var total = 0;
-    const resultRows = result.map((option, index) => {
-      const value = task.byScore[0].scores[Object.keys(option)[0]] *
-        Object.values(result.find(item => Object.keys(item)[0] == Object.keys(option)[0]))[0];
+    const resultRows = result.map((element, index) => {
+      const value = task.byScore[0].scores[Object.keys(element)[0]] *
+        Object.values(result.find(item => Object.keys(item)[0] == Object.keys(element)[0]))[0];
       total += value;
       return (<Text style={styles.text} key={index}>
-        {task.options.find(item => {
-          return item.code == Object.keys(option)[0];
-        }).text}
+        {task.elements.find(item => {
+          return item.code == Object.keys(element)[0];
+        }).name}
         : {value}
       </Text>);
     });

@@ -20,7 +20,7 @@ class MultipleChoiceTaskScreen extends Component {
 
   constructor(props) {
     super(props);
-    const checked = props.model.tasks[props.currentTask].options.map(item => false);
+    const checked = props.model.tasks[props.currentTask].elements.map(item => false);
     this.state = {
       checked: checked,
     };
@@ -35,10 +35,10 @@ class MultipleChoiceTaskScreen extends Component {
         <Text style={styles.text}>{task.instruction}</Text>
 
         <View>
-          {task.options.map((option, index) => (
+          {task.elements.map((element, index) => (
             <ListItem
               key={index}
-              title={option.text}
+              title={element.name}
               bottomDivider
               checkBox={{
                 checkedColor: 'green',
@@ -79,7 +79,7 @@ class MultipleChoiceTaskScreen extends Component {
         <Button
           title={t("MultipleChoiceTask_001")}
           onPress={() => {
-            var result = task.options.filter((item, index) => this.state.checked[index]).map(item => item.code);
+            var result = task.elements.filter((item, index) => this.state.checked[index]).map(item => item.code);
             this.props.setTaskResult(task.code, result, task.type);
             if(task.correctAnswers){
               this.props.navigation.navigate('MultipleChoiceTaskResult', {result: result});
