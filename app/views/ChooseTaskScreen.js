@@ -9,7 +9,7 @@ import {
   BackHandler
 } from 'react-native';
 import { setCurrentTask } from '../redux/actions'
-import { mapScreen } from '../functions'
+import { mapScreen } from '../utils/functions'
 
 class ChooseTaskScreen extends Component {
     componentDidMount() {
@@ -25,6 +25,7 @@ class ChooseTaskScreen extends Component {
     }
 
     render() {
+        const t = this.props.screenProps.t;
         const options = this.props.navigation.getParam('options', []);
         tasks = this.props.model.tasks;
         if(options.length != 0) {
@@ -33,7 +34,7 @@ class ChooseTaskScreen extends Component {
         
     return (
         <View style={styles.container}>
-            <Text>Elige una tarea para comenzar</Text>
+            <Text>{t("ChooseTask_001")}</Text>
             {tasks.map((task, index) => (
                 <Button
                 key={ index }
@@ -48,7 +49,7 @@ class ChooseTaskScreen extends Component {
                 />
             ))}
             {
-                this.props.model.educationalActivity.sequential? null : <Button title="Terminar" color="green" onPress={()=>this.props.navigation.navigate("SendAnswers")}></Button>
+                this.props.model.educationalActivity.sequential? null : <Button title={t("ChooseTask_002")} color="green" onPress={()=>this.props.navigation.navigate("SendAnswers")}></Button>
             }
         </View>
     );

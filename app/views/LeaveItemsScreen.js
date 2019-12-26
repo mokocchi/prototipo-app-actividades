@@ -27,6 +27,7 @@ class LeaveItemsScreen extends Component {
   }
 
   render() {
+    const t = this.props.screenProps.t;
     const task = this.props.model.tasks[this.props.currentTask];
     var codes = this.props.navigation.getParam("codes", []);
     return (
@@ -75,7 +76,7 @@ class LeaveItemsScreen extends Component {
           ))}
         </View>
         <Button
-          title="Dejar los elementos seleccionados"
+          title={t("LeaveItems_001")}
           onPress={()=>
             {
             codes = codes.filter((item, index) => !this.state.checked[index])
@@ -84,7 +85,7 @@ class LeaveItemsScreen extends Component {
           }/>
 
         <Button
-          title="Volver"
+          title={t("LeaveItems_002")}
           onPress={() => {
             this.props.navigation.navigate('MyBag', {codes: codes});
           }}></Button>

@@ -31,12 +31,13 @@ class PositionedTaskScreen extends Component {
 
   startScanner(that) {
     async function requestCameraPermission() {
+      t = that.props.screenProps.t;
       try {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.CAMERA,
           {
-            title: 'Permisos',
-            message: 'Se necesita permiso para usar la cámara',
+            title: t("PositionedTask_001"),
+            message: t("PositionedTask_002"),
           },
         );
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
@@ -52,6 +53,7 @@ class PositionedTaskScreen extends Component {
   }
 
   onQR_Code_Scan_Done(code, task) {
+    const t = this.props.screenProps.t;
     this.setState({
       startScanner: false,
     });
@@ -62,11 +64,12 @@ class PositionedTaskScreen extends Component {
         this.props.navigation.navigate('DepositTask');
       }
     } else {
-      alert('Lo siento, el código no es el correcto');
+      alert(t("PositionedTask_003"));
     }
   }
 
   render() {
+    const t = this.props.screenProps.t;
     const task = this.props.model.tasks[this.props.currentTask];
     if (this.state.startScanner) {
       return (
@@ -77,20 +80,19 @@ class PositionedTaskScreen extends Component {
               this.onQR_Code_Scan_Done(event.nativeEvent.codeStringValue, task)
             }
           />
-          <Button title="Volver" onPress={() => this.setState({ startScanner: false })} />
+          <Button title={t("PositionedTask_004")} onPress={() => this.setState({ startScanner: false })} />
         </View>
       );
     } else {
       return (
         <View style={styles.container}>
           <Text style={styles.text}>
-            En el mapa se les muestra el lugar donde deberán ir para continuar
-            con la actividad
+            {t("PositionedTask_005")}
           </Text>
 
-          <Text style={styles.text}>Ir a la tarea: {task.name}</Text>
+          <Text style={styles.text}>{t("PositionedTask_006")} {task.name}</Text>
           <Button
-            title="Abrir escáner"
+            title={t("PositionedTask_007")}
             onPress={() => {
               this.startScanner(this);
             }}

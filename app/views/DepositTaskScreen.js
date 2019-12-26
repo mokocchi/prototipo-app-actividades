@@ -28,11 +28,12 @@ class DepositTaskScreen extends Component {
   }
 
   render() {
+    const t = this.props.screenProps.t;
     const task = this.props.model.tasks[this.props.currentTask];
     const codenames = this.props.model.tasks.filter(task => task.type == "collect").map(task => task.elements).flat();
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Dejar elementos</Text>
+        <Text style={styles.text}>{t("DepositTask_001")}</Text>
         <Text style={styles.text}>{task.name}</Text>
         <View>
           { this.props.collectedCodes.map((code, index) => (
@@ -76,7 +77,7 @@ class DepositTaskScreen extends Component {
           ))}
         </View>
         <Button
-          title="Dejar los elementos seleccionados"
+          title={t("DepositTask_002")}
           onPress={()=>
             {
             const codes = this.props.collectedCodes.filter((item, index) => this.state.checked[index])
@@ -87,7 +88,7 @@ class DepositTaskScreen extends Component {
           }/>
 
         <Button
-          title="No dejar nada"
+          title={t("DepositTask_003")}
           onPress={() => {
             this.props.setTaskResult(task.code, [], task.type);
             this.props.navigation.navigate("DepositTaskResult", {result:this.props.collectedCodes});

@@ -18,6 +18,7 @@ class ResultByScoreScreen extends Component {
   }
 
   render() {
+    const t = this.props.screenProps.t;
     const result = this.props.navigation.getParam('result', []);
     const task = this.props.model.tasks[this.props.currentTask];
     var total = 0;
@@ -36,13 +37,13 @@ class ResultByScoreScreen extends Component {
       <View style={styles.container}>
         <Text style={styles.text}>{task.byScore[0].name}</Text>
         <Text style={styles.text}>{task.byScore[0].message}</Text>
-        <Text style={styles.text}>Total: {total}</Text>
+        <Text style={styles.text}>{t("ResultByScore_001")} {total}</Text>
         <View style={{flex:0.2}}></View>
         <ScrollView>
           {resultRows}
         </ScrollView>
         <Button
-          title="Continuar"
+          title={t("ResultByScore_002")}
           onPress={() => {
             this.props.navigation.navigate('TaskResult');
           }}></Button>

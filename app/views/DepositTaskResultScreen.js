@@ -19,6 +19,7 @@ class DepositTaskResultScreen extends Component {
   }
 
   render() {
+    const t = this.props.screenProps.t;
     const result = this.props.navigation.getParam('result', []);
     const task = this.props.model.tasks[this.props.currentTask];
     const collectTasks = this.props.model.tasks.filter(task => task.type == "collect");
@@ -29,16 +30,16 @@ class DepositTaskResultScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Elementos correctamente depositados</Text>
+        <Text style={styles.text}>{t("DepositTaskResult_001")}</Text>
         <ScrollView>
           {correctlyDeposited.map((item, index) => <Text key={index}>{collectElements.find(elem => elem.code == item).name}</Text>)}
         </ScrollView>
-        <Text style={styles.text}>Elementos incorrectamente depositados</Text>
+        <Text style={styles.text}>{t("DepositTaskResult_002")}</Text>
         <ScrollView>
           {wronglyDeposited.map((item, index) => <Text key={index}>{collectElements.find(elem => elem.code == item).name}</Text>)}
         </ScrollView>
         <Button
-          title="Continuar"
+          title={t("DepositTaskResult_003")}
           onPress={() => {
             this.props.navigation.navigate('TaskResult');
           }}></Button>

@@ -31,7 +31,7 @@ class CountersTaskScreen extends Component {
   }
 
   render() {
-    const activity = this.props.model.educationalActivity;
+    const t = this.props.screenProps.t;
     const task = this.props.model.tasks[this.props.currentTask];
     return (
       <View style={styles.container}>
@@ -66,7 +66,7 @@ class CountersTaskScreen extends Component {
         </View>
 
         <Button
-          title="Continuar"
+          title={t("CountersTask_001")}
           onPress={() => {
             if(task.byScore) {
                 const result = task.options.map((option, index)=>({[option.code]: parseInt(this.state.counters[index])}));

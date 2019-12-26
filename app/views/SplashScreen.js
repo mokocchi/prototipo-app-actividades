@@ -13,18 +13,18 @@ import { loadModel } from '../redux/actions'
 class SplashScreen extends Component {
     loadJSON(that) {
         async function requestStoragePermission() {
+            t = that.props.screenProps.t;
             try {
                 const granted = await PermissionsAndroid.request(
                     PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE, {
-                    'title': 'Permisos',
-                    'message': 'Se necesita permiso para usar el almacenamiento'
+                    'title': t("Splash_001"),
+                    'message': t("Splash_002")
                 }
                 )
                 if (granted === PermissionsAndroid.RESULTS.GRANTED) {
                     RNFS.readDir(RNFS.ExternalStorageDirectoryPath + '/Prototipo2/configuracion')
                         .then((result) => {
                             result = result.map((file) => file.name);
-                            console.log(result);
                             that.props.navigation.navigate("SelectFile", {files: result});
                         })
                 } else {

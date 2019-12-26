@@ -34,15 +34,16 @@ class TextInputTaskScreen extends Component {
   }
 
   render() {
+    const t = this.props.screenProps.t;
     const task = this.props.model.tasks[this.props.currentTask];
     const number = task.type == "numberInput";
     return (
       <View style={styles.container}>
         <Text style={styles.text}>{task.name}</Text>
         <Text style={styles.text}>{task.instruction}</Text>
-        <TextInput placeholder={number?"Ingresa el número":"Ingresa texto"} keyboardType={number?"decimal-pad":"default"} onChangeText={(text) => this.setState({ text })} value={this.state.text}></TextInput>
+        <TextInput placeholder={number?t("TextInputTask_001"):t("TextInputTask_002")} keyboardType={number?"decimal-pad":"default"} onChangeText={(text) => this.setState({ text })} value={this.state.text}></TextInput>
         <Button
-          title="Continuar"
+          title={t("TextInputTask_003")}
           onPress={() => {
             if(this.state.text!='') {
               this.props.setTaskResult(task.code, this.state.text, task.type);

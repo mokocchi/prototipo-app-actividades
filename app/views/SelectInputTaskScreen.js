@@ -26,6 +26,7 @@ class SelectInputTaskScreen extends Component {
   }
 
   render() {
+    const t = this.props.screenProps.t;
     const activity = this.props.model.educationalActivity;
     const task = this.props.model.tasks[this.props.currentTask];
     return (
@@ -46,7 +47,7 @@ class SelectInputTaskScreen extends Component {
         </View>
 
         <Button
-          title="Continuar"
+          title={t("SelectInputTask_001")}
           onPress={() => {
             this.props.setTaskResult(task.code, this.state.value, task.type);
             this.props.navigation.navigate("TaskResult", {"answer":[this.state.value]});

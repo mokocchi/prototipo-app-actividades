@@ -29,6 +29,7 @@ class MyBagScreen extends Component {
   };
 
   render() {
+    const t = this.props.screenProps.t;
     const task = this.props.model.tasks[this.props.currentTask];
     return (
       <View style={styles.container}>
@@ -41,7 +42,7 @@ class MyBagScreen extends Component {
 
         {this.state.codes.length > 0 ? (
           <Button
-            title="Dejar elementos"
+            title={t("MyBag_001")}
             onPress={() => {
               this.props.navigation.navigate('LeaveItems', { codes: this.state.codes });
             }}
@@ -55,7 +56,7 @@ class MyBagScreen extends Component {
             alignItems: 'center',
           }}>
           <Button
-            title="Volver"
+            title={t("MyBag_002")}
             onPress={() => {
               this.props.navigation.navigate('CollectTask', {codes: this.state.codes});
             }}

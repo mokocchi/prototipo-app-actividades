@@ -17,6 +17,7 @@ class ActivityResultsScreen extends Component {
   }
 
   render() {
+    let { t, locale } = this.props.screenProps;
     const activity = this.props.model.educationalActivity;
     const taskResults = this.props.taskResults;
     return (
@@ -27,8 +28,8 @@ class ActivityResultsScreen extends Component {
           {
             taskResults.map((item, index) =>
             <View key={index}>
-                <Text>Tarea: {this.props.model.tasks.find(task => task.code == item.code).name}</Text>
-                <Text>Respuestas:</Text>
+                <Text>{t("ActivityResults_001")} {this.props.model.tasks.find(task => task.code == item.code).name}</Text>
+                <Text>{t("ActivityResults_002")}</Text>
                 <Text>
                   {JSON.stringify(item.result, undefined, 2)}
                 </Text>
@@ -37,7 +38,7 @@ class ActivityResultsScreen extends Component {
             )}
         </ScrollView>
         <Button
-          title="Volver"
+          title={t("ActivityResults_003")}
           onPress={() => {
             this.props.navigation.navigate("TaskResult");
           }}></Button>

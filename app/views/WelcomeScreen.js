@@ -10,7 +10,7 @@ import {
   BackHandler,
 } from 'react-native';
 
-import { mapScreen } from '../functions'
+import { mapScreen } from '../utils/functions'
 
 class WelcomeScreen extends Component {
     componentDidMount() {
@@ -26,13 +26,14 @@ class WelcomeScreen extends Component {
     }
 
     render() {
+    let { t } = this.props.screenProps;
     const activity = this.props.model.educationalActivity;
     const nextScreen = activity.sequential ? this.props.model.tasks[0].type : "choose";
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{activity.name}</Text>
             <Text style={styles.text}>{activity.goal}</Text>           
-            <Button title="Empecemos" onPress={()=>this.props.navigation.navigate(mapScreen(nextScreen))} />
+            <Button title={t("Welcome_001")} onPress={()=>this.props.navigation.navigate(mapScreen(nextScreen))} />
         </View>
     );
   }
