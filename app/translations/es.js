@@ -29,6 +29,7 @@ export default {
     "ChooseTask_002": "Terminar",
 
     "MultipleChoiceTask_001": "Continuar",
+    "MultipleChoiceTask_002": "Leer en voz alta",
 
     "MultipleChoiceTaskResult_001": "Elementos correctamente seleccionados",
     "MultipleChoiceTaskResult_002": "Elementos incorrectamente seleccionados",

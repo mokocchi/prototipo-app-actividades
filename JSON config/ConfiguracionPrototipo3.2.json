@@ -1,0 +1,145 @@
+{
+    "language": "es",
+    "educationalActivity": {
+        "name": "Prototipo#2.3",
+        "goal": "El propósito de esta actividad es probar el rename de atributos",
+        "sequential": true,
+        "voiced_instructions": true
+    },
+    "tasks": [
+        {
+            "name": "Elementos para guardar información",
+            "instruction": "Recolectar aquel o aquellos elementos que pueden ser usados para  GUARDAR información",
+            "code": "guardar información",
+            "type": "multiple",
+            "elements": [
+                {
+                    "name": "Pendrive o Memoria USB",
+                    "code": "pendrive o Memoria usb_t1"
+                },
+                {
+                    "name": "Disquete",
+                    "code": "disquete_t1"
+                },
+                {
+                    "name": "Disco externo",
+                    "code": "disco externo_t1"
+                },
+                {
+                    "name": "Casette de cinta",
+                    "code": "casette de cinta_t1"
+                },
+                {
+                    "name": "Cámara de fotos",
+                    "code": "cámara de fotos-t1"
+                },
+                {
+                    "name": "CPU",
+                    "code": "cpu_t1"
+                },
+                {
+                    "name": "Smartphone",
+                    "code": "smartphone_t1"
+                }
+            ],
+            "validElements": [
+                "pendrive o Memoria usb_t1",
+                "disquete_t1",
+                "disco externo_t1",
+                "casette de cinta_t1",
+                "cámara de fotos-t1",
+                "cpu_t1",
+                "smartphone_t1"
+            ],
+            "jumps": []
+        },
+        {
+            "name": "Elementos para ver información (mediante pantalla)",
+            "instruction": "Recolectar aquel o aquellos elementos que pueden ser usados para  VER información (mediante pantalla)",
+            "code": "ver información",
+            "type": "multiple",
+            "elements": [
+                {
+                    "name": "Monitor",
+                    "code": "monitor_t2"
+                },
+                {
+                    "name": "Cañon o Proyector",
+                    "code": "cañon o proyector_t2"
+                },
+                {
+                    "name": "Impresora",
+                    "code": "impresora_t2"
+                },
+                {
+                    "name": "Reproductor de DVD",
+                    "code": "reproductor de DVD_t2"
+                },
+                {
+                    "name": "Tablet",
+                    "code": "tablet_t2"
+                },
+                {
+                    "name": "Notebook",
+                    "code": "notebook_t2"
+                }
+            ],
+            "validElements": [
+                "monitor_t2",
+                "cañon o proyector_t2",
+                "tablet_t2",
+                "notebook_t2"
+            ],
+            "jumps": []
+        },
+        {
+            "name": "Elementos auxiliares para el uso de computadoras",
+            "instruction": "Recolectar aquel o aquellos ELEMENTOS AUXILIARES que se pueden asociar al uso de computadoras o impresoras",
+            "code": "elementos auxiliares",
+            "type": "multiple",
+            "elements": [
+                {
+                    "name": "Teclado",
+                    "code": "teclado_t3"
+                },
+                {
+                    "name": "Mouse o Ratón",
+                    "code": "mouse o ratón_t3"
+                },
+                {
+                    "name": "Cable USB",
+                    "code": "cable USB_t3"
+                },
+                {
+                    "name": "Parlantes",
+                    "code": "parlantes_t3"
+                },
+                {
+                    "name": "Cartucho de tonner",
+                    "code": "cartucho de tonner_t3"
+                },
+                {
+                    "name": "Cartucho de tinta",
+                    "code": "cartucho de tinta_t3"
+                },
+                {
+                    "name": "Calculadora",
+                    "code": "calculadora_t3"
+                },
+                {
+                    "name": "Celular",
+                    "code": "celular_t3"
+                }
+            ],
+            "validElements": [
+                "teclado_t3",
+                "mouse o ratón_t3",
+                "cable USB_t3",
+                "parlantes_t3",
+                "cartucho de tonner_t3",
+                "cartucho de tinta_t3"
+            ],
+            "jumps": []
+        }
+    ]
+}

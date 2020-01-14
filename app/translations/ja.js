@@ -29,6 +29,7 @@ export default {
     "ChooseTask_002": "終了",
 
     "MultipleChoiceTask_001": "続く",
+    "MultipleChoiceTask_002": "読み上げる",
 
     "MultipleChoiceTaskResult_001": "選択は正解だった要素",
     "MultipleChoiceTaskResult_002": "選択は不正解だった要素",

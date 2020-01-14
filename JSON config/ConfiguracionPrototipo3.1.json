@@ -3,7 +3,8 @@
     "educationalActivity": {
         "name": "Prototipo#2.3",
         "goal": "El propósito de esta actividad es probar el rename de atributos",
-        "sequential": true
+        "sequential": true,
+        "voiced_instructions": false
     },
     "tasks": [
         {
