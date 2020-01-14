@@ -81,7 +81,7 @@ class MultipleChoiceTaskScreen extends Component {
           onPress={() => {
             var result = task.elements.filter((item, index) => this.state.checked[index]).map(item => item.code);
             this.props.setTaskResult(task.code, result, task.type);
-            if(task.correctAnswers){
+            if(task.validElements){
               this.props.navigation.navigate('MultipleChoiceTaskResult', {result: result});
             } else {
               this.props.navigation.navigate("TaskResult", {"answer": result});
