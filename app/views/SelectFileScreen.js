@@ -6,34 +6,31 @@ import * as RNFS from 'react-native-fs';
 import { loadModel } from '../redux/actions';
 
 class SelectFileScreen extends Component {
-    loadJSON(that,t) {
-        async function requestStoragePermission() {
-            try {
-                const granted = await PermissionsAndroid.request(
-                    PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE, {
-                    'title': t("SelectFile_002"),
-                    'message': t("SelectFile_003")
-                }
-                )
-                if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-                    const file = that.state.value;
-                    RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo3/configuracion/' + file).then(data => {
-                        parsedJSON = JSON.parse(data);
-                        that.props.loadModel(parsedJSON);
-                        that.props.screenProps.setLocale(parsedJSON.language);
-                        that.props.navigation.navigate('Welcome');
-                    })
-                        .catch(err => {
-                            console.log(err.message, err.code);
-                        });
-                } else {
-                    console.log("permission denied");
-                }
-            } catch (err) {
-                console.warn(err);
-            }
-        }
-        requestStoragePermission()
+    async getNameFromJson(filename, t) {
+        await RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo3/configuracion/' + filename).then(data => {
+            parsedJSON = JSON.parse(data);
+            const name = parsedJSON.educationalActivity ? parsedJSON.educationalActivity.name : ""
+            const names = this.state.names;
+            names[filename] = name;
+            this.setState({
+                names: names
+            })
+        }).catch(err => {
+            console.log(err.message, err.code);
+        });
+    }
+
+    loadJSON(that) {
+        const file = that.state.value;
+        RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo3/configuracion/' + file).then(data => {
+            parsedJSON = JSON.parse(data);
+            that.props.loadModel(parsedJSON);
+            that.props.screenProps.setLocale(parsedJSON.language);
+            that.props.navigation.navigate('Welcome');
+        })
+            .catch(err => {
+                console.log(err.message, err.code);
+            });
     }
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
@@ -55,13 +52,22 @@ class SelectFileScreen extends Component {
                 value: files[0]
             };
         } else {
-            this.state = "";
+            this.state = {
+                value: ""
+            };
         }
+        this.state.names = {}
+        files.forEach(filename => {
+            this.getNameFromJson(filename);
+        });
+
     }
 
     render() {
         let { t } = this.props.screenProps;
-        const files = this.props.navigation.getParam("files", [])
+        const files = this.props.navigation.getParam("files", []);
+        const activityNames = this.state.names;
+        console.log(this.state.names)
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>{t("SelectFile_001")}</Text>
@@ -72,8 +78,8 @@ class SelectFileScreen extends Component {
                         onValueChange={(itemValue, itemIndex) =>
                             this.setState({ value: itemValue })}
                     >
-                        {files.map((file, index) =>
-                            <Picker.Item key={index} label={file} value={file} />
+                        {Object.keys(activityNames).map((key, index) =>
+                            <Picker.Item key={index} label={activityNames[key]} value={key} />
                         )}
                     </Picker>
                     {
