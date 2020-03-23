@@ -21,6 +21,13 @@ export default {
     "CameraInputTask_001": "写真を撮る",
     "CameraInputTask_002": "続く",
 
+    "AudioInputTask_001": "続く",
+    "AudioInputTask_002": "録音",
+    "AudioInputTask_003": "再生", 
+    "AudioInputTask_004": "停止",
+    "AudioInputTask_005": "録音中 → 停止",
+    "AudioInputTask_006": "再生中",
+
     "TextInputTask_001": "数値を入力してください",
     "TextInputTask_002": "文を入力してください",
     "TextInputTask_003": "続く",

@@ -28,7 +28,6 @@ export default {
     "AudioInputTask_005": "Grabando - Detener",
     "AudioInputTask_006": "Reproduciendo",
 
-
     "TextInputTask_001": "Ingresa el número",
     "TextInputTask_002": "Ingresa texto",
     "TextInputTask_003": "Continuar",
