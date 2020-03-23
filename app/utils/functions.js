@@ -21,7 +21,7 @@ export const mapScreen = type => {
     case 'deposit':
       return 'PositionedTask';
     case 'GPSInput':
-      return 'SimpleTask'
+      return 'GPSInputTask'
     case 'choose':
       return 'ChooseTask';
     case 'results':

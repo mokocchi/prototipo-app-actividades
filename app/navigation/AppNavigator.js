@@ -24,6 +24,7 @@ import SendAnswersScreen from '../views/SendAnswersScreen';
 import SelectInputTaskScreen from '../views/SelectInputTaskScreen';
 import SelectFileScreen from '../views/SelectFileScreen';
 import AudioInputTaskScreen from '../views/AudioInputTaskScreen';
+import GPSInputTaskScreen from '../views/GPSInputTaskScreen';
 
 export default createAppContainer(
   createSwitchNavigator(
@@ -38,6 +39,7 @@ export default createAppContainer(
       TextInputTask: TextInputTaskScreen,
       CameraInputTask: CameraInputTaskScreen,
       AudioInputTask: AudioInputTaskScreen,
+      GPSInputTask: GPSInputTaskScreen,
       SelectInputTask: SelectInputTaskScreen,
       MultipleChoiceTask: MultipleChoiceTaskScreen,
       MultipleChoiceTaskResult: MultipleChoiceTaskResultScreen,
