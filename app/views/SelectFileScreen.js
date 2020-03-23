@@ -67,7 +67,6 @@ class SelectFileScreen extends Component {
         let { t } = this.props.screenProps;
         const files = this.props.navigation.getParam("files", []);
         const activityNames = this.state.names;
-        console.log(this.state.names)
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>{t("SelectFile_001")}</Text>

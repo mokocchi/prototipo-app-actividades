@@ -8,6 +8,8 @@ export const mapScreen = type => {
       return 'TextInputTask'
     case 'cameraInput':
       return 'CameraInputTask';
+    case 'audioInput':
+      return 'AudioInputTask';
     case 'select':
       return 'SelectInputTask';
     case 'multiple':

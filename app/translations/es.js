@@ -21,6 +21,14 @@ export default {
     "CameraInputTask_001": "Sacar foto",
     "CameraInputTask_002": "Continuar",
 
+    "AudioInputTask_001": "Continuar",
+    "AudioInputTask_002": "Grabar",
+    "AudioInputTask_003": "Reproducir", 
+    "AudioInputTask_004": "Detener",
+    "AudioInputTask_005": "Grabando - Detener",
+    "AudioInputTask_006": "Reproduciendo",
+
+
     "TextInputTask_001": "Ingresa el número",
     "TextInputTask_002": "Ingresa texto",
     "TextInputTask_003": "Continuar",
