@@ -120,8 +120,6 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  */
 def enableHermes = project.ext.react.get("enableHermes", false);
 
-def googleMapApiKey = System.getenv("googleMapApiKey")
-
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -136,6 +134,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        manifestPlaceholders = [googleMapApiKey:"$System.env.googleMapApiKey"]
     }
     splits {
         abi {

@@ -32,7 +32,13 @@ class GPSInputTaskScreen extends Component {
             Alert.alert('Error', JSON.stringify(error));
             Geolocation.getCurrentPosition((pos) => {
               this.setState({
-                location: pos, granted: true
+                location: pos, granted: true,
+                region: {
+                  latitude: pos.coords.latitude,
+                  longitude: pos.coords.longitude,
+                  latitudeDelta: 0.005,
+                  longitudeDelta: 0,
+                }
               })
             }, null, { enableHighAccuracy: false })
           }
@@ -64,10 +70,10 @@ class GPSInputTaskScreen extends Component {
       granted: false,
       location: null,
       region: {
-        latitude: LATITUDE,
-        longitude: LONGITUDE,
-        latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA,
+        latitude: null,
+        longitude: null,
+        latitudeDelta: 0,
+        longitudeDelta: 0,
       }
     }
     this.requestGPSPermission = this.requestGPSPermission.bind(this);
@@ -82,25 +88,26 @@ class GPSInputTaskScreen extends Component {
         <Text style={styles.text}>{task.instruction}</Text>
 
 
-        {this.state.granted &&
+        {this.state.granted ?
           <View>
             <Text>{JSON.stringify(this.state.location.coords)}</Text>
             <MapView
               provider={"google"}
               style={styles.map}
-              scrollEnabled={false}
-              zoomEnabled={false}
+              scrollEnabled={true}
+              zoomEnabled={true}
               pitchEnabled={false}
               rotateEnabled={false}
               initialRegion={this.state.region}
             >
-              <Markerr
+              <Marker
                 title="This is a title"
                 description="This is a description"
                 coordinate={this.state.region}
               />
             </MapView>
-          </View>}
+          </View>
+          : <Text>Buscando ubicación...</Text>}
 
 
         <Button
@@ -127,6 +134,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     margin: 10,
+  },
+  map: {
+    width: 250,
+    height: 250,
+    alignSelf: "center"
   },
 });
 
