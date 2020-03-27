@@ -8,8 +8,21 @@ import MapView, { Marker } from 'react-native-maps';
 
 class GPSInputTaskScreen extends Component {
   componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-    this.requestGPSPermission();
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton)
+  }
+  handlePress = () => {
+    Alert.alert(
+      'Se necesita usar el gps',
+      'Tenés el GPS prendido?',
+      [
+        { text: 'No usar GPS', onPress: () => this.setState({ select: true }), style: 'cancel' },
+        { text: 'Sí', onPress: () => this.requestGPSPermission() },
+      ],
+      { cancelable: false }
+    )
+    this.setState({
+      read: true
+    })
   }
 
   async requestGPSPermission() {
@@ -23,28 +36,38 @@ class GPSInputTaskScreen extends Component {
         },
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        Geolocation.getCurrentPosition((pos) => {
-          this.setState({
-            location: pos, granted: true
-          })
-        },
-          error => {
-            Alert.alert('Error', JSON.stringify(error));
-            Geolocation.getCurrentPosition((pos) => {
-              this.setState({
-                location: pos, granted: true,
-                region: {
-                  latitude: pos.coords.latitude,
-                  longitude: pos.coords.longitude,
-                  latitudeDelta: 0.005,
-                  longitudeDelta: 0,
-                }
-              })
-            }, null, { enableHighAccuracy: false })
-          }
-          ,
-          { enableHighAccuracy: true, timeout: 30000 }
-        );
+        try {
+          Geolocation.getCurrentPosition((pos) => {
+            this.setState({
+              location: pos, granted: true,
+              region: {
+                latitude: pos.coords.latitude,
+                longitude: pos.coords.longitude,
+                latitudeDelta: 0.005,
+                longitudeDelta: 0,
+              }
+            })
+          },
+            error => {
+              console.log(error.message);
+              Geolocation.getCurrentPosition((pos) => {
+                this.setState({
+                  location: pos, granted: true,
+                  region: {
+                    latitude: pos.coords.latitude,
+                    longitude: pos.coords.longitude,
+                    latitudeDelta: 0.005,
+                    longitudeDelta: 0,
+                  }
+                })
+              }, null, { enableHighAccuracy: false, timeout: 5000 })
+            }
+            ,
+            { enableHighAccuracy: true, timeout: 10000 }
+          );
+        } catch (error) {
+          console.log(error.message)
+        }
       } else {
         console.log('permission denied');
       }
@@ -67,16 +90,28 @@ class GPSInputTaskScreen extends Component {
     const result = this.props.taskResults.find((item) => task.code == item.code);
     if (result != null) { console.log(result.result.uri); }
     this.state = {
+      read: false,
+      select: false,
       granted: false,
       location: null,
+      coordinate: null,
       region: {
-        latitude: null,
-        longitude: null,
-        latitudeDelta: 0,
+        latitude: -34.9036428,
+        longitude: -57.9377245,
+        latitudeDelta: 0.0025,
         longitudeDelta: 0,
       }
     }
     this.requestGPSPermission = this.requestGPSPermission.bind(this);
+  }
+
+  handleLongPress = (e) => {
+    const region = e.nativeEvent.coordinate;
+    region.latitudeDelta = 0.005;
+    region.longitudeDelta = 0;
+    this.setState({
+      coordinate: region
+    })
   }
 
   render() {
@@ -87,28 +122,28 @@ class GPSInputTaskScreen extends Component {
         <Text style={styles.text}>{task.name}</Text>
         <Text style={styles.text}>{task.instruction}</Text>
 
-
-        {this.state.granted ?
-          <View>
-            <Text>{JSON.stringify(this.state.location.coords)}</Text>
-            <MapView
-              provider={"google"}
-              style={styles.map}
-              scrollEnabled={true}
-              zoomEnabled={true}
-              pitchEnabled={false}
-              rotateEnabled={false}
-              initialRegion={this.state.region}
-            >
-              <Marker
-                title="This is a title"
-                description="This is a description"
-                coordinate={this.state.region}
-              />
-            </MapView>
-          </View>
-          : <Text>Buscando ubicación...</Text>}
-
+        {!this.state.read && <Button title={"Obtener ubicación"} onPress={this.handlePress} />}
+        {this.state.select && <Text>Tocá el mapa para elegir tu ubicación (presión larga marca el lugar)</Text>}
+        {this.state.read && !this.state.select && !this.state.granted && <Text>Buscando ubicación...</Text>}
+        <View>
+          <MapView
+            provider={"google"}
+            style={styles.map}
+            scrollEnabled={true}
+            zoomEnabled={true}
+            pitchEnabled={false}
+            rotateEnabled={true}
+            region={this.state.coordinate || this.state.region}
+            initialRegion={this.state.region}
+            onLongPress={this.handleLongPress}
+          >
+            <Marker
+              title="Tu ubicación"
+              coordinate={(this.state.select && this.state.coordinate) || this.state.region}
+            />
+          </MapView>
+        </View>
+        {this.state.read && !this.state.select && <Text>También podés ajustar la ubicación tocando el mapa</Text>}
 
         <Button
           title={t("CameraInputTask_002")}
