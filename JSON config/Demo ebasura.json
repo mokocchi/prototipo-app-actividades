@@ -1,0 +1,283 @@
+{
+    "language": "es",
+    "educationalActivity": {
+        "name": "Demo ebasura",
+        "goal": "Generar una demo de ebasura",
+        "sequential": true
+    },
+    "tasks": [
+        {
+            "code": "1d96ac2e9eb22880bd39d492f79fd121",
+            "name": "Dep\u00f3sito Ebasura",
+            "instruction": "Depositar elementos que se puede llevar e-basura",
+            "initial": false,
+            "optional": false,
+            "type": "deposit",
+            "jumps": [
+                {
+                    "on": "ALL",
+                    "to": [
+                        "a3ee87ca2e3b63a8314a6da7e6fc7568"
+                    ],
+                    "answer": null
+                }
+            ]
+        },
+        {
+            "code": "2dc4e7ea0710515326e4ebc0ab7083b1",
+            "name": "Dep\u00f3sito otros",
+            "instruction": "Depositar los elementos que no pueden ir a e-basura",
+            "initial": false,
+            "optional": false,
+            "type": "deposit",
+            "jumps": [
+                {
+                    "on": "ALL",
+                    "to": [
+                        "a3ee87ca2e3b63a8314a6da7e6fc7568"
+                    ],
+                    "answer": null
+                }
+            ]
+        },
+        {
+            "code": "0d2da9c8588f5ac0e80764e87e7c79d1",
+            "name": "Ver informaci\u00f3n",
+            "instruction": "Recolectar los elementos que sirven para ver informaci\u00f3n (mediante pantalla)",
+            "initial": false,
+            "optional": false,
+            "type": "collect",
+            "jumps": [
+                {
+                    "on": "ALL",
+                    "to": [
+                        "a3ee87ca2e3b63a8314a6da7e6fc7568"
+                    ],
+                    "answer": null
+                }
+            ],
+            "elements": [
+                {
+                    "code": "67a111a708e52e0cab846fbfa810ef48",
+                    "name": "Monitor",
+                    "deposits": [
+                        "1d96ac2e9eb22880bd39d492f79fd121"
+                    ]
+                },
+                {
+                    "code": "10c8589a322051b16dbf11eda7ad6f9c",
+                    "name": "Ca\u00f1\u00f3n o Proyector",
+                    "deposits": [
+                        "2dc4e7ea0710515326e4ebc0ab7083b1"
+                    ]
+                },
+                {
+                    "code": "cde415caab898574e9fac1e3b23f3516",
+                    "name": "Impresora",
+                    "deposits": [
+                        "1d96ac2e9eb22880bd39d492f79fd121"
+                    ]
+                },
+                {
+                    "code": "91f1a1cdbd0960aafc2e90af4ac2588d",
+                    "name": "Reproductor de DVD",
+                    "deposits": [
+                        "2dc4e7ea0710515326e4ebc0ab7083b1"
+                    ]
+                },
+                {
+                    "code": "0d6a1bad5fa5ebe661b1caafcd564242",
+                    "name": "Tablet",
+                    "deposits": [
+                        "1d96ac2e9eb22880bd39d492f79fd121"
+                    ]
+                },
+                {
+                    "code": "594013ff297488ca6247f12a320f2572",
+                    "name": "Notebook",
+                    "deposits": [
+                        "1d96ac2e9eb22880bd39d492f79fd121"
+                    ]
+                }
+            ],
+            "validElements": [
+                "67a111a708e52e0cab846fbfa810ef48",
+                "0d6a1bad5fa5ebe661b1caafcd564242",
+                "594013ff297488ca6247f12a320f2572"
+            ]
+        },
+        {
+            "code": "a3ee87ca2e3b63a8314a6da7e6fc7568",
+            "name": "Men\u00fa ebasura",
+            "instruction": "Eleg\u00ed c\u00f3mo continuar",
+            "initial": true,
+            "optional": false,
+            "type": "select",
+            "jumps": [
+                {
+                    "on": "YES",
+                    "to": [
+                        "f956ace0a6505b56143021227288d28d"
+                    ],
+                    "answer": "a95e998bf96ba3bc24e31c546c69c80d"
+                },
+                {
+                    "on": "YES",
+                    "to": [
+                        "0d2da9c8588f5ac0e80764e87e7c79d1"
+                    ],
+                    "answer": "105444dbee83cd9f1f92bd94ee01dc5f"
+                },
+                {
+                    "on": "YES",
+                    "to": [
+                        "e509ad0457767986e0c202d9b15c1622"
+                    ],
+                    "answer": "bcdd4135deb6eb2d7824d335acd52d77"
+                },
+                {
+                    "on": "YES",
+                    "to": [
+                        "d868eba317709a0cb3cef969f2eda858"
+                    ],
+                    "answer": "b7ae168ba7cab9577bc92a042754d8da"
+                }
+            ],
+            "elements": [
+                {
+                    "code": "b7ae168ba7cab9577bc92a042754d8da",
+                    "name": "Ir a depositar"
+                },
+                {
+                    "code": "105444dbee83cd9f1f92bd94ee01dc5f",
+                    "name": "Ir a VER INFORMACI\u00d3N"
+                },
+                {
+                    "code": "bcdd4135deb6eb2d7824d335acd52d77",
+                    "name": "Ir a GUARDAR INFORMACI\u00d3N"
+                },
+                {
+                    "code": "a95e998bf96ba3bc24e31c546c69c80d",
+                    "name": "Terminar"
+                }
+            ]
+        },
+        {
+            "code": "e509ad0457767986e0c202d9b15c1622",
+            "name": "Guardar informaci\u00f3n",
+            "instruction": "Recolectar los elementos que sirven para guardar informaci\u00f3n",
+            "initial": false,
+            "optional": false,
+            "type": "collect",
+            "jumps": [
+                {
+                    "on": "ALL",
+                    "to": [
+                        "a3ee87ca2e3b63a8314a6da7e6fc7568"
+                    ],
+                    "answer": null
+                }
+            ],
+            "elements": [
+                {
+                    "code": "06abd52f12b2edebcaa1f6d76c6c3de8",
+                    "name": "Smartphone",
+                    "deposits": [
+                        "1d96ac2e9eb22880bd39d492f79fd121"
+                    ]
+                },
+                {
+                    "code": "c1d926acbb2f8f37e03a9ecd387e3955",
+                    "name": "Pendrive",
+                    "deposits": [
+                        "2dc4e7ea0710515326e4ebc0ab7083b1"
+                    ]
+                },
+                {
+                    "code": "12add6507bf3441212e3d951148f7390",
+                    "name": "Disquette",
+                    "deposits": [
+                        "2dc4e7ea0710515326e4ebc0ab7083b1"
+                    ]
+                },
+                {
+                    "code": "318462600e692ce28d2172a7d6ff47e3",
+                    "name": "Disco externo",
+                    "deposits": [
+                        "1d96ac2e9eb22880bd39d492f79fd121"
+                    ]
+                },
+                {
+                    "code": "706acacbbc92368df27b28c83f11a1ea",
+                    "name": "Casette de cinta",
+                    "deposits": [
+                        "2dc4e7ea0710515326e4ebc0ab7083b1"
+                    ]
+                },
+                {
+                    "code": "deb4396df22f5a3e35caf4903114465c",
+                    "name": "CPU",
+                    "deposits": [
+                        "1d96ac2e9eb22880bd39d492f79fd121"
+                    ]
+                },
+                {
+                    "code": "2ffcb8ed7b2683ad18b16cf6c5772446",
+                    "name": "C\u00e1mara de fotos",
+                    "deposits": [
+                        "2dc4e7ea0710515326e4ebc0ab7083b1"
+                    ]
+                }
+            ],
+            "validElements": [
+                "c1d926acbb2f8f37e03a9ecd387e3955",
+                "12add6507bf3441212e3d951148f7390",
+                "318462600e692ce28d2172a7d6ff47e3",
+                "706acacbbc92368df27b28c83f11a1ea"
+            ]
+        },
+        {
+            "code": "d868eba317709a0cb3cef969f2eda858",
+            "name": "Men\u00fa dep\u00f3sitos",
+            "instruction": "Eleg\u00ed el dep\u00f3sito que quer\u00e9s usar",
+            "initial": false,
+            "optional": false,
+            "type": "select",
+            "jumps": [
+                {
+                    "on": "YES",
+                    "to": [
+                        "1d96ac2e9eb22880bd39d492f79fd121"
+                    ],
+                    "answer": "894db18e383dcc4ac2414903668627ae"
+                },
+                {
+                    "on": "YES",
+                    "to": [
+                        "2dc4e7ea0710515326e4ebc0ab7083b1"
+                    ],
+                    "answer": "2a66b56d4a669c3fa1d8f9485faa84ff"
+                }
+            ],
+            "elements": [
+                {
+                    "code": "894db18e383dcc4ac2414903668627ae",
+                    "name": "Ebasura"
+                },
+                {
+                    "code": "2a66b56d4a669c3fa1d8f9485faa84ff",
+                    "name": "Otros"
+                }
+            ]
+        },
+        {
+            "code": "f956ace0a6505b56143021227288d28d",
+            "name": "Terminar",
+            "instruction": "Gracias por participar!",
+            "initial": false,
+            "optional": false,
+            "type": "simple",
+            "jumps": []
+        }
+    ]
+}
