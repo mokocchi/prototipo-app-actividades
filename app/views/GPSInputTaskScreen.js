@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { View, Text, StyleSheet, Button, BackHandler, PermissionsAndroid, Alert } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 import { setTaskResult } from '../redux/actions';
+import MapView, { Marker } from 'react-native-maps';
 
 class GPSInputTaskScreen extends Component {
   componentDidMount() {
@@ -61,7 +62,13 @@ class GPSInputTaskScreen extends Component {
     if (result != null) { console.log(result.result.uri); }
     this.state = {
       granted: false,
-      location: null
+      location: null,
+      region: {
+        latitude: LATITUDE,
+        longitude: LONGITUDE,
+        latitudeDelta: LATITUDE_DELTA,
+        longitudeDelta: LONGITUDE_DELTA,
+      }
     }
     this.requestGPSPermission = this.requestGPSPermission.bind(this);
   }
@@ -75,7 +82,25 @@ class GPSInputTaskScreen extends Component {
         <Text style={styles.text}>{task.instruction}</Text>
 
 
-        {this.state.granted && <Text>{JSON.stringify(this.state.location.coords)}</Text>}
+        {this.state.granted &&
+          <View>
+            <Text>{JSON.stringify(this.state.location.coords)}</Text>
+            <MapView
+              provider={"google"}
+              style={styles.map}
+              scrollEnabled={false}
+              zoomEnabled={false}
+              pitchEnabled={false}
+              rotateEnabled={false}
+              initialRegion={this.state.region}
+            >
+              <Markerr
+                title="This is a title"
+                description="This is a description"
+                coordinate={this.state.region}
+              />
+            </MapView>
+          </View>}
 
 
         <Button
