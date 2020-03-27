@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, StyleSheet, Button, BackHandler, PermissionsAndroid, Alert } from 'react-native';
+import { View, Text, StyleSheet, Button, BackHandler, PermissionsAndroid, Alert, TextInput } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 import { setTaskResult } from '../redux/actions';
 import MapView, { Marker } from 'react-native-maps';
+import { Input } from 'react-native-elements';
 
 class GPSInputTaskScreen extends Component {
   componentDidMount() {
@@ -95,12 +96,15 @@ class GPSInputTaskScreen extends Component {
       granted: false,
       location: null,
       coordinate: null,
+      write: false,
+      addressButton: "Prefiero escribir una dirección",
       region: {
         latitude: -34.9036428,
         longitude: -57.9377245,
-        latitudeDelta: 0.0025,
+        latitudeDelta: 0.0020,
         longitudeDelta: 0,
-      }
+      },
+      address: ""
     }
     this.requestGPSPermission = this.requestGPSPermission.bind(this);
   }
@@ -114,6 +118,20 @@ class GPSInputTaskScreen extends Component {
     })
   }
 
+  handleChange = (text) => {
+    this.setState({
+      address: text
+    });
+  }
+
+  handleTogglePress = () => {
+    if (this.state.write) {
+      this.setState({ write: false, addressButton: "Prefiero escribir una dirección" })
+    } else {
+      this.setState({ write: true, addressButton: "Mostrar mapa" })
+    }
+  }
+
   render() {
     const t = this.props.screenProps.t;
     const task = this.props.model.tasks[this.props.currentTask];
@@ -122,34 +140,43 @@ class GPSInputTaskScreen extends Component {
         <Text style={styles.text}>{task.name}</Text>
         <Text style={styles.text}>{task.instruction}</Text>
 
-        {!this.state.read && <Button title={"Obtener ubicación"} onPress={this.handlePress} />}
-        {this.state.select && <Text>Tocá el mapa para elegir tu ubicación (presión larga marca el lugar)</Text>}
-        {this.state.read && !this.state.select && !this.state.granted && <Text>Buscando ubicación...</Text>}
-        <View>
-          <MapView
-            provider={"google"}
-            style={styles.map}
-            scrollEnabled={true}
-            zoomEnabled={true}
-            pitchEnabled={false}
-            rotateEnabled={true}
-            region={this.state.coordinate || this.state.region}
-            initialRegion={this.state.region}
-            onLongPress={this.handleLongPress}
-          >
-            <Marker
-              title="Tu ubicación"
-              coordinate={(this.state.select && this.state.coordinate) || this.state.region}
-            />
-          </MapView>
-        </View>
-        {this.state.read && !this.state.select && <Text>También podés ajustar la ubicación tocando el mapa</Text>}
+        <Button title={this.state.addressButton} onPress={this.handleTogglePress}></Button>
+
+        {!this.state.write ?
+          <>
+            {!this.state.read && <Button title={"Obtener ubicación actual"} onPress={this.handlePress} />}
+            {this.state.select && <Text>Tocá el mapa para elegir tu ubicación (presión larga marca el lugar)</Text>}
+            {this.state.read && !this.state.select && !this.state.granted && <Text>Buscando ubicación...</Text>}
+            <View>
+              <MapView
+                provider={"google"}
+                style={styles.map}
+                scrollEnabled={true}
+                zoomEnabled={true}
+                pitchEnabled={false}
+                rotateEnabled={true}
+                region={this.state.coordinate || this.state.region}
+                initialRegion={this.state.region}
+                onLongPress={this.handleLongPress}
+              >
+                {(this.state.select || this.state.granted) &&
+                  <Marker
+                    title="Tu ubicación"
+                    coordinate={this.state.coordinate || this.state.region}
+                  />
+                }
+              </MapView>
+            </View>
+            {this.state.read && !this.state.select && <Text>También podés ajustar la ubicación tocando el mapa</Text>}
+          </>
+          :
+          <TextInput placeholder="Escribí una dirección" onChangeText={this.handleChange} />}
 
         <Button
-          title={t("CameraInputTask_002")}
+          title={"Continuar"}
           onPress={() => {
-            if (this.state.pos) {
-              this.props.setTaskResult(task.code, this.state.location.coords, task.type)
+            if ((this.state.write && this.state.address) || (this.state.granted && this.state.region) || (this.state.select && this.state.coordinate)) {
+              this.props.setTaskResult(task.code, { type: this.state.write ? "address" : "coords", data: this.state.write ? this.state.address : (this.state.location ? this.state.location.coords : this.state.coordinate) }, task.type)
             }
             this.props.navigation.navigate("TaskResult");
           }}></Button>
