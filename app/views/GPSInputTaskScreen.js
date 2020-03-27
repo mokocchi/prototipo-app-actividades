@@ -13,11 +13,11 @@ class GPSInputTaskScreen extends Component {
   }
   handlePress = () => {
     Alert.alert(
-      'Se necesita usar el gps',
-      'Tenés el GPS prendido?',
+      t("GPSInputTask_001"),
+      t("GPSInputTask_002"),
       [
-        { text: 'No usar GPS', onPress: () => this.setState({ select: true }), style: 'cancel' },
-        { text: 'Sí', onPress: () => this.requestGPSPermission() },
+        { text: t("GPSInputTask_003"), onPress: () => this.setState({ select: true }), style: 'cancel' },
+        { text: t("GPSInputTask_004"), onPress: () => this.requestGPSPermission() },
       ],
       { cancelable: false }
     )
@@ -32,8 +32,8 @@ class GPSInputTaskScreen extends Component {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
         {
-          title: t("PositionedTask_001"),
-          message: t("PositionedTask_002"),
+          title: t("GPSInputTask_005"),
+          message: t("GPSInputTask_006"),
         },
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
@@ -97,7 +97,7 @@ class GPSInputTaskScreen extends Component {
       location: null,
       coordinate: null,
       write: false,
-      addressButton: "Prefiero escribir una dirección",
+      addressButton: t("GPSInputTask_007"),
       region: {
         latitude: -34.9036428,
         longitude: -57.9377245,
@@ -126,9 +126,9 @@ class GPSInputTaskScreen extends Component {
 
   handleTogglePress = () => {
     if (this.state.write) {
-      this.setState({ write: false, addressButton: "Prefiero escribir una dirección" })
+      this.setState({ write: false, addressButton: t("GPSInputTask_007") })
     } else {
-      this.setState({ write: true, addressButton: "Mostrar mapa" })
+      this.setState({ write: true, addressButton: t("GPSInputTask_008") })
     }
   }
 
@@ -144,9 +144,9 @@ class GPSInputTaskScreen extends Component {
 
         {!this.state.write ?
           <>
-            {!this.state.read && <Button title={"Obtener ubicación actual"} onPress={this.handlePress} />}
-            {this.state.select && <Text>Tocá el mapa para elegir tu ubicación (presión larga marca el lugar)</Text>}
-            {this.state.read && !this.state.select && !this.state.granted && <Text>Buscando ubicación...</Text>}
+            {!this.state.read && <Button title={t("GPSInputTask_009")} onPress={this.handlePress} />}
+            {this.state.select && <Text>{t("GPSInputTask_011")}</Text>}
+            {this.state.read && !this.state.select && !this.state.granted && <Text>{t("GPSInputTask_012")}</Text>}
             <View>
               <MapView
                 provider={"google"}
@@ -161,19 +161,19 @@ class GPSInputTaskScreen extends Component {
               >
                 {(this.state.select || this.state.granted) &&
                   <Marker
-                    title="Tu ubicación"
+                    title={t("GPSInputTask_010")}
                     coordinate={this.state.coordinate || this.state.region}
                   />
                 }
               </MapView>
             </View>
-            {this.state.read && !this.state.select && <Text>También podés ajustar la ubicación tocando el mapa</Text>}
+              {this.state.read && !this.state.select && <Text>{t("GPSInputTask_013")}</Text>}
           </>
           :
-          <TextInput placeholder="Escribí una dirección" onChangeText={this.handleChange} />}
+          <TextInput placeholder={t("GPSInputTask_014")} onChangeText={this.handleChange} />}
 
         <Button
-          title={"Continuar"}
+          title={t("GPSInputTask_015")}
           onPress={() => {
             if ((this.state.write && this.state.address) || (this.state.granted && this.state.region) || (this.state.select && this.state.coordinate)) {
               this.props.setTaskResult(task.code, { type: this.state.write ? "address" : "coords", data: this.state.write ? this.state.address : (this.state.location ? this.state.location.coords : this.state.coordinate) }, task.type)
