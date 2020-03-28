@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {View, Text, Image, StyleSheet, Button, BackHandler, TextInput} from 'react-native';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { View, Text, Image, StyleSheet, Button, BackHandler, TextInput } from 'react-native';
 import ImagePicker from 'react-native-image-picker'
-import {setTaskResult} from '../redux/actions';
+import { setTaskResult } from '../redux/actions';
+import NextTaskButtons from '../components/NextTaskButtons';
 
 class CameraInputTaskScreen extends Component {
   componentDidMount() {
@@ -32,13 +33,13 @@ class CameraInputTaskScreen extends Component {
   constructor(props) {
     super(props);
     const task = this.props.model.tasks[this.props.currentTask];
-    const result = this.props.taskResults.find((item)=>task.code==item.code);
-    if(result!=null){console.log(result.result.uri);}
-    
+    const result = this.props.taskResults.find((item) => task.code == item.code);
+    if (result != null) { console.log(result.result.uri); }
+
     this.state = {
-      photo: result == null? null : result.result,
+      photo: result == null ? null : result.result,
     }
-  
+
   }
 
   render() {
@@ -50,22 +51,16 @@ class CameraInputTaskScreen extends Component {
       <View style={styles.container}>
         <Text style={styles.text}>{task.name}</Text>
         <Text style={styles.text}>{task.instruction}</Text>
-        { photo == null ?  
+        {photo == null ?
           (<Button title={t("CameraInputTask_001")} onPress={this.handleTakePhoto} />)
           : (
-          <Image
-            source={{ uri: photo.uri }}
-            style={{ width: 300, height: 300, alignSelf: "center" }}
-          />
-        )}
-        <Button
-          title={t("CameraInputTask_002")}
-          onPress={() => {
-            if(photo){
-              this.props.setTaskResult(task.code, photo, task.type)
-            }
-            this.props.navigation.navigate("TaskResult");
-          }}></Button>
+            <Image
+              source={{ uri: photo.uri }}
+              style={{ width: 300, height: 300, alignSelf: "center" }}
+            />
+          )}
+        <NextTaskButtons condition={photo} task={task} result={photo}
+          setTaskResult={this.props.setTaskResult} navigate={this.props.navigation.navigate} />
       </View>
     );
   }
@@ -86,8 +81,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const {model, currentTask, taskResults} = state;
-  return {model, currentTask, taskResults};
+  const { model, currentTask, taskResults } = state;
+  return { model, currentTask, taskResults };
 };
 const mapDispatchToProps = dispatch =>
   bindActionCreators(

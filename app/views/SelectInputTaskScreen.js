@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { View, Text, StyleSheet, Button, BackHandler, Picker } from 'react-native';
 import { setTaskResult } from '../redux/actions';
+import NextTaskButtons from '../components/NextTaskButtons';
 
 class SelectInputTaskScreen extends Component {
   componentDidMount() {
@@ -46,12 +47,8 @@ class SelectInputTaskScreen extends Component {
           </Picker>
         </View>
 
-        <Button
-          title={t("SelectInputTask_001")}
-          onPress={() => {
-            this.props.setTaskResult(task.code, this.state.value, task.type);
-            this.props.navigation.navigate("TaskResult", {"answer":[this.state.value]});
-          }}></Button>
+        <NextTaskButtons condition={this.state.value} result={this.state.value} task={task} answer={[this.state.value]}
+          setTaskResult={this.props.setTaskResult} navigate={this.props.navigation.navigate}/>
       </View>
     );
   }

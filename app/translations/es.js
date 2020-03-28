@@ -10,6 +10,10 @@ export default {
     "SelectFile_006": "Continuar",
 
     "Welcome_001": "Empecemos",
+
+    "ContinueTaskButton_001": "Continuar",
+
+    "SkipTaskButton_001": "Saltear",
     
     "SimpleTask_001":"Continuar",
 

@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {View, Text, StyleSheet, Button, BackHandler} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {setCurrentTask, setTaskResult} from '../redux/actions';
+import SkipTaskButton from '../components/SkipTaskButton';
 
 class CountersTaskScreen extends Component {
   componentDidMount() {
@@ -80,6 +81,7 @@ class CountersTaskScreen extends Component {
                 }
             }
           }}></Button>
+          <SkipTaskButton navigate={this.props.navigation.navigate} optional={task.optional}/>
       </View>
     );
   }

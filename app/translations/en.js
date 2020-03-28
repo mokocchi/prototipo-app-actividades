@@ -11,6 +11,10 @@ export default {
 
     "Welcome_001": "Let's start",
 
+    "ContinueTaskButton_001": "Continue",
+
+    "SkipTaskButton_001": "Skip",
+
     "SimpleTask_001": "Continue",
 
     "TaskResult_001": "Task finished",

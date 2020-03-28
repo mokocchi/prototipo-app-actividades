@@ -6,6 +6,7 @@ import Geolocation from '@react-native-community/geolocation';
 import { setTaskResult } from '../redux/actions';
 import MapView, { Marker } from 'react-native-maps';
 import { Input } from 'react-native-elements';
+import SkipTaskButton from '../components/SkipTaskButton';
 
 class GPSInputTaskScreen extends Component {
   componentDidMount() {
@@ -180,6 +181,7 @@ class GPSInputTaskScreen extends Component {
             }
             this.props.navigation.navigate("TaskResult");
           }}></Button>
+          <SkipTaskButton navigate={this.props.navigation.navigate} optional={task.optional} />
       </View>
     );
   }

@@ -11,7 +11,9 @@ export default {
 
     "Welcome_001": "始めましょう",
 
-    "SimpleTask_001": "続く",
+    "ContinueTaskButton_001": "続く",
+
+    "SkipTaskButton_001": "スキップ",
 
     "TaskResult_001": "課題に回答しました",
     "TaskResult_002": "次の課題へ行きましょう",

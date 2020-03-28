@@ -11,6 +11,7 @@ import {
   PermissionsAndroid,
 } from 'react-native';
 import { CameraKitCameraScreen } from 'react-native-camera-kit';
+import SkipTaskButton from '../components/SkipTaskButton';
 
 class PositionedTaskScreen extends Component {
   componentDidMount() {
@@ -104,6 +105,7 @@ class PositionedTaskScreen extends Component {
               this.props.navigation.navigate('DepositTask');
             }
           }} />
+          <SkipTaskButton navigate={this.props.navigation.navigate} optional={task.optional}/>
         </View>
       );
     }

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {View, Text, StyleSheet, Button, BackHandler} from 'react-native';
 import { setTaskResult } from '../redux/actions';
+import NextTaskButtons from '../components/NextTaskButtons';
 
 class SimpleTaskScreen extends Component {
   componentDidMount() {
@@ -24,12 +25,8 @@ class SimpleTaskScreen extends Component {
       <View style={styles.container}>
         <Text style={styles.text}>{task.name}</Text>
         <Text style={styles.text}>{task.instruction}</Text>
-        <Button
-          title={t("SimpleTask_001")}
-          onPress={() => {
-            this.props.setTaskResult(task.code, true, task.type);
-            this.props.navigation.navigate("TaskResult");
-          }}></Button>
+        <NextTaskButtons condition={true} task={task} result={true}
+          setTaskResult={this.props.setTaskResult} navigate={this.props.navigation.navigate} />
       </View>
     );
   }

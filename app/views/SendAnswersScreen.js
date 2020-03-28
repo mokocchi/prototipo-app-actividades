@@ -29,7 +29,7 @@ class SendAnswersScreen extends Component {
         <View style={styles.container}>
             <Text style={styles.text}>{activity.name}</Text>
             <Text style={styles.text}>{t("SendAnswers_001")}</Text>           
-            <Button title={t("SendAnswers_002")} onPress={()=>this.props.navigation.navigate("")} />
+            <Button title={t("SendAnswers_002")} onPress={()=>this.props.navigation.navigate("Splash")} />
         </View>
     );
   }

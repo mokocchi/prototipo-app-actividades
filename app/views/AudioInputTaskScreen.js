@@ -5,6 +5,7 @@ import { View, Text, StyleSheet, BackHandler, Button, PermissionsAndroid } from 
 import { Player, Recorder, MediaStates } from '@react-native-community/audio-toolkit';
 
 import { setTaskResult } from '../redux/actions';
+import NextTaskButtons from '../components/NextTaskButtons';
 
 const filename = "audio.mp4";
 
@@ -122,14 +123,8 @@ class AudioInputTaskScreen extends Component {
         </View>
 
 
-        <Button
-          title={t("AudioInputTask_001")}
-          onPress={() => {
-            if ("audio") {
-              this.props.setTaskResult(task.code, this.state.filePath, task.type)
-            }
-            this.props.navigation.navigate("TaskResult");
-          }}></Button>
+        <NextTaskButtons condition={this.state.filePath} result={this.state.filePath} task={task}
+          navigate={this.props.navigation.navigate} setTaskResult={this.props.setTaskResult} />
       </View>
     );
   }

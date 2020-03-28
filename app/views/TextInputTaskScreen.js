@@ -10,6 +10,7 @@ import {
   TextInput,
 } from 'react-native';
 import { setTaskResult } from '../redux/actions';
+import NextTaskButtons from '../components/NextTaskButtons';
 
 class TextInputTaskScreen extends Component {
   componentDidMount() {
@@ -42,14 +43,7 @@ class TextInputTaskScreen extends Component {
         <Text style={styles.text}>{task.name}</Text>
         <Text style={styles.text}>{task.instruction}</Text>
         <TextInput placeholder={number?t("TextInputTask_001"):t("TextInputTask_002")} keyboardType={number?"decimal-pad":"default"} onChangeText={(text) => this.setState({ text })} value={this.state.text}></TextInput>
-        <Button
-          title={t("TextInputTask_003")}
-          onPress={() => {
-            if(this.state.text!='') {
-              this.props.setTaskResult(task.code, this.state.text, task.type);
-            }            
-            this.props.navigation.navigate("TaskResult");
-          }}></Button>
+        <NextTaskButtons condition={this.state.text} setTaskResult={this.props.setTaskResult} navigate={this.props.navigation.navigate} task={task} result={this.state.text}/>
       </View>
     );
   }

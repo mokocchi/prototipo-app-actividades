@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {View, Text, StyleSheet, Button, BackHandler} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {setTaskResult} from '../redux/actions';
+import NextTaskButtons from '../components/NextTaskButtons';
 
 class MultipleChoiceTaskScreen extends Component {
   componentDidMount() {
@@ -76,18 +77,8 @@ class MultipleChoiceTaskScreen extends Component {
           ))}
         </View>
 
-        <Button
-          title={t("MultipleChoiceTask_001")}
-          onPress={() => {
-            var result = task.elements.filter((item, index) => this.state.checked[index]).map(item => item.code);
-            this.props.setTaskResult(task.code, result, task.type);
-            if(task.validElements){
-              this.props.navigation.navigate('MultipleChoiceTaskResult', {result: result});
-            } else {
-              this.props.navigation.navigate("TaskResult", {"answer": result});
-            }
-
-          }}></Button>
+        <NextTaskButtons condition={task.validElements} task={task} result={task.elements.filter((item, index) => this.state.checked[index]).map(item => item.code)}
+          setTaskResult={this.props.setTaskResult} navigate={this.props.navigation.navigate} answer={task.elements.filter((item, index) => this.state.checked[index]).map(item => item.code)}/>
       </View>
     );
   }
