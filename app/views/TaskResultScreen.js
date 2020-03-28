@@ -51,12 +51,23 @@ class TaskResultScreen extends Component {
         const jumpWhenNone = task.jumps.find((jump) => jump.on == "NONE");
         if (jumpWhenNone && (answers.length == 0)) {
           if (jumpWhenNone.to.length > 1) {
-            this.props.navigation.navigate("ChooseTask", { "options": forcedJump.to });
+            this.props.navigation.navigate("ChooseTask", { "options": jumpWhenNone.to });
           } else {
             this.jump(jumpWhenNone, tasks);
             return;
           }
         }
+        const jumpWhenPassed = task.jumps.find((jump) => jump.on == "YES_TASK");
+        if (jumpWhenPassed && this.props.taskResults.find(task => task.code == jumpWhenPassed.answer)) {
+          this.jump(jumpWhenPassed, tasks)
+          return;
+        }
+        const jumpWhenNotPassed = task.jumps.find((jump) => jump.on == "NO_TASK");
+        if(jumpWhenNotPassed && !this.props.taskResults.find(task => task.code == jumpWhenPassed.answer)) {
+          this.jump(jumpWhenNotPassed, tasks);
+          return;
+        }
+
         for (let index = 0; index < answers.length; index++) {
           const answer = answers[index];
           for (let index = 0; index < task.jumps.length; index++) {
@@ -149,8 +160,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { model, currentTask } = state;
-  return { model, currentTask };
+  const { model, currentTask, taskResults } = state;
+  return { model, currentTask, taskResults };
 };
 
 const mapDispatchToProps = dispatch =>
