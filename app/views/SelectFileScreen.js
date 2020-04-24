@@ -7,7 +7,7 @@ import { loadModel } from '../redux/actions';
 
 class SelectFileScreen extends Component {
     async getNameFromJson(filename, t) {
-        await RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo3/configuracion/' + filename).then(data => {
+        await RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo4/configuracion/' + filename).then(data => {
             parsedJSON = JSON.parse(data);
             const name = parsedJSON.educationalActivity ? parsedJSON.educationalActivity.name : ""
             const names = this.state.names;
@@ -22,7 +22,7 @@ class SelectFileScreen extends Component {
 
     loadJSON(that) {
         const file = that.state.value;
-        RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo3/configuracion/' + file).then(data => {
+        RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo4/configuracion/' + file).then(data => {
             parsedJSON = JSON.parse(data);
             that.props.loadModel(parsedJSON);
             that.props.screenProps.setLocale(parsedJSON.language);
