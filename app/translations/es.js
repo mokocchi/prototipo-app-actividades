@@ -69,6 +69,8 @@ export default {
 
     "SendAnswers_001": "Terminaste la actividad. Se enviarán tus respuestas.",
     "SendAnswers_002": "Enviar",
+    "SendAnswers_003": "Respuestas enviadas correctamente",
+    "SendAnswers_004": "Ocurrió un error",
 
     "CollectTask_001": "Permisos",
     "CollectTask_002": "Se necesita permiso para usar la cámara",

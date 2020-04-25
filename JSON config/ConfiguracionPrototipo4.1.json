@@ -1,0 +1,117 @@
+{
+    "language": "es",
+    "educationalActivity": {
+        "name": "Mi act1",
+        "code": "3c73e1f972227c1b654e25888332c3596ef1ab5b6c01bfc10ca338b7ff407656",
+        "goal": "Probar el buscador de tareas",
+        "sequential": true
+    },
+    "tasks": [
+        {
+            "code": "70af7272b5172ee6d574c21caf9e131a962aad9ae920ff91fb8eff7748d0cbd9",
+            "name": "Sustantivos",
+            "instruction": "Subrayen los sustantivos del texto 3",
+            "initial": true,
+            "optional": false,
+            "type": "simple",
+            "jumps": []
+        },
+        {
+            "code": "0c5e71c184968244d02182ea876d912b59780f4469be5c18de9c9dbdbfb5fb2a",
+            "name": "Foto sustantivos",
+            "instruction": "Saquen una foto al texto subrayado",
+            "initial": false,
+            "optional": true,
+            "type": "cameraInput",
+            "jumps": []
+        },
+        {
+            "code": "e647eae0c0f1adaa8eb6eac9bd38986d1d74f92f65324bbcd03dde83c18442ac",
+            "name": "Sustantivo favorito",
+            "instruction": "Escriban su sustantivo favorito del texto",
+            "initial": false,
+            "optional": false,
+            "type": "textInput",
+            "jumps": []
+        },
+        {
+            "code": "0c73a5c6646d54a404a7faaa32f996d4d381b1d1d832aef7a92b55354f433d99",
+            "name": "Reptiles",
+            "instruction": "¿Cuáles de estos son repitles? 🐍",
+            "initial": false,
+            "optional": false,
+            "type": "multiple",
+            "jumps": [],
+            "elements": [
+                {
+                    "code": "9f95aa314d445a5b8574fd6adda31f9536531422a8437a12f05fd23b1e9f6c45",
+                    "name": "Tortuga"
+                },
+                {
+                    "code": "9b5951ca1c7353d8d88021261c5f32df8d43a0bd997dc2a3015246b548220e27",
+                    "name": "Perro"
+                },
+                {
+                    "code": "8421828e49456ac832c4b1384f79324897c4347238b0bef7be83f5273382a231",
+                    "name": "Sapo"
+                },
+                {
+                    "code": "76510a0f4243f00dc0c720b06c34586edaed0e5c79bfe646123997e4a5405198",
+                    "name": "Víbora"
+                }
+            ],
+            "validElements": [
+                "9f95aa314d445a5b8574fd6adda31f9536531422a8437a12f05fd23b1e9f6c45",
+                "76510a0f4243f00dc0c720b06c34586edaed0e5c79bfe646123997e4a5405198"
+            ]
+        },
+        {
+            "code": "54634b41e03e73a92e61bd5660402f6f41d4816639d5eadc09ccb16ae060efa9",
+            "name": "Buscando animales",
+            "instruction": "¿Cuántos de estos animales vieron en el paseo?",
+            "initial": false,
+            "optional": true,
+            "type": "counters",
+            "jumps": [],
+            "byScore": [
+                {
+                    "name": "Rareza",
+                    "scores": {
+                        "2194f2621ccdcf5f9514c213e7d4c6a56f07ec498258c8487660da5b3f6f3d48": "1",
+                        "32c605bbc1f452410d0847adbb6ef39f8fe35c16cb7e6e442adb0f0097201e07": "2",
+                        "4e21ecf0e962bd160f792f124c84ac58f5d6d7d233341794f0eb1b8f6c0dc265": "2",
+                        "de9c735a2c2f44bd3733afd0d38e6de59c264b04ab83ea3e38c03f577a01bb37": "8"
+                    },
+                    "message": "-"
+                }
+            ],
+            "elements": [
+                {
+                    "code": "2194f2621ccdcf5f9514c213e7d4c6a56f07ec498258c8487660da5b3f6f3d48",
+                    "name": "Perro"
+                },
+                {
+                    "code": "4e21ecf0e962bd160f792f124c84ac58f5d6d7d233341794f0eb1b8f6c0dc265",
+                    "name": "Gato"
+                },
+                {
+                    "code": "32c605bbc1f452410d0847adbb6ef39f8fe35c16cb7e6e442adb0f0097201e07",
+                    "name": "Pájaro"
+                },
+                {
+                    "code": "de9c735a2c2f44bd3733afd0d38e6de59c264b04ab83ea3e38c03f577a01bb37",
+                    "name": "Lagartija"
+                }
+            ]
+        },
+        {
+            "code": "f219d2096720aea8ff2e46688c9e161ec00683d747f01235c218ea0725a0cc1f",
+            "name": "Ubicación",
+            "instruction": "Marquen un lugar que les guste",
+            "initial": false,
+            "optional": false,
+            "type": "GPSInput",
+            "jumps": []
+        }
+    ]
+}

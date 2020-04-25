@@ -66,7 +66,9 @@ export default {
     "ResultByScore_002": "続く",
 
     "SendAnswers_001": "アクティビティが終了しました。回答が送信されます。",
-    "SendAnswers_002": "提出",
+    "SendAnswers_002": "送信",
+    "SendAnswers_003": "回答が正常に送信されました",
+    "SendAnswers_004": "エラーが発生しました",
 
     "CollectTask_001": "権限",
     "CollectTask_002": "カメラの権限が必要です",

@@ -1,4 +1,4 @@
-import {LOAD_MODEL, SET_CURRENT_TASK, NEXT_TASK, SET_TASK_RESULT, ADD_CODE, REMOVE_CODE} from '../types'
+import {LOAD_MODEL, SET_CURRENT_TASK, NEXT_TASK, SET_TASK_RESULT, ADD_CODE, REMOVE_CODE, CLEAR_TASK_RESULT} from '../types'
 
 export const loadModel = data => (
     {
@@ -26,6 +26,12 @@ export const setTaskResult = (task, result, type) => (
     task: task,
     result: result,
     taskType: type
+  }
+)
+
+export const clearTaskResult = () => (
+  {
+    type: CLEAR_TASK_RESULT
   }
 )
 

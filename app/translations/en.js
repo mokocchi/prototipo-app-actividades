@@ -69,6 +69,8 @@ export default {
 
     "SendAnswers_001": "You finished the activity. Your answers will be submitted.",
     "SendAnswers_002": "Submit",
+    "SendAnswers_003": "Answers successfully submitted",
+    "SendAnswers_004": "There was an error",
 
     "CollectTask_001": "Permissions",
     "CollectTask_002": "Permission to use the camera needed",
