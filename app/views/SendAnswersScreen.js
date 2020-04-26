@@ -8,12 +8,18 @@ import {
     StyleSheet,
     Button,
     BackHandler,
+    ActivityIndicator,
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { Alert } from 'react-native';
 import { RESULTS_URL } from '../config';
 
 class SendAnswersScreen extends Component {
+
+    state = {
+        sendAllowed: true
+    }
+
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
     }
@@ -37,7 +43,7 @@ class SendAnswersScreen extends Component {
             },
             body: JSON.stringify(object)
         });
-        if(!data.error_code) {
+        if (!data.error_code) {
             Alert.alert(t("SendAnswers_003"))
         } else {
             //TODO: errores por error_code
@@ -49,6 +55,9 @@ class SendAnswersScreen extends Component {
     }
 
     onPress = () => {
+        this.setState({
+            sendAllowed: false
+        })
         this.sendAnswers(this.props.taskResults)
     }
 
@@ -59,7 +68,11 @@ class SendAnswersScreen extends Component {
             <View style={styles.container}>
                 <Text style={styles.text}>{activity.name}</Text>
                 <Text style={styles.text}>{t("SendAnswers_001")}</Text>
-                <Button title={t("SendAnswers_002")} onPress={this.onPress} />
+                {this.state.sendAllowed ?
+                    <Button title={t("SendAnswers_002")} onPress={this.onPress} />
+                    :
+                    <ActivityIndicator />
+                }
             </View>
         );
     }
