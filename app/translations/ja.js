@@ -31,7 +31,7 @@ export default {
     "AudioInputTask_006": "再生中",
     
     "GPSInputTask_001": "GPSは必要です",
-    "GPSInputTask_002": 'GPSは活性していますか？',
+    "GPSInputTask_002": 'GPSは機能していますか？',
     "GPSInputTask_003": 'GPSを利用しない',
     "GPSInputTask_004": 'はい',
     "GPSInputTask_005": '権限',
@@ -45,6 +45,9 @@ export default {
     "GPSInputTask_013": "マップをタッチすると位置も選べます",
     "GPSInputTask_014": "住所を入力してください",
     "GPSInputTask_015": "続く",
+    "GPSInputTask_016": "地図を使う（インターネット接続は必要です）",
+    "GPSInputTask_017": "GPSを機能させる",
+    "GPSInputTask_018": "You must enable GPS to get the current location",
 
     "TextInputTask_001": "数値を入力してください",
     "TextInputTask_002": "文を入力してください",

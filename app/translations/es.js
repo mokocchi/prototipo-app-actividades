@@ -47,6 +47,9 @@ export default {
     "GPSInputTask_013": "También podés ajustar la ubicación tocando el mapa",
     "GPSInputTask_014": "Escribí una dirección",
     "GPSInputTask_015": "Continuar",
+    "GPSInputTask_016": "Usar el mapa (requiere internet)",
+    "GPSInputTask_017": "Prendé el GPS",
+    "GPSInputTask_018": "Tenés que prender el GPS para obtener la ubicación actual",
 
     "TextInputTask_001": "Ingresa el número",
     "TextInputTask_002": "Ingresa texto",

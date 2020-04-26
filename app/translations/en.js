@@ -35,7 +35,7 @@ export default {
     "GPSInputTask_001": "GPS needed",
     "GPSInputTask_002": 'Do you have GPS enabled?',
     "GPSInputTask_003": 'Don\'t use GPS',
-    "GPSInputTask_004": 'Ye',
+    "GPSInputTask_004": 'Yes',
     "GPSInputTask_005": 'Permissions',
     "GPSInputTask_006": 'GPS permission needed',
     "GPSInputTask_007": "I want to write an address",
@@ -47,6 +47,9 @@ export default {
     "GPSInputTask_013": "You also can adjust the position touching the map",
     "GPSInputTask_014": "Write an address",
     "GPSInputTask_015": "Continue",
+    "GPSInputTask_016": "Use the map (requires an internet connection)",
+    "GPSInputTask_017": "Enable GPS",
+    "GPSInputTask_018": "You must enable GPS to get the current location",
 
     "TextInputTask_001": "Enter the number",
     "TextInputTask_002": "Enter text",
