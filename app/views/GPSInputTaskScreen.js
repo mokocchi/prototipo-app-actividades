@@ -60,8 +60,8 @@ class GPSInputTaskScreen extends Component {
                     longitude: pos.coords.longitude,
                     latitudeDelta: 0.005,
                     longitudeDelta: 0,
-                    loading: false
-                  }
+                  },
+                  loading: false
                 })
               }, () => {this.setState({ loading: false }); Alert.alert(t("GPSInputTask_017"),t("GPSInputTask_018"))}, { enableHighAccuracy: false, timeout: 5000 })
         }
@@ -78,6 +78,7 @@ class GPSInputTaskScreen extends Component {
     }
   } catch(err) {
     console.warn(err);
+    this.setState({ loading: false })
   }
 }
 
