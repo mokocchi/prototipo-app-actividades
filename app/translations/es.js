@@ -74,6 +74,8 @@ export default {
     "SendAnswers_002": "Enviar",
     "SendAnswers_003": "Respuestas enviadas correctamente",
     "SendAnswers_004": "Ocurrió un error",
+    "SendAnswers_005": "Salir sin enviar",
+    "SendAnswers_006": "Servicio no disponible",
 
     "CollectTask_001": "Permisos",
     "CollectTask_002": "Se necesita permiso para usar la cámara",

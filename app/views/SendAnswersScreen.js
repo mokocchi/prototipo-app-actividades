@@ -36,22 +36,29 @@ class SendAnswersScreen extends Component {
         const object = {};
         object["code"] = this.props.model.educationalActivity.code;
         object["responses"] = results;
-        const data = await fetch(RESULTS_URL, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(object)
-        });
-        if (!data.error_code) {
-            Alert.alert(t("SendAnswers_003"))
-        } else {
-            //TODO: errores por error_code
-            Alert.alert(t("SendAnswers_004"))
-            console.log(data)
+        try {
+            const data = await fetch(RESULTS_URL, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(object)
+            });
+            if (!data.error_code) {
+                Alert.alert(t("SendAnswers_003"))
+            } else {
+                //TODO: errores por error_code
+                Alert.alert(t("SendAnswers_004"))
+                console.log(data)
+                this.setState({ sendAllowed: true })
+            }
+            this.props.clearTaskdataResult()
+            this.props.navigation.navigate("Splash");
+        } catch (error) {
+            Alert.alert(t("SendAnswers_006"))
+            console.log(error)
+            this.setState({ sendAllowed: true })
         }
-        this.props.clearTaskResult()
-        this.props.navigation.navigate("Splash");
     }
 
     onPress = () => {
@@ -69,7 +76,10 @@ class SendAnswersScreen extends Component {
                 <Text style={styles.text}>{activity.name}</Text>
                 <Text style={styles.text}>{t("SendAnswers_001")}</Text>
                 {this.state.sendAllowed ?
-                    <Button title={t("SendAnswers_002")} onPress={this.onPress} />
+                    <>
+                        <Button title={t("SendAnswers_002")} onPress={this.onPress} />
+                        <Button title={t("SendAnswers_005")} onPress={() => this.props.navigation.navigate("Splash")} />
+                    </>
                     :
                     <ActivityIndicator />
                 }

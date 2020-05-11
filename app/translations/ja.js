@@ -72,6 +72,8 @@ export default {
     "SendAnswers_002": "送信",
     "SendAnswers_003": "回答が正常に送信されました",
     "SendAnswers_004": "エラーが発生しました",
+    "SendAnswers_005": "送信せずに終了",
+    "SendAnswers_006": "サービス不可",
 
     "CollectTask_001": "権限",
     "CollectTask_002": "カメラの権限が必要です",
