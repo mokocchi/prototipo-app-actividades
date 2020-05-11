@@ -52,7 +52,7 @@ class SendAnswersScreen extends Component {
                 console.log(data)
                 this.setState({ sendAllowed: true })
             }
-            this.props.clearTaskdataResult()
+            this.props.clearTaskResult()
             this.props.navigation.navigate("Splash");
         } catch (error) {
             Alert.alert(t("SendAnswers_006"))
