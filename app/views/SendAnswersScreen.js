@@ -47,14 +47,14 @@ class SendAnswersScreen extends Component {
             const json = await data.json();
             if (!json.error_code) {
                 Alert.alert(t("SendAnswers_003"))
+                this.props.clearTaskResult()
+                this.props.navigation.navigate("Splash");
             } else {
                 //TODO: errores por error_code
                 Alert.alert(t("SendAnswers_004"))
                 console.log(json)
                 this.setState({ sendAllowed: true })
             }
-            this.props.clearTaskResult()
-            this.props.navigation.navigate("Splash");
         } catch (error) {
             Alert.alert(t("SendAnswers_006"))
             console.log(error)
