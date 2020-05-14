@@ -45,7 +45,7 @@ class ResultByScoreScreen extends Component {
         <Button
           title={t("ResultByScore_002")}
           onPress={() => {
-            this.props.navigation.navigate('TaskResult');
+            this.props.navigation.navigate("TaskResult");
           }}></Button>
       </View>
     );

@@ -43,7 +43,7 @@ class CollectTaskResultScreen extends Component {
         <Button
           title={t("CollectTaskResult_004")}
           onPress={() => {
-            this.props.navigation.navigate('TaskResult');
+            this.props.navigation.navigate("TaskResult", {correct: (wronglyCollected.length + wronglyLeft.length) === 0});
           }}></Button>
       </View>
     );

@@ -33,10 +33,7 @@ class TaskResultScreen extends Component {
 
   findDestination(activity, task) {
     if (task.jumps.length == 0) {
-      this.props.navigation.navigate(
-        mapScreen(this.nextTaskType(activity)),
-      );
-      this.props.nextTask();
+      this.props.navigation.navigate("SendAnswers");
     } else {
       const tasks = this.props.model.tasks;
       const forcedJump = task.jumps.find((jump) => jump.on == "ALL");
@@ -48,6 +45,7 @@ class TaskResultScreen extends Component {
         }
       } else {
         const answers = this.props.navigation.getParam('answer', []);
+        const correct = this.props.navigation.getParam('correct', false);
         const jumpWhenNone = task.jumps.find((jump) => jump.on == "NONE");
         if (jumpWhenNone && (answers.length == 0)) {
           if (jumpWhenNone.to.length > 1) {
@@ -57,13 +55,25 @@ class TaskResultScreen extends Component {
             return;
           }
         }
+
+        const jumpWhenCorrect = task.jumps.find((jump) => jump.on === "CORRECT");
+        if (jumpWhenCorrect && correct) {
+          this.jump(jumpWhenCorrect, tasks);
+          return;
+        }
+        const jumpWhenIncorrect = task.jumps.find((jump) => jump.on === "INCORRECT");
+        if (jumpWhenIncorrect && !correct) {
+          this.jump(jumpWhenIncorrect, tasks);
+          return;
+        }
+
         const jumpWhenPassed = task.jumps.find((jump) => jump.on == "YES_TASK");
         if (jumpWhenPassed && this.props.taskResults.find(task => task.code == jumpWhenPassed.answer)) {
           this.jump(jumpWhenPassed, tasks)
           return;
         }
         const jumpWhenNotPassed = task.jumps.find((jump) => jump.on == "NO_TASK");
-        if(jumpWhenNotPassed && !this.props.taskResults.find(task => task.code == jumpWhenPassed.answer)) {
+        if (jumpWhenNotPassed && !this.props.taskResults.find(task => task.code == jumpWhenPassed.answer)) {
           this.jump(jumpWhenNotPassed, tasks);
           return;
         }

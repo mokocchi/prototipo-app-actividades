@@ -77,7 +77,7 @@ class CountersTaskScreen extends Component {
                 if(task.byWeight){
                     this.props.navigate("ResultByWeight",{result: this.state.counters})
                 } else {
-                    this.props.navigation.navigate('TaskResult');
+                    this.props.navigation.navigate("TaskResult");
                 }
             }
           }}></Button>

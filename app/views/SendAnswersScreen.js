@@ -79,7 +79,7 @@ class SendAnswersScreen extends Component {
                 {this.state.sendAllowed ?
                     <>
                         <Button title={t("SendAnswers_002")} onPress={this.onPress} />
-                        <Button title={t("SendAnswers_005")} onPress={() => this.props.navigation.navigate("Splash")} />
+                        <Button title={t("SendAnswers_005")} onPress={() => {this.props.clearTaskResult(); this.props.navigation.navigate("Splash")}} />
                     </>
                     :
                     <ActivityIndicator />
