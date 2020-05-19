@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, StyleSheet, BackHandler, Picker, PermissionsAndroid } from 'react-native';
+import { View, Text, StyleSheet, BackHandler, ActivityIndicator } from 'react-native';
 import * as RNFS from 'react-native-fs';
 import { loadModel } from '../redux/actions';
 import Header from '../components/Header';
@@ -46,7 +46,8 @@ class SelectFileScreen extends Component {
             names.push(name);
         }
         this.setState({
-            names: names
+            names: names,
+            loading: false
         })
     }
 
@@ -67,7 +68,8 @@ class SelectFileScreen extends Component {
         super(props);
         this.state = {
             value: "",
-            names: []
+            names: [],
+            loading: true
         };
     }
 
@@ -80,11 +82,14 @@ class SelectFileScreen extends Component {
                 <Header />
                 <View style={styles.container}>
                     <Text style={styles.title}>{t("SelectFile_001")}</Text>
-                    <View style={styles.pickerView}>
+                    {this.state.loading ?
+                        <ActivityIndicator />
+                        :
                         <Select items={this.state.names} labelField={"name"} valueField={"filename"} noItemsText={t("SelectFile_005")}
                             onChange={(itemValue) => this.setState({ value: itemValue })} placeholder={t("SelectFile_004")}
                             selectedValue={this.state.value} />
-                    </View>
+
+                    }
 
                     <Button
                         disabled={this.state.value === ""}

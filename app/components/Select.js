@@ -1,5 +1,6 @@
 import React from 'react';
-import { Picker, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import {Picker} from '@react-native-community/picker';
 
 const Select = ({ items, valueField, labelField, placeholder, onChange, noItemsText, selectedValue = "" }) => (
     <View>
