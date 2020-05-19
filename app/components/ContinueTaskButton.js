@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native';
+import Button from './Button'
 
 const ContinueTaskButton = (props) => (
     <Button

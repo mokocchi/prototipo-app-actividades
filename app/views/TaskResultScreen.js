@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, Image, StyleSheet, Button, BackHandler } from 'react-native';
+import { View, Text, StyleSheet, BackHandler } from 'react-native';
 import { mapScreen } from '../utils/functions';
 import { nextTask, setCurrentTask } from '../redux/actions';
+import Button from '../components/Button';
+import container from './styles/container';
+import text from './styles/text';
+import title from './styles/title';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Typography } from '../assets/styles';
 
 class TaskResultScreen extends Component {
   componentDidMount() {
@@ -141,18 +147,21 @@ class TaskResultScreen extends Component {
     const task = this.props.model.tasks[this.props.currentTask];
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>{t("TaskResult_001")}</Text>
+        <Text style={styles.title}>{t("TaskResult_001")}</Text>
         <Text style={styles.text}>{t("TaskResult_002")}</Text>
         <Button
           title={t("TaskResult_003")}
           onPress={() => {
             this.findDestination(activity, task);
-          }}></Button>
+          }}/>
         <Button
           title={t("TaskResult_004")}
+          icon={<Icon name="bug" size={Typography.buttonFontSize} color={"white"}/> }
+          variant
           onPress={() => {
             this.props.navigation.navigate("ActivityResults");
-          }}></Button>
+          }}/>
+          <View />
       </View>
     );
   }
@@ -160,16 +169,14 @@ class TaskResultScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignContent: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'skyblue',
+    ...container
   },
   text: {
-    textAlign: 'center',
-    fontSize: 20,
-    margin: 10,
+    ...text
   },
+  title: {
+    ...title
+  }
 });
 
 const mapStateToProps = state => {
