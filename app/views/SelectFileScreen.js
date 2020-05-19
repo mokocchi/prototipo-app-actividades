@@ -9,6 +9,7 @@ import Button from '../components/Button';
 import { Colors } from '../assets/styles'
 import title from './styles/title';
 import Select from '../components/Select';
+import container from './styles/container';
 
 class SelectFileScreen extends Component {
     async getNameFromJson(filename, t) {
@@ -106,10 +107,7 @@ class SelectFileScreen extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignContent: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: Colors.background,
+        ...container
     },
     title: {
         ...title,

@@ -15,6 +15,7 @@ import Header from '../components/Header'
 import Button from '../components/Button'
 import title from './styles/title';
 import subtitle from './styles/subtitle';
+import container from './styles/container';
 
 
 class WelcomeScreen extends Component {
@@ -65,10 +66,7 @@ class WelcomeScreen extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignContent: "center",
-        justifyContent: "space-between",
-        backgroundColor: Colors.background
+        ...container
     },
     subtitle: {
         ...subtitle

@@ -56,7 +56,7 @@ export default {
     "TextInputTask_002": "Ingresa texto",
     "TextInputTask_003": "Continuar",
 
-    "ChooseTask_001": "Elige una tarea",
+    "ChooseTask_001": "Elegí una tarea",
     "ChooseTask_002": "Terminar",
 
     "MultipleChoiceTask_001": "Continuar",

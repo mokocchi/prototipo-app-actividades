@@ -3,9 +3,9 @@ import { Button } from 'react-native-elements';
 import { StyleSheet, View } from 'react-native';
 import { Colors, Spacing, Typography } from '../assets/styles';
 
-const AppButton = ({ title, onPress, disabled }) => (
+const AppButton = ({ title, onPress, disabled, visited }) => (
     <Button title={title} titleStyle={styles.title} onPress={!disabled ? onPress : null}
-        buttonStyle={[styles.button, disabled && styles.disabledButton]} />
+        buttonStyle={[styles.button, disabled && styles.disabledButton, visited && styles.visitedButton]} />
 )
 
 const styles = StyleSheet.create({
@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
     },
     disabledButton: {
         opacity: 0.5
+    },
+    visitedButton: {
+        backgroundColor: Colors.appSecondary
     },
     title: {
         color: Colors.buttonTextColor,
