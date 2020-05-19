@@ -3,13 +3,15 @@ import {
     View,
     Text,
     StyleSheet,
-    PermissionsAndroid
+    PermissionsAndroid,
+    ActivityIndicator
 } from 'react-native';
 import * as RNFS from 'react-native-fs';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loadModel } from '../redux/actions';
 import * as Colors from '../assets/styles/colors'
+import text from './styles/text';
 
 class SplashScreen extends Component {
     loadJSON(that) {
@@ -43,7 +45,8 @@ class SplashScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.text}>Resuelvo Explorando</Text>
+                <Text style={styles.text}>DEHIA</Text>
+                <ActivityIndicator/>
             </View>
         );
     }
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.loadingBackground
     },
     text: {
-        textAlign: "center",
+        ...text,
         color: Colors.loadingText
     }
 })

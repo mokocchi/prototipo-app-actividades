@@ -1,5 +1,6 @@
 export const appPrimary = "#264653";
 export const appSecondary = "#A1B5D8";
+export const appVariant = "#738290";
 export const appLight = "#eff9f0";
 export const appDark = "#63595c";
 

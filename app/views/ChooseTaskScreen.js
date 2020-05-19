@@ -13,6 +13,9 @@ import Header from '../components/Header';
 import Button from '../components/Button'
 import container from './styles/container';
 import text from './styles/text';
+import { Colors } from '../assets/styles';
+import { ScrollView } from 'react-native-gesture-handler';
+import { Icon } from 'react-native-elements';
 
 class ChooseTaskScreen extends Component {
     componentDidMount() {
@@ -25,6 +28,18 @@ class ChooseTaskScreen extends Component {
 
     handleBackButton() {
         return true;
+    }
+
+    canExit() {
+        const tasks = this.props.model.tasks;
+        let done = 0;
+        tasks.forEach(task => {
+            const found = this.props.taskResults.find((item) => item.code == task.code);
+            if(found || task.optional) {
+                done++;
+            }
+        });
+        return done == tasks.length
     }
 
     render() {
@@ -40,22 +55,30 @@ class ChooseTaskScreen extends Component {
                 <Header />
                 <View style={styles.container}>
                     <Text style={styles.text}>{t("ChooseTask_001")}</Text>
-                    <View style={styles.optionsContainer}>
+                    <ScrollView scrollEnabled>
                         {tasks.map((task, index) => (
-                            <Button
-                                key={index}
-                                title={task.name}
-                                visited={this.props.taskResults.find((item) => item.code == task.code)}
-                                onPress={() => {
-                                    const taskIndex = this.props.model.tasks.findIndex((item) => task.code == item.code);
-                                    this.props.setCurrentTask(taskIndex);
-                                    this.props.navigation.navigate(mapScreen(this.props.model.tasks[taskIndex].type));
-                                }}
-                            />
+                            <View style={styles.items} >
+                                <Button
+                                    key={index}
+                                    title={task.name}
+                                    variant
+                                    disabled={this.props.taskResults.find((item) => item.code == task.code)}
+                                    onPress={() => {
+                                        const taskIndex = this.props.model.tasks.findIndex((item) => task.code == item.code);
+                                        this.props.setCurrentTask(taskIndex);
+                                        this.props.navigation.navigate(mapScreen(this.props.model.tasks[taskIndex].type));
+                                    }}
+                                />
+                            </View>
                         ))}
-                    </View>
+                    </ScrollView>
                     {
-                        this.props.model.educationalActivity.sequential ? null : <Button title={t("ChooseTask_002")} color="green" onPress={() => this.props.navigation.navigate("SendAnswers")}></Button>
+                        !this.props.model.educationalActivity.sequential && this.canExit() &&
+                        <Button
+                            title={t("ChooseTask_002")}
+                            icon={<Icon name="check" color={Colors.appVariant} reverse />}
+                            disabled={!this.canExit()}
+                            onPress={() => this.props.navigation.navigate("SendAnswers")} />
                     }
                     <View></View>
                 </View>
@@ -68,10 +91,8 @@ const styles = StyleSheet.create({
     container: {
         ...container
     },
-    optionsContainer: {
-        flex: 0.7,
-        justifyContent: "space-between",
-        overflow: "scroll"
+    items: {
+        marginVertical: 10
     },
     text: {
         ...text
