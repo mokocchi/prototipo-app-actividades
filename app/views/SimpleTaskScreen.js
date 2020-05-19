@@ -8,8 +8,6 @@ import Header from '../components/Header';
 import title from './styles/title';
 import container from './styles/container';
 import text from './styles/text';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Typography } from '../assets/styles';
 
 class SimpleTaskScreen extends Component {
   componentDidMount() {
@@ -32,7 +30,7 @@ class SimpleTaskScreen extends Component {
         <Header />
         <View style={styles.container}>
           <Text style={styles.title}>{task.name}</Text>
-          <Text style={styles.text}><Icon name="pencil" size={Typography.textSize} /> {task.instruction}</Text>
+          <Text style={styles.text}>{task.instruction}</Text>
           <NextTaskButtons condition={true} task={task} result={true}
             setTaskResult={this.props.setTaskResult} navigate={this.props.navigation.navigate} />
           <View />

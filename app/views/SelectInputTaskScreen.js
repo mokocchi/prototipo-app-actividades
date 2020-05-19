@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, StyleSheet, Button, BackHandler, Picker } from 'react-native';
+import { View, Text, StyleSheet, BackHandler } from 'react-native';
 import { setTaskResult } from '../redux/actions';
 import NextTaskButtons from '../components/NextTaskButtons';
+import container from './styles/container';
+import text from './styles/text';
+import title from './styles/title';
+import Select from '../components/Select';
+import Header from '../components/Header';
 
 class SelectInputTaskScreen extends Component {
   componentDidMount() {
@@ -20,9 +25,8 @@ class SelectInputTaskScreen extends Component {
 
   constructor(props) {
     super(props);
-    const task = this.props.model.tasks[this.props.currentTask];
     this.state = {
-      value: task.elements[0].code
+      value: ""
     };
   }
 
@@ -31,41 +35,34 @@ class SelectInputTaskScreen extends Component {
     const activity = this.props.model.educationalActivity;
     const task = this.props.model.tasks[this.props.currentTask];
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>{task.name}</Text>
-        <Text style={styles.text}>{task.instruction}</Text>
+      <>
+        <Header />
+        <View style={styles.container}>
+          <Text style={styles.title}>{task.name}</Text>
+          <Text style={styles.text}>{task.instruction}</Text>
+          <View>
+            <Select items={task.elements} labelField="name" valueField="code" selectedValue={this.state.value}
+              onChange={(itemValue) => this.setState({ value: itemValue })} placeholder={t("SelectInputTask_001")} />
+          </View>
 
-        <View>
-          <Picker
-           selectedValue={this.state.value}
-           onValueChange={(itemValue, itemIndex) =>
-            this.setState({value: itemValue})}
-           >
-            {task.elements.map((option, index) =>
-              <Picker.Item key={index} label={option.name} value={option.code} />
-            )}
-          </Picker>
-        </View>
-
-        <NextTaskButtons condition={this.state.value} result={this.state.value} task={task} answer={[this.state.value]}
-          setTaskResult={this.props.setTaskResult} navigate={this.props.navigation.navigate}/>
-      </View>
+          <NextTaskButtons condition={this.state.value} result={this.state.value} task={task} answer={[this.state.value]}
+            setTaskResult={this.props.setTaskResult} navigate={this.props.navigation.navigate} />
+        </View >
+      </>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignContent: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: 'skyblue',
+    ...container
   },
   text: {
-    textAlign: 'center',
-    fontSize: 20,
-    margin: 10,
+    ...text
   },
+  title: {
+    ...title
+  }
 });
 
 const mapStateToProps = state => {

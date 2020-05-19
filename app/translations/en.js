@@ -118,7 +118,7 @@ export default {
     "DepositTaskResult_002": "Elements incorrectly deposited",
     "DepositTaskResult_003": "Continue",
     
-    "SelectInputTask_001": "Continue",
+    "SelectInputTask_001": "Choose an option",
 
     "ActivityResults_001": "Task:",
     "ActivityResults_002": "Answers:",

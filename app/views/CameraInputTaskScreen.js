@@ -9,8 +9,6 @@ import Button from '../components/Button';
 import container from './styles/container';
 import text from './styles/text';
 import title from './styles/title';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Typography } from '../assets/styles';
 
 class CameraInputTaskScreen extends Component {
   componentDidMount() {
@@ -56,7 +54,7 @@ class CameraInputTaskScreen extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{task.name}</Text>
-        <Text style={styles.text}><Icon name="camera" size={Typography.textSize} /> {task.instruction}</Text>
+        <Text style={styles.text}>{task.instruction}</Text>
         {photo == null ?
           (<Button title={t("CameraInputTask_001")} onPress={this.handleTakePhoto} />)
           : (

@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, Image, StyleSheet, Button, BackHandler } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { View, Text, StyleSheet, BackHandler, ScrollView } from 'react-native';
+import Button from '../components/Button';
+import container from './styles/container';
+import text from './styles/text';
+import subtitle from './styles/subtitle';
+import title from './styles/title';
+import Header from '../components/Header';
 
 class MultipleChoiceTaskResultScreen extends Component {
   componentDidMount() {
@@ -26,41 +31,48 @@ class MultipleChoiceTaskResultScreen extends Component {
     const wronglyLeft = task.validElements.filter(elem => !result.includes(elem));
 
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>{t("MultipleChoiceTaskResult_001")}</Text>
-        <ScrollView>
-          {correctlySelected.map((item, index) => <Text key={index}>{task.elements.find(elem => elem.code == item).name}</Text>)}
-        </ScrollView>
-    <Text style={styles.text}>{t("MultipleChoiceTaskResult_002")}</Text>
-        <ScrollView>
-          {wronglySelected.map((item, index) => <Text key={index}>{task.elements.find(elem => elem.code == item).name}</Text>)}
-        </ScrollView>
-        <Text style={styles.text}>{t("MultipleChoiceTaskResult_003")}</Text>
-        <ScrollView>
-          {wronglyLeft.map((item, index) => <Text key={index}>{task.elements.find(elem => elem.code == item).name}</Text>)}
-        </ScrollView>
-        <Button
-          title={t("MultipleChoiceTaskResult_004")}
-          onPress={() => {
-            this.props.navigation.navigate('TaskResult', {"answer": result, correct: (wronglySelected.length + wronglyLeft.length) === 0});
-          }}></Button>
-      </View>
+      <>
+        <Header />
+        <View style={styles.container}>
+          <ScrollView scrollEnabled>
+            <Text style={styles.subtitle}>{t("MultipleChoiceTaskResult_001")}</Text>
+            <ScrollView>
+              {correctlySelected.map((item, index) => <Text style={styles.text} key={index}>{task.elements.find(elem => elem.code == item).name}</Text>)}
+            </ScrollView>
+            <Text style={styles.subtitle}>{t("MultipleChoiceTaskResult_002")}</Text>
+            <ScrollView>
+              {wronglySelected.map((item, index) => <Text style={styles.text} key={index}>{task.elements.find(elem => elem.code == item).name}</Text>)}
+            </ScrollView>
+            <Text style={styles.subtitle}>{t("MultipleChoiceTaskResult_003")}</Text>
+            <ScrollView>
+              {wronglyLeft.map((item, index) => <Text style={styles.text} key={index}>{task.elements.find(elem => elem.code == item).name}</Text>)}
+            </ScrollView>
+          </ScrollView>
+          <Button
+            title={t("MultipleChoiceTaskResult_004")}
+            onPress={() => {
+              this.props.navigation.navigate('TaskResult', { "answer": result, correct: (wronglySelected.length + wronglyLeft.length) === 0 });
+            }}></Button>
+          <View />
+        </View>
+      </>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignContent: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'skyblue',
+    ...container
   },
   text: {
-    textAlign: 'center',
-    fontSize: 20,
-    margin: 10,
+    ...text
   },
+  subtitle: {
+    ...subtitle
+  },
+  title: {
+    ...title
+  }
 });
 
 const mapStateToProps = state => {
@@ -71,7 +83,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-    
+
     },
     dispatch,
   );

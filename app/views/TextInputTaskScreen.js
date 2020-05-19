@@ -14,8 +14,6 @@ import NextTaskButtons from '../components/NextTaskButtons';
 import container from './styles/container';
 import text from './styles/text';
 import title from './styles/title';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Typography } from '../assets/styles';
 
 class TextInputTaskScreen extends Component {
   componentDidMount() {
@@ -46,7 +44,7 @@ class TextInputTaskScreen extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{task.name}</Text>
-        <Text style={styles.text}><Icon name={number ? "calculator" : "font"} size={Typography.textSize} /> {task.instruction}</Text>
+        <Text style={styles.text}>{task.instruction}</Text>
         <TextInput placeholder={number ? t("TextInputTask_001") : t("TextInputTask_002")} keyboardType={number ? "decimal-pad" : "default"} onChangeText={(text) => this.setState({ text })} value={this.state.text}></TextInput>
         <NextTaskButtons condition={this.state.text} setTaskResult={this.props.setTaskResult} navigate={this.props.navigation.navigate} task={task} result={this.state.text} />
         <View />

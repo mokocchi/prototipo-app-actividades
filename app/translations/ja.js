@@ -116,7 +116,7 @@ export default {
     "DepositTaskResult_002": "残すのは不正解だった要素",
     "DepositTaskResult_003": "続く",
 
-    "SelectInputTask_001": "続く",
+    "SelectInputTask_001": "選択を選んでください",
 
     "ActivityResults_001": "課題:",
     "ActivityResults_002": "答え:",
