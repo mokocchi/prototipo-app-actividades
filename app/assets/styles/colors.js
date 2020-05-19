@@ -1,6 +1,7 @@
 const appPrimary = "#264653";
-const appDisabled = "#A1B5D8";
+const appSecondary = "#A1B5D8";
 const appLight = "#eff9f0";
+const appDark = "#63595c";
 
 export const headerBackground = appPrimary;
 export const headerText = "white";
@@ -8,10 +9,8 @@ export const headerText = "white";
 export const background = appLight;
 export const text = "black";
 
-export const loadingBackground = "#262626";
+export const loadingBackground = appDark;
 export const loadingText = "white";
 
 export const buttonBackgroundColor = appPrimary;
 export const buttonTextColor = "white";
-
-export const disabedButtonBackgroundColor = appDisabled;

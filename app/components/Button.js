@@ -14,12 +14,12 @@ const styles = StyleSheet.create({
         marginHorizontal: Spacing.buttonHorizontalMargin,
     },
     disabledButton: {
-        backgroundColor: Colors.disabedButtonBackgroundColor
+        opacity: 0.5
     },
     title: {
         color: Colors.buttonTextColor,
         fontSize: Typography.buttonFontSize
-    }
+    },
 })
 
 export default AppButton;
