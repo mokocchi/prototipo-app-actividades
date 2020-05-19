@@ -33,7 +33,10 @@ class TaskResultScreen extends Component {
 
   findDestination(activity, task) {
     if (task.jumps.length == 0) {
-      this.props.navigation.navigate("SendAnswers");
+      this.props.navigation.navigate(
+        mapScreen(this.nextTaskType(activity)),
+      );
+      this.props.nextTask();
     } else {
       const tasks = this.props.model.tasks;
       const forcedJump = task.jumps.find((jump) => jump.on == "ALL");
