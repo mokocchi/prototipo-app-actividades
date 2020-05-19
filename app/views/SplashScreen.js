@@ -8,7 +8,8 @@ import {
 import * as RNFS from 'react-native-fs';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { loadModel } from '../redux/actions'
+import { loadModel } from '../redux/actions';
+import * as Colors from '../assets/styles/colors'
 
 class SplashScreen extends Component {
     loadJSON(that) {
@@ -25,7 +26,7 @@ class SplashScreen extends Component {
                     RNFS.readDir(RNFS.ExternalStorageDirectoryPath + '/Prototipo4/configuracion')
                         .then((result) => {
                             result = result.map((file) => file.name);
-                            that.props.navigation.navigate("SelectFile", {files: result});
+                            that.props.navigation.navigate("SelectFile", { files: result });
                         })
                 } else {
                     console.log("permission denied");
@@ -53,11 +54,11 @@ const styles = StyleSheet.create({
         flex: 1,
         alignContent: "center",
         justifyContent: "center",
-        backgroundColor: "blue"
+        backgroundColor: Colors.loadingBackground
     },
     text: {
         textAlign: "center",
-        color: "white"
+        color: Colors.loadingText
     }
 })
 

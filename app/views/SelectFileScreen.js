@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, StyleSheet, Button, BackHandler, Picker, PermissionsAndroid } from 'react-native';
+import { View, Text, StyleSheet, BackHandler, Picker, PermissionsAndroid } from 'react-native';
 import * as RNFS from 'react-native-fs';
 import { loadModel } from '../redux/actions';
+import Header from '../components/Header';
+import Button from '../components/Button';
+import { Colors } from '../assets/styles'
+import title from './styles/title';
 
 class SelectFileScreen extends Component {
     async getNameFromJson(filename, t) {
@@ -68,32 +72,36 @@ class SelectFileScreen extends Component {
         const files = this.props.navigation.getParam("files", []);
         const activityNames = this.state.names;
         return (
-            <View style={styles.container}>
-                <Text style={styles.text}>{t("SelectFile_001")}</Text>
-                <Text style={styles.text}>{t("SelectFile_004")}</Text>
-                <View>
-                    <Picker
-                        selectedValue={this.state.value}
-                        onValueChange={(itemValue, itemIndex) =>
-                            this.setState({ value: itemValue })}
-                    >
-                        {Object.keys(activityNames).map((key, index) =>
-                            <Picker.Item key={index} label={activityNames[key]} value={key} />
-                        )}
-                    </Picker>
-                    {
-                        files.length > 0 ? null : <Text>{t("SelectFile_005")}</Text>
-                    }
-                </View>
-
-                <Button
-                    title={t("SelectFile_006")}
-                    onPress={() => {
-                        if (this.state.value != "") {
-                            this.loadJSON(this, t);
+            <>
+                <Header />
+                <View style={styles.container}>
+                    <Text style={styles.title}>{t("SelectFile_001")}</Text>
+                    <View style={styles.pickerView}>
+                        <Picker
+                            selectedValue={""}
+                            onValueChange={(itemValue, itemIndex) =>
+                                this.setState({ value: itemValue })}
+                        >
+                            <Picker.Item key={-1} label={t("SelectFile_004")} value={""} />
+                            {Object.keys(activityNames).map((key, index) =>
+                                <Picker.Item key={index} label={activityNames[key]} value={key} />
+                            )}
+                        </Picker>
+                        {
+                            files.length > 0 ? null : <Text>{t("SelectFile_005")}</Text>
                         }
-                    }}></Button>
-            </View>
+                    </View>
+
+                    <Button
+                        title={t("SelectFile_006")}
+                        onPress={() => {
+                            if (this.state.value != "") {
+                                this.loadJSON(this, t);
+                            }
+                        }}></Button>
+                    <View />
+                </View>
+            </>
         );
     }
 }
@@ -103,13 +111,14 @@ const styles = StyleSheet.create({
         flex: 1,
         alignContent: 'center',
         justifyContent: 'space-between',
-        backgroundColor: 'skyblue',
+        backgroundColor: Colors.background,
     },
-    text: {
-        textAlign: 'center',
-        fontSize: 20,
-        margin: 10,
+    pickerView: {
+        paddingHorizontal: 20
     },
+    title: {
+        ...title,
+    }
 });
 
 const mapStateToProps = state => {
