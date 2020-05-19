@@ -8,18 +8,19 @@ import Header from '../components/Header';
 import Button from '../components/Button';
 import { Colors } from '../assets/styles'
 import title from './styles/title';
+import Select from '../components/Select';
 
 class SelectFileScreen extends Component {
     async getNameFromJson(filename, t) {
-        await RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo4/configuracion/' + filename).then(data => {
+        return await RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo4/configuracion/' + filename).then(data => {
             parsedJSON = JSON.parse(data);
             const name = parsedJSON.educationalActivity ? parsedJSON.educationalActivity.name : ""
-            const names = this.state.names;
-            names[filename] = name;
-            this.setState({
-                names: names
-            })
-        }).catch(err => {
+            const file = {
+                name: name,
+                filename: filename
+            }
+            return file;
+        }).then(value => { return value }).catch(err => {
             console.log(err.message, err.code);
         });
     }
@@ -36,8 +37,22 @@ class SelectFileScreen extends Component {
                 console.log(err.message, err.code);
             });
     }
+
+    loadNames = async () => {
+        const files = this.props.navigation.getParam("files", [])
+        const names = [];
+        for (let index = 0; index < files.length; index++) {
+            const name = await this.getNameFromJson(files[index]);
+            names.push(name);
+        }
+        this.setState({
+            names: names
+        })
+    }
+
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+        this.loadNames();
     }
 
     componentWillUnmount() {
@@ -50,21 +65,10 @@ class SelectFileScreen extends Component {
 
     constructor(props) {
         super(props);
-        const files = this.props.navigation.getParam("files", [])
-        if (files.length > 0) {
-            this.state = {
-                value: files[0]
-            };
-        } else {
-            this.state = {
-                value: ""
-            };
-        }
-        this.state.names = {}
-        files.forEach(filename => {
-            this.getNameFromJson(filename);
-        });
-
+        this.state = {
+            value: "",
+            names: []
+        };
     }
 
     render() {
@@ -77,27 +81,16 @@ class SelectFileScreen extends Component {
                 <View style={styles.container}>
                     <Text style={styles.title}>{t("SelectFile_001")}</Text>
                     <View style={styles.pickerView}>
-                        <Picker
-                            selectedValue={""}
-                            onValueChange={(itemValue, itemIndex) =>
-                                this.setState({ value: itemValue })}
-                        >
-                            <Picker.Item key={-1} label={t("SelectFile_004")} value={""} />
-                            {Object.keys(activityNames).map((key, index) =>
-                                <Picker.Item key={index} label={activityNames[key]} value={key} />
-                            )}
-                        </Picker>
-                        {
-                            files.length > 0 ? null : <Text>{t("SelectFile_005")}</Text>
-                        }
+                        <Select items={this.state.names} labelField={"name"} valueField={"filename"} noItemsText={t("SelectFile_005")}
+                            onChange={(itemValue) => this.setState({ value: itemValue })} placeholder={t("SelectFile_004")}
+                            selectedValue={this.state.value} />
                     </View>
 
                     <Button
+                        disabled={this.state.value === ""}
                         title={t("SelectFile_006")}
                         onPress={() => {
-                            if (this.state.value != "") {
-                                this.loadJSON(this, t);
-                            }
+                            this.loadJSON(this, t);
                         }}></Button>
                     <View />
                 </View>

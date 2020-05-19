@@ -5,7 +5,7 @@ export default {
     "SelectFile_001": "アクセス可能な設定",
     "SelectFile_002": '許可',
     "SelectFile_003": "ストレージ権限が必要です",
-    "SelectFile_004": "始める前に、設定を選択してください",
+    "SelectFile_004": "設定を選択してください",
     "SelectFile_005": "設定ファイルがありません",
     "SelectFile_006": "続く",
 

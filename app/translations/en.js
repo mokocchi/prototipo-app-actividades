@@ -5,7 +5,7 @@ export default {
     "SelectFile_001": "Available configurations",
     "SelectFile_002": "Permissions",
     "SelectFile_003": "Permission to use storage needed",
-    "SelectFile_004": "Choose a configuration to start",
+    "SelectFile_004": "Choose a configuration...",
     "SelectFile_005": "There are no configuration files available",
     "SelectFile_006": "Continue",
 
