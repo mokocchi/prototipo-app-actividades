@@ -9,7 +9,8 @@ export default {
     "SelectFile_005": "設定ファイルがありません",
     "SelectFile_006": "続く",
 
-    "Welcome_001": "始めましょう",
+    "Welcome_001": "目標",
+    "Welcome_002": "始めましょう",
 
     "ContinueTaskButton_001": "続く",
 

@@ -9,7 +9,8 @@ export default {
     "SelectFile_005": "No hay archivos disponibles",
     "SelectFile_006": "Continuar",
 
-    "Welcome_001": "Empecemos",
+    "Welcome_001": "Objetivo",
+    "Welcome_002": "Empecemos",
 
     "ContinueTaskButton_001": "Continuar",
 

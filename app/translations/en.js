@@ -9,7 +9,8 @@ export default {
     "SelectFile_005": "There are no configuration files available",
     "SelectFile_006": "Continue",
 
-    "Welcome_001": "Let's start",
+    "Welcome_001": "Goal",
+    "Welcome_002": "Let's start",
 
     "ContinueTaskButton_001": "Continue",
 

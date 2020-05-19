@@ -96,7 +96,7 @@ class SelectFileScreen extends Component {
                         title={t("SelectFile_006")}
                         onPress={() => {
                             this.loadJSON(this, t);
-                        }}></Button>
+                        }}/>
                     <View />
                 </View>
             </>
@@ -110,9 +110,6 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         justifyContent: 'space-between',
         backgroundColor: Colors.background,
-    },
-    pickerView: {
-        paddingHorizontal: 20
     },
     title: {
         ...title,
