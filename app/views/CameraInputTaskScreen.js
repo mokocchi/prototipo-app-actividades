@@ -9,6 +9,7 @@ import Button from '../components/Button';
 import container from './styles/container';
 import text from './styles/text';
 import title from './styles/title';
+import Header from '../components/Header';
 
 class CameraInputTaskScreen extends Component {
   componentDidMount() {
@@ -52,21 +53,24 @@ class CameraInputTaskScreen extends Component {
     const activity = this.props.model.educationalActivity;
     const task = this.props.model.tasks[this.props.currentTask];
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>{task.name}</Text>
-        <Text style={styles.text}>{task.instruction}</Text>
-        {photo == null ?
-          (<Button title={t("CameraInputTask_001")} onPress={this.handleTakePhoto} />)
-          : (
-            <Image
-              source={{ uri: photo.uri }}
-              style={{ width: 300, height: 300, alignSelf: "center" }}
-            />
-          )}
-        <NextTaskButtons condition={photo} task={task} result={photo}
-          setTaskResult={this.props.setTaskResult} navigate={this.props.navigation.navigate} />
+      <>
+        <Header />
+        <View style={styles.container}>
+          <Text style={styles.title}>{task.name}</Text>
+          <Text style={styles.text}>{task.instruction}</Text>
+          {photo == null ?
+            (<Button title={t("CameraInputTask_001")} onPress={this.handleTakePhoto} />)
+            : (
+              <Image
+                source={{ uri: photo.uri }}
+                style={{ width: 300, height: 300, alignSelf: "center" }}
+              />
+            )}
+          <NextTaskButtons condition={photo} task={task} result={photo}
+            setTaskResult={this.props.setTaskResult} navigate={this.props.navigation.navigate} />
           <View />
-      </View>
+        </View>
+      </>
     );
   }
 }

@@ -47,6 +47,8 @@ class SelectInputTaskScreen extends Component {
 
           <NextTaskButtons condition={this.state.value} result={this.state.value} task={task} answer={[this.state.value]}
             setTaskResult={this.props.setTaskResult} navigate={this.props.navigation.navigate} />
+          
+          <View />
         </View >
       </>
     );

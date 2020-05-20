@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { setTaskResult } from '../redux/actions';
 import NextTaskButtons from '../components/NextTaskButtons';
+import Header from '../components/Header';
 import container from './styles/container';
 import text from './styles/text';
 import title from './styles/title';
@@ -42,6 +43,8 @@ class TextInputTaskScreen extends Component {
     const task = this.props.model.tasks[this.props.currentTask];
     const number = task.type == "numberInput";
     return (
+      <>
+      <Header />
       <View style={styles.container}>
         <Text style={styles.title}>{task.name}</Text>
         <Text style={styles.text}>{task.instruction}</Text>
@@ -49,6 +52,7 @@ class TextInputTaskScreen extends Component {
         <NextTaskButtons condition={this.state.text} setTaskResult={this.props.setTaskResult} navigate={this.props.navigation.navigate} task={task} result={this.state.text} />
         <View />
       </View>
+      </>
     );
   }
 }

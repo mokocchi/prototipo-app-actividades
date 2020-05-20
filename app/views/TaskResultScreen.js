@@ -10,6 +10,7 @@ import text from './styles/text';
 import title from './styles/title';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Typography } from '../assets/styles';
+import Header from '../components/Header';
 
 class TaskResultScreen extends Component {
   componentDidMount() {
@@ -146,23 +147,26 @@ class TaskResultScreen extends Component {
     const activity = this.props.model.educationalActivity;
     const task = this.props.model.tasks[this.props.currentTask];
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>{t("TaskResult_001")}</Text>
-        <Text style={styles.text}>{t("TaskResult_002")}</Text>
-        <Button
-          title={t("TaskResult_003")}
-          onPress={() => {
-            this.findDestination(activity, task);
-          }}/>
-        <Button
-          title={t("TaskResult_004")}
-          icon={<Icon name="bug" size={Typography.buttonFontSize} color={"white"}/> }
-          variant
-          onPress={() => {
-            this.props.navigation.navigate("ActivityResults");
-          }}/>
+      <>
+        <Header />
+        <View style={styles.container}>
+          <Text style={styles.title}>{t("TaskResult_001")}</Text>
+          <Text style={styles.text}>{t("TaskResult_002")}</Text>
+          <Button
+            title={t("TaskResult_003")}
+            onPress={() => {
+              this.findDestination(activity, task);
+            }} />
+          <Button
+            title={t("TaskResult_004")}
+            icon={<Icon name="bug" size={Typography.buttonFontSize} color={"white"} />}
+            variant
+            onPress={() => {
+              this.props.navigation.navigate("ActivityResults");
+            }} />
           <View />
-      </View>
+        </View>
+      </>
     );
   }
 }

@@ -6,13 +6,17 @@ import {
     View,
     Text,
     StyleSheet,
-    Button,
     BackHandler,
     ActivityIndicator,
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { Alert } from 'react-native';
 import { RESULTS_URL } from '../config';
+import Header from '../components/Header';
+import Button from '../components/Button';
+import container from './styles/container';
+import title from './styles/title';
+import text from './styles/text';
 
 class SendAnswersScreen extends Component {
 
@@ -73,33 +77,35 @@ class SendAnswersScreen extends Component {
         const t = this.props.screenProps.t;
         const activity = this.props.model.educationalActivity;
         return (
-            <View style={styles.container}>
-                <Text style={styles.text}>{activity.name}</Text>
-                <Text style={styles.text}>{t("SendAnswers_001")}</Text>
-                {this.state.sendAllowed ?
-                    <>
-                        <Button title={t("SendAnswers_002")} onPress={this.onPress} />
-                        <Button title={t("SendAnswers_005")} onPress={() => {this.props.clearTaskResult(); this.props.navigation.navigate("Splash")}} />
-                    </>
-                    :
-                    <ActivityIndicator />
-                }
-            </View>
+            <>
+                <Header />
+                <View style={styles.container}>
+                    <Text style={styles.title}>{activity.name}</Text>
+                    <Text style={styles.text}>{t("SendAnswers_001")}</Text>
+                    {this.state.sendAllowed ?
+                        <>
+                            <Button title={t("SendAnswers_002")} onPress={this.onPress} />
+                            <Button title={t("SendAnswers_005")} onPress={() => { this.props.clearTaskResult(); this.props.navigation.navigate("Splash") }} />
+                        </>
+                        :
+                        <ActivityIndicator />
+                    }
+                    <View />
+                </View>
+            </>
         );
     }
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignContent: "center",
-        justifyContent: "center",
-        backgroundColor: "skyblue"
+        ...container
     },
     text: {
-        textAlign: "center",
-        fontSize: 20,
-        margin: 10
+        ...text
+    },
+    title: {
+        ...title
     }
 })
 
