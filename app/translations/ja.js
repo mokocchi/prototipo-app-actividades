@@ -29,7 +29,6 @@ export default {
     "AudioInputTask_003": "再生", 
     "AudioInputTask_004": "停止",
     "AudioInputTask_005": "録音中 → 停止",
-    "AudioInputTask_006": "再生中",
     
     "GPSInputTask_001": "GPSは必要です",
     "GPSInputTask_002": 'GPSは機能していますか？',

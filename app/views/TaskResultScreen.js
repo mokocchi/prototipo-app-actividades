@@ -157,13 +157,13 @@ class TaskResultScreen extends Component {
             onPress={() => {
               this.findDestination(activity, task);
             }} />
-          <Button
+          {/* <Button
             title={t("TaskResult_004")}
             icon={<Icon name="bug" size={Typography.buttonFontSize} color={"white"} />}
             variant
             onPress={() => {
               this.props.navigation.navigate("ActivityResults");
-            }} />
+            }} /> */}
           <View />
         </View>
       </>

@@ -31,7 +31,6 @@ export default {
     "AudioInputTask_003": "Reproducir", 
     "AudioInputTask_004": "Detener",
     "AudioInputTask_005": "Grabando - Detener",
-    "AudioInputTask_006": "Reproduciendo",
 
     "GPSInputTask_001": "Se necesita usar el gps",
     "GPSInputTask_002": 'Tenés el GPS prendido?',
@@ -39,7 +38,7 @@ export default {
     "GPSInputTask_004": 'Sí',
     "GPSInputTask_005": 'Permisos',
     "GPSInputTask_006": 'Se necesita permiso para usar el GPS',
-    "GPSInputTask_007": "Prefiero escribir una dirección",
+    "GPSInputTask_007": "Escribir dirección",
     "GPSInputTask_008": "Mostrar mapa",
     "GPSInputTask_009": "Obtener ubicación actual",
     "GPSInputTask_010": "Ubicación elegida",
@@ -48,7 +47,7 @@ export default {
     "GPSInputTask_013": "También podés ajustar la ubicación tocando el mapa",
     "GPSInputTask_014": "Escribí una dirección",
     "GPSInputTask_015": "Continuar",
-    "GPSInputTask_016": "Usar el mapa (requiere internet)",
+    "GPSInputTask_016": "Usar el mapa",
     "GPSInputTask_017": "Prendé el GPS",
     "GPSInputTask_018": "Tenés que prender el GPS para obtener la ubicación actual",
 

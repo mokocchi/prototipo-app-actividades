@@ -31,7 +31,6 @@ export default {
     "AudioInputTask_003": "Play", 
     "AudioInputTask_004": "Stop",
     "AudioInputTask_005": "Recording - Stop",
-    "AudioInputTask_006": "Playing",
 
     "GPSInputTask_001": "GPS needed",
     "GPSInputTask_002": 'Do you have GPS enabled?',

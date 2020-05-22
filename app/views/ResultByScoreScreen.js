@@ -1,8 +1,14 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {View, Text, Image, StyleSheet, Button, BackHandler} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { View, Text, StyleSheet, BackHandler } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import Header from '../components/Header';
+import Button from '../components/Button';
+import container from './styles/container';
+import title from './styles/title';
+import text from './styles/text';
+import subtitle from './styles/subtitle';
 
 class ResultByScoreScreen extends Component {
   componentDidMount() {
@@ -34,41 +40,46 @@ class ResultByScoreScreen extends Component {
       </Text>);
     });
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>{task.byScore[0].name}</Text>
-        <Text style={styles.text}>{task.byScore[0].message}</Text>
-        <Text style={styles.text}>{t("ResultByScore_001")} {total}</Text>
-        <View style={{flex:0.2}}></View>
-        <ScrollView>
-          {resultRows}
-        </ScrollView>
-        <Button
-          title={t("ResultByScore_002")}
-          onPress={() => {
-            this.props.navigation.navigate("TaskResult");
-          }}></Button>
+      <>
+        <Header />
+        <View style={styles.container}>
+          <Text style={styles.title}>{task.byScore[0].name}</Text>
+          <Text style={styles.subtitle}>{task.byScore[0].message}</Text>
+          <Text style={styles.text}>{t("ResultByScore_001")} {total}</Text>
+          <View style={{ flex: 0.2 }}></View>
+          <ScrollView>
+            {resultRows}
+          </ScrollView>
+          <Button
+            title={t("ResultByScore_002")}
+            onPress={() => {
+              this.props.navigation.navigate("TaskResult");
+            }}></Button>
+          <View><Text> </Text></View>
       </View>
+      </>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignContent: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'skyblue',
+...container
   },
   text: {
-    textAlign: 'center',
-    fontSize: 20,
-    margin: 10,
+    ...text
   },
+  title: {
+    ...title
+  },
+  subtitle: {
+    ...subtitle
+  }
 });
 
 const mapStateToProps = state => {
-  const {model, currentTask} = state;
-  return {model, currentTask};
+  const { model, currentTask } = state;
+  return { model, currentTask };
 };
 
 const mapDispatchToProps = dispatch =>

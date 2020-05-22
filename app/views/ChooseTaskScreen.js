@@ -57,9 +57,8 @@ class ChooseTaskScreen extends Component {
                     <Text style={styles.text}>{t("ChooseTask_001")}</Text>
                     <ScrollView scrollEnabled>
                         {tasks.map((task, index) => (
-                            <View style={styles.items} >
+                            <View style={styles.items} key={index} >
                                 <Button
-                                    key={index}
                                     title={task.name}
                                     variant
                                     disabled={this.props.taskResults.find((item) => item.code == task.code)}

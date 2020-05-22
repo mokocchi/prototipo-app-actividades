@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, StyleSheet, Button, BackHandler, PermissionsAndroid, Alert, TextInput, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, BackHandler, PermissionsAndroid, Alert, TextInput, ActivityIndicator, ScrollView } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 import { setTaskResult } from '../redux/actions';
 import MapView, { Marker } from 'react-native-maps';
 import SkipTaskButton from '../components/SkipTaskButton';
+import Button from '../components/Button';
+import Header from '../components/Header';
+import container from './styles/container';
+import text from './styles/text';
+import title from './styles/title';
 
 class GPSInputTaskScreen extends Component {
   componentDidMount() {
@@ -63,157 +68,158 @@ class GPSInputTaskScreen extends Component {
                   },
                   loading: false
                 })
-              }, () => {this.setState({ loading: false }); Alert.alert(t("GPSInputTask_017"),t("GPSInputTask_018"))}, { enableHighAccuracy: false, timeout: 5000 })
-        }
+              }, () => { this.setState({ loading: false }); Alert.alert(t("GPSInputTask_017"), t("GPSInputTask_018")) }, { enableHighAccuracy: false, timeout: 5000 })
+            }
             ,
-        { enableHighAccuracy: true, timeout: 10000 }
+            { enableHighAccuracy: true, timeout: 10000 }
           );
-      } catch (error) {
-        console.log(error.message)
+        } catch (error) {
+          console.log(error.message)
+          this.setState({ loading: false })
+        }
+      } else {
         this.setState({ loading: false })
+        console.log('permission denied');
       }
-    } else {
+    } catch (err) {
+      console.warn(err);
       this.setState({ loading: false })
-      console.log('permission denied');
     }
-  } catch(err) {
-    console.warn(err);
-    this.setState({ loading: false })
   }
-}
 
-componentWillUnmount() {
-  BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-}
-
-handleBackButton() {
-  return true;
-}
-
-constructor(props) {
-  super(props);
-  const task = this.props.model.tasks[this.props.currentTask];
-  const result = this.props.taskResults.find((item) => task.code == item.code);
-  if (result != null) { console.log(result.result.uri); }
-  this.state = {
-    read: false,
-    select: false,
-    useInternet: false,
-    currentLocation: false,
-    location: null,
-    coordinate: null,
-    write: false,
-    addressButton: t("GPSInputTask_007"),
-    region: {
-      latitude: -34.9036428,
-      longitude: -57.9377245,
-      latitudeDelta: 0.0020,
-      longitudeDelta: 0,
-    },
-    address: "",
-    loading: false
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
   }
-  this.requestGPSPermission = this.requestGPSPermission.bind(this);
-}
 
-handleLongPress = (e) => {
-  const region = e.nativeEvent.coordinate;
-  region.latitudeDelta = 0.005;
-  region.longitudeDelta = 0;
-  this.setState({
-    coordinate: region,
-    currentLocation: false
-  })
-}
-
-handleChange = (text) => {
-  this.setState({
-    address: text
-  });
-}
-
-handleTogglePress = () => {
-  if (this.state.write) {
-    this.setState({ write: false, addressButton: t("GPSInputTask_007") })
-  } else {
-    this.setState({ write: true, addressButton: t("GPSInputTask_008") })
+  handleBackButton() {
+    return true;
   }
-}
 
-handleToggleInternet = () => this.setState({ useInternet: !this.state.useInternet, select: true })
+  constructor(props) {
+    super(props);
+    const task = this.props.model.tasks[this.props.currentTask];
+    const result = this.props.taskResults.find((item) => task.code == item.code);
+    if (result != null) { console.log(result.result.uri); }
+    this.state = {
+      read: false,
+      select: false,
+      useInternet: false,
+      currentLocation: false,
+      location: null,
+      coordinate: null,
+      write: false,
+      addressButton: t("GPSInputTask_007"),
+      region: {
+        latitude: -34.9036428,
+        longitude: -57.9377245,
+        latitudeDelta: 0.0020,
+        longitudeDelta: 0,
+      },
+      address: "",
+      loading: false
+    }
+    this.requestGPSPermission = this.requestGPSPermission.bind(this);
+  }
 
-render() {
-  const t = this.props.screenProps.t;
-  const task = this.props.model.tasks[this.props.currentTask];
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{task.name}</Text>
-      <Text style={styles.text}>{task.instruction}</Text>
+  handleLongPress = (e) => {
+    const region = e.nativeEvent.coordinate;
+    region.latitudeDelta = 0.005;
+    region.longitudeDelta = 0;
+    this.setState({
+      coordinate: region,
+      currentLocation: false
+    })
+  }
 
-      {!this.state.write ?
-        (!this.state.useInternet ?
-          <Button title={t("GPSInputTask_016")} onPress={this.handleToggleInternet}></Button>
-          :
-          <>
-            {!this.state.read && (this.state.loading ? <ActivityIndicator /> : <Button title={t("GPSInputTask_009")} onPress={this.handlePress} />)}
-            {this.state.select && <Text>{t("GPSInputTask_011")}</Text>}
-            {this.state.read && !this.state.select && !this.state.currentLocation && <Text>{t("GPSInputTask_012")}</Text>}
-            <View>
-              <MapView
-                provider={"google"}
-                style={styles.map}
-                scrollEnabled={true}
-                zoomEnabled={true}
-                pitchEnabled={false}
-                rotateEnabled={true}
-                region={this.state.currentLocation ? this.state.region : this.state.coordinate}
-                initialRegion={this.state.region}
-                onLongPress={this.handleLongPress}
-              >
-                {(this.state.coordinate || (this.state.currentLocation && this.state.region)) &&
-                  <Marker
-                    title={t("GPSInputTask_010")}
-                    coordinate={this.state.currentLocation ? this.state.region : this.state.coordinate}
-                  />
-                }
-              </MapView>
-            </View>
-            {this.state.read && !this.state.select && <Text>{t("GPSInputTask_013")}</Text>}
-          </>
-        )
-        :
-        <TextInput placeholder={t("GPSInputTask_014")} onChangeText={this.handleChange} />}
-      <Button title={this.state.addressButton} onPress={this.handleTogglePress}></Button>
+  handleChange = (text) => {
+    this.setState({
+      address: text
+    });
+  }
 
-      <Button
-        title={t("GPSInputTask_015")}
-        onPress={() => {
-          if ((this.state.write && this.state.address) || (this.state.currentLocation && this.state.region) || (this.state.select && this.state.coordinate)) {
-            this.props.setTaskResult(task.code, { type: this.state.write ? "address" : "coords", data: this.state.write ? this.state.address : (this.state.location ? this.state.location.coords : this.state.coordinate) }, task.type)
-            this.props.navigation.navigate("TaskResult");
-          }
-        }}></Button>
-      <SkipTaskButton navigate={this.props.navigation.navigate} optional={task.optional} />
-    </View>
-  );
-}
+  handleTogglePress = () => {
+    if (this.state.write) {
+      this.setState({ write: false, addressButton: t("GPSInputTask_007") })
+    } else {
+      this.setState({ write: true, addressButton: t("GPSInputTask_008") })
+    }
+  }
+
+  handleToggleInternet = () => this.setState({ useInternet: !this.state.useInternet, select: true })
+
+  render() {
+    const t = this.props.screenProps.t;
+    const task = this.props.model.tasks[this.props.currentTask];
+    return (
+      <>
+        <Header />
+        <View style={styles.container}>
+          <Text style={styles.title}>{task.name}</Text>
+          <Text style={styles.text}>{task.instruction}</Text>
+
+          {!this.state.write ?
+            (!this.state.useInternet ?
+              <Button title={t("GPSInputTask_016")} onPress={this.handleToggleInternet}></Button>
+              :
+              <>
+                {!this.state.read && (this.state.loading ? <ActivityIndicator /> : <Button title={t("GPSInputTask_009")} onPress={this.handlePress} />)}
+                {this.state.select && <Text>{t("GPSInputTask_011")}</Text>}
+                {this.state.read && !this.state.select && !this.state.currentLocation && <Text>{t("GPSInputTask_012")}</Text>}
+                <View>
+                  <MapView
+                    provider={"google"}
+                    style={styles.map}
+                    scrollEnabled={true}
+                    zoomEnabled={true}
+                    pitchEnabled={false}
+                    rotateEnabled={true}
+                    region={this.state.currentLocation ? this.state.region : this.state.coordinate}
+                    initialRegion={this.state.region}
+                    onLongPress={this.handleLongPress}
+                  >
+                    {(this.state.coordinate || (this.state.currentLocation && this.state.region)) &&
+                      <Marker
+                        title={t("GPSInputTask_010")}
+                        coordinate={this.state.currentLocation ? this.state.region : this.state.coordinate}
+                      />
+                    }
+                  </MapView>
+                </View>
+                {this.state.read && !this.state.select && <Text>{t("GPSInputTask_013")}</Text>}
+              </>
+            )
+            :
+            <TextInput placeholder={t("GPSInputTask_014")} onChangeText={this.handleChange} />}
+          <Button title={this.state.addressButton} onPress={this.handleTogglePress}></Button>
+
+          <Button
+            title={t("GPSInputTask_015")}
+            disabled={!((this.state.write && this.state.address) || (this.state.currentLocation && this.state.region) || (this.state.select && this.state.coordinate))}
+            onPress={() => {
+              this.props.setTaskResult(task.code, { type: this.state.write ? "address" : "coords", data: this.state.write ? this.state.address : (this.state.location ? this.state.location.coords : this.state.coordinate) }, task.type)
+              this.props.navigation.navigate("TaskResult");
+            }}></Button>
+          <SkipTaskButton navigate={this.props.navigation.navigate} optional={task.optional} />
+          <View />
+        </View>
+      </>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignContent: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'skyblue',
+    ...container
   },
   text: {
-    textAlign: 'center',
-    fontSize: 20,
-    margin: 10,
+    ...text
+  },
+  title: {
+    ...title
   },
   map: {
-    width: 250,
-    height: 250,
+    width: 300,
+    height: 200,
     alignSelf: "center"
   },
 });
