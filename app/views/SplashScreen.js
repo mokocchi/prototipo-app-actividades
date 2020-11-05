@@ -3,12 +3,16 @@ import {
     View,
     Text,
     StyleSheet,
-    PermissionsAndroid
+    PermissionsAndroid,
+    ActivityIndicator,
+    Alert
 } from 'react-native';
 import * as RNFS from 'react-native-fs';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { loadModel } from '../redux/actions'
+import { loadModel } from '../redux/actions';
+import * as Colors from '../assets/styles/colors'
+import text from './styles/text';
 
 class SplashScreen extends Component {
     loadJSON(that) {
@@ -22,10 +26,13 @@ class SplashScreen extends Component {
                 }
                 )
                 if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-                    RNFS.readDir(RNFS.ExternalStorageDirectoryPath + '/Prototipo3/configuracion')
+                    RNFS.readDir(RNFS.ExternalStorageDirectoryPath + '/Prototipo4/configuracion')
                         .then((result) => {
                             result = result.map((file) => file.name);
-                            that.props.navigation.navigate("SelectFile", {files: result});
+                            that.props.navigation.navigate("SelectFile", { files: result });
+                        })
+                        .catch(e => {
+                            Alert.alert(t("Splash_003"));
                         })
                 } else {
                     console.log("permission denied");
@@ -42,7 +49,8 @@ class SplashScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.text}>Resuelvo Explorando</Text>
+                <Text style={styles.text}>DEHIA</Text>
+                <ActivityIndicator/>
             </View>
         );
     }
@@ -53,11 +61,11 @@ const styles = StyleSheet.create({
         flex: 1,
         alignContent: "center",
         justifyContent: "center",
-        backgroundColor: "blue"
+        backgroundColor: Colors.loadingBackground
     },
     text: {
-        textAlign: "center",
-        color: "white"
+        ...text,
+        color: Colors.loadingText
     }
 })
 

@@ -25,10 +25,12 @@ import SelectInputTaskScreen from '../views/SelectInputTaskScreen';
 import SelectFileScreen from '../views/SelectFileScreen';
 import AudioInputTaskScreen from '../views/AudioInputTaskScreen';
 import GPSInputTaskScreen from '../views/GPSInputTaskScreen';
+import PermissionsNoticeScreen from '../views/PermissionsNoticeScreen';
 
 export default createAppContainer(
   createSwitchNavigator(
     {
+      PermissionsNotice: PermissionsNoticeScreen,
       Splash: SplashScreen,
       SelectFile: SelectFileScreen,
       Welcome: WelcomeScreen,
@@ -57,7 +59,7 @@ export default createAppContainer(
       SendAnswers: SendAnswersScreen
    },
     {
-      initialRouteName: 'Splash',
+      initialRouteName: 'PermissionsNotice',
     }
   )
 );

@@ -1,15 +1,20 @@
 export default {
+    "PermissionsNotice_001": "Permissions",
+    "PermissionsNotice_002": "The application will ask you to enable some permissions (storage, camera, recording) when necessary. Please enable them when asked.",
+    "PermissionsNotice_003": "OK",
+
     "Splash_001": "Permissions",
     "Splash_002": "Storage permission needed",
 
     "SelectFile_001": "Available configurations",
     "SelectFile_002": "Permissions",
     "SelectFile_003": "Permission to use storage needed",
-    "SelectFile_004": "Choose a configuration to start",
+    "SelectFile_004": "Choose a configuration...",
     "SelectFile_005": "There are no configuration files available",
     "SelectFile_006": "Continue",
 
-    "Welcome_001": "Let's start",
+    "Welcome_001": "Goal",
+    "Welcome_002": "Let's start",
 
     "ContinueTaskButton_001": "Continue",
 
@@ -30,12 +35,11 @@ export default {
     "AudioInputTask_003": "Play", 
     "AudioInputTask_004": "Stop",
     "AudioInputTask_005": "Recording - Stop",
-    "AudioInputTask_006": "Playing",
 
     "GPSInputTask_001": "GPS needed",
     "GPSInputTask_002": 'Do you have GPS enabled?',
     "GPSInputTask_003": 'Don\'t use GPS',
-    "GPSInputTask_004": 'Ye',
+    "GPSInputTask_004": 'Yes',
     "GPSInputTask_005": 'Permissions',
     "GPSInputTask_006": 'GPS permission needed',
     "GPSInputTask_007": "I want to write an address",
@@ -47,6 +51,9 @@ export default {
     "GPSInputTask_013": "You also can adjust the position touching the map",
     "GPSInputTask_014": "Write an address",
     "GPSInputTask_015": "Continue",
+    "GPSInputTask_016": "Use the map (requires an internet connection)",
+    "GPSInputTask_017": "Enable GPS",
+    "GPSInputTask_018": "You must enable GPS to get the current location",
 
     "TextInputTask_001": "Enter the number",
     "TextInputTask_002": "Enter text",
@@ -69,6 +76,10 @@ export default {
 
     "SendAnswers_001": "You finished the activity. Your answers will be submitted.",
     "SendAnswers_002": "Submit",
+    "SendAnswers_003": "Answers successfully submitted",
+    "SendAnswers_004": "There was an error",
+    "SendAnswers_005": "Exit without sending",
+    "SendAnswers_006": "Service unavailable",
 
     "CollectTask_001": "Permissions",
     "CollectTask_002": "Permission to use the camera needed",
@@ -110,7 +121,7 @@ export default {
     "DepositTaskResult_002": "Elements incorrectly deposited",
     "DepositTaskResult_003": "Continue",
     
-    "SelectInputTask_001": "Continue",
+    "SelectInputTask_001": "Choose an option",
 
     "ActivityResults_001": "Task:",
     "ActivityResults_002": "Answers:",

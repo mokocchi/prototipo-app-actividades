@@ -1,10 +1,15 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {View, Text, StyleSheet, Button, BackHandler} from 'react-native';
-import {ListItem} from 'react-native-elements';
-import {setTaskResult} from '../redux/actions';
-import NextTaskButtons from '../components/NextTaskButtons';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { View, Text, StyleSheet, BackHandler, ScrollView } from 'react-native';
+import { ListItem } from 'react-native-elements';
+import { setTaskResult } from '../redux/actions';
+import SkipTaskButton from '../components/SkipTaskButton';
+import container from './styles/container';
+import text from './styles/text';
+import title from './styles/title';
+import Header from '../components/Header';
+import Button from '../components/Button';
 
 class MultipleChoiceTaskScreen extends Component {
   componentDidMount() {
@@ -31,11 +36,13 @@ class MultipleChoiceTaskScreen extends Component {
     const t = this.props.screenProps.t;
     const task = this.props.model.tasks[this.props.currentTask];
     return (
+      <>
+      <Header />
       <View style={styles.container}>
-        <Text style={styles.text}>{task.name}</Text>
+        <Text style={styles.title}>{task.name}</Text>
         <Text style={styles.text}>{task.instruction}</Text>
 
-        <View>
+        <ScrollView>
           {task.elements.map((element, index) => (
             <ListItem
               key={index}
@@ -75,32 +82,42 @@ class MultipleChoiceTaskScreen extends Component {
               }
             />
           ))}
-        </View>
+        </ScrollView>
 
-        <NextTaskButtons condition={task.validElements} task={task} result={task.elements.filter((item, index) => this.state.checked[index]).map(item => item.code)}
-          setTaskResult={this.props.setTaskResult} navigate={this.props.navigation.navigate} answer={task.elements.filter((item, index) => this.state.checked[index]).map(item => item.code)}/>
+        <Button
+          title={t("MultipleChoiceTask_001")}
+          onPress={() => {
+            var result = task.elements.filter((item, index) => this.state.checked[index]).map(item => item.code);
+            this.props.setTaskResult(task.code, result, task.type);
+            if (task.validElements) {
+              this.props.navigation.navigate('MultipleChoiceTaskResult', { result: result });
+            } else {
+              this.props.navigation.navigate("TaskResult", { "answer": result });
+            }
+          }}></Button>
+        <SkipTaskButton navigate={this.props.navigation.navigate} optional={task.optional} />
+        <View />
       </View>
+      </>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignContent: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: 'skyblue',
+    ...container
   },
   text: {
-    textAlign: 'center',
-    fontSize: 20,
-    margin: 10,
+    ...text
   },
+  title: {
+    ...title
+  }
 });
 
 const mapStateToProps = state => {
-  const {model, currentTask} = state;
-  return {model, currentTask};
+  const { model, currentTask } = state;
+  return { model, currentTask };
 };
 
 const mapDispatchToProps = dispatch =>

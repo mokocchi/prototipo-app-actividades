@@ -41,7 +41,7 @@ class DepositTaskResultScreen extends Component {
         <Button
           title={t("DepositTaskResult_003")}
           onPress={() => {
-            this.props.navigation.navigate('TaskResult');
+            this.props.navigation.navigate("TaskResult", {correct: wronglyDeposited.length === 0});
           }}></Button>
       </View>
     );

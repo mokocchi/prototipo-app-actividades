@@ -1,15 +1,20 @@
 export default {
+    "PermissionsNotice_001": "権限",
+    "PermissionsNotice_002": "必要な時に権限が求められます。メッセージが現れたら許可してください。",
+    "PermissionsNotice_003": "了承",
+    
     "Splash_001": "許可",
     "Splash_002": "ストレージ権限が必要です",
     
     "SelectFile_001": "アクセス可能な設定",
     "SelectFile_002": '許可',
     "SelectFile_003": "ストレージ権限が必要です",
-    "SelectFile_004": "始める前に、設定を選択してください",
+    "SelectFile_004": "設定を選択してください",
     "SelectFile_005": "設定ファイルがありません",
     "SelectFile_006": "続く",
 
-    "Welcome_001": "始めましょう",
+    "Welcome_001": "目標",
+    "Welcome_002": "始めましょう",
 
     "ContinueTaskButton_001": "続く",
 
@@ -28,10 +33,9 @@ export default {
     "AudioInputTask_003": "再生", 
     "AudioInputTask_004": "停止",
     "AudioInputTask_005": "録音中 → 停止",
-    "AudioInputTask_006": "再生中",
     
     "GPSInputTask_001": "GPSは必要です",
-    "GPSInputTask_002": 'GPSは活性していますか？',
+    "GPSInputTask_002": 'GPSは機能していますか？',
     "GPSInputTask_003": 'GPSを利用しない',
     "GPSInputTask_004": 'はい',
     "GPSInputTask_005": '権限',
@@ -45,6 +49,9 @@ export default {
     "GPSInputTask_013": "マップをタッチすると位置も選べます",
     "GPSInputTask_014": "住所を入力してください",
     "GPSInputTask_015": "続く",
+    "GPSInputTask_016": "地図を使う（インターネット接続は必要です）",
+    "GPSInputTask_017": "GPSを機能させる",
+    "GPSInputTask_018": "You must enable GPS to get the current location",
 
     "TextInputTask_001": "数値を入力してください",
     "TextInputTask_002": "文を入力してください",
@@ -66,7 +73,11 @@ export default {
     "ResultByScore_002": "続く",
 
     "SendAnswers_001": "アクティビティが終了しました。回答が送信されます。",
-    "SendAnswers_002": "提出",
+    "SendAnswers_002": "送信",
+    "SendAnswers_003": "回答が正常に送信されました",
+    "SendAnswers_004": "エラーが発生しました",
+    "SendAnswers_005": "送信せずに終了",
+    "SendAnswers_006": "サービス不可",
 
     "CollectTask_001": "権限",
     "CollectTask_002": "カメラの権限が必要です",
@@ -108,7 +119,7 @@ export default {
     "DepositTaskResult_002": "残すのは不正解だった要素",
     "DepositTaskResult_003": "続く",
 
-    "SelectInputTask_001": "続く",
+    "SelectInputTask_001": "選択を選んでください",
 
     "ActivityResults_001": "課題:",
     "ActivityResults_002": "答え:",

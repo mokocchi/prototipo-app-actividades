@@ -1,15 +1,21 @@
 export default {
+    "PermissionsNotice_001": "Permisos",
+    "PermissionsNotice_002": "La aplicación pedirá permisos (almacenamiento, cámara, grabación) cuando sea necesario. Por favor habilitalo cuando te lo pida.",
+    "PermissionsNotice_003": "Entendido",
+
     "Splash_001": "Permisos",
     "Splash_002": "Se necesita permiso para usar el almacenamiento",
+    "Splash_003": "Por favor cree la carpeta /Prototipo4/configuracion",
 
     "SelectFile_001": "Configuraciones disponibles",
     "SelectFile_002": "Permisos",
     "SelectFile_003": 'Se necesita permiso para usar el almacenamiento',
-    "SelectFile_004": "Elegí una configuración para empezar",
+    "SelectFile_004": "Elegí una configuración...",
     "SelectFile_005": "No hay archivos disponibles",
     "SelectFile_006": "Continuar",
 
-    "Welcome_001": "Empecemos",
+    "Welcome_001": "Objetivo",
+    "Welcome_002": "Empecemos",
 
     "ContinueTaskButton_001": "Continuar",
 
@@ -30,7 +36,6 @@ export default {
     "AudioInputTask_003": "Reproducir", 
     "AudioInputTask_004": "Detener",
     "AudioInputTask_005": "Grabando - Detener",
-    "AudioInputTask_006": "Reproduciendo",
 
     "GPSInputTask_001": "Se necesita usar el gps",
     "GPSInputTask_002": 'Tenés el GPS prendido?',
@@ -38,7 +43,7 @@ export default {
     "GPSInputTask_004": 'Sí',
     "GPSInputTask_005": 'Permisos',
     "GPSInputTask_006": 'Se necesita permiso para usar el GPS',
-    "GPSInputTask_007": "Prefiero escribir una dirección",
+    "GPSInputTask_007": "Escribir dirección",
     "GPSInputTask_008": "Mostrar mapa",
     "GPSInputTask_009": "Obtener ubicación actual",
     "GPSInputTask_010": "Ubicación elegida",
@@ -47,12 +52,15 @@ export default {
     "GPSInputTask_013": "También podés ajustar la ubicación tocando el mapa",
     "GPSInputTask_014": "Escribí una dirección",
     "GPSInputTask_015": "Continuar",
+    "GPSInputTask_016": "Usar el mapa",
+    "GPSInputTask_017": "Prendé el GPS",
+    "GPSInputTask_018": "Tenés que prender el GPS para obtener la ubicación actual",
 
     "TextInputTask_001": "Ingresa el número",
     "TextInputTask_002": "Ingresa texto",
     "TextInputTask_003": "Continuar",
 
-    "ChooseTask_001": "Elige una tarea",
+    "ChooseTask_001": "Elegí una tarea",
     "ChooseTask_002": "Terminar",
 
     "MultipleChoiceTask_001": "Continuar",
@@ -69,6 +77,10 @@ export default {
 
     "SendAnswers_001": "Terminaste la actividad. Se enviarán tus respuestas.",
     "SendAnswers_002": "Enviar",
+    "SendAnswers_003": "Respuestas enviadas correctamente",
+    "SendAnswers_004": "Ocurrió un error",
+    "SendAnswers_005": "Salir sin enviar",
+    "SendAnswers_006": "Servicio no disponible",
 
     "CollectTask_001": "Permisos",
     "CollectTask_002": "Se necesita permiso para usar la cámara",
@@ -110,7 +122,7 @@ export default {
     "DepositTaskResult_002": "Elementos incorrectamente depositados",
     "DepositTaskResult_003": "Continuar",
 
-    "SelectInputTask_001": "Continuar",
+    "SelectInputTask_001": "Elegí una opción",
 
     "ActivityResults_001": "Tarea:",
     "ActivityResults_002": "Respuestas:",

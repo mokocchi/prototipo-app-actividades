@@ -1,4 +1,4 @@
-import { SET_TASK_RESULT } from '../types'
+import { SET_TASK_RESULT, CLEAR_TASK_RESULT } from '../types'
 
 const INITIAL_STATE = []
 
@@ -17,6 +17,8 @@ export default taskResultReducer = (state = INITIAL_STATE, action) => {
                     }
                 ]
             }
+        case CLEAR_TASK_RESULT:
+            return INITIAL_STATE;
         default:
             return state;
     }

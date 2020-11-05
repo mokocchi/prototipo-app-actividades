@@ -90,7 +90,7 @@ class PositionedTaskScreen extends Component {
           <Text style={styles.text}>
             {t("PositionedTask_005")}
           </Text>
-          <Image source={{uri:'file:///storage/emulated/0/Prototipo3/imagenes/' + task.code + '.png'}} style={{height:200, width:320, resizeMode: "contain", alignSelf: "center"}} />
+          <Image source={{uri:'file:///storage/emulated/0/Prototipo4/imagenes/' + task.code + '.png'}} style={{height:200, width:320, resizeMode: "contain", alignSelf: "center"}} />
           <Text style={styles.text}>{t("PositionedTask_006")} {task.name}</Text>
           <Button
             title={t("PositionedTask_007")}

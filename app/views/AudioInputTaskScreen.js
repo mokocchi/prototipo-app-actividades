@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, StyleSheet, BackHandler, Button, PermissionsAndroid } from 'react-native';
+import { View, Text, StyleSheet, BackHandler, PermissionsAndroid } from 'react-native';
 import { Player, Recorder, MediaStates } from '@react-native-community/audio-toolkit';
 
 import { setTaskResult } from '../redux/actions';
 import NextTaskButtons from '../components/NextTaskButtons';
+import Header from '../components/Header';
+import Button from '../components/Button'
+import container from './styles/container';
+import text from './styles/text';
+import title from './styles/title';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Typography } from '../assets/styles';
 
 const filename = "audio.mp4";
 
@@ -32,6 +39,7 @@ class AudioInputTaskScreen extends Component {
       playing: false,
       stopButtonDisabled: true,
       playButtonDisabled: true,
+      playPauseButtonIcon: false,
       recordButtonDisabled: false,
 
       error: null
@@ -63,14 +71,21 @@ class AudioInputTaskScreen extends Component {
   _playPause() {
     this.player.prepare();
     console.log(this.rec.fsPath)
-    this.setState({ stopButtonDisabled: false, recordButtonDisabled: true, playPauseButton: t("AudioInputTask_006"), playButtonDisabled: true, filePath: this.rec.fsPath })
+    this.setState({
+      stopButtonDisabled: false,
+      recordButtonDisabled: true,
+      playPauseButton: "",
+      playPauseButtonIcon: <Icon name="music" size={Typography.buttonFontSize} />,
+      playButtonDisabled: true,
+      filePath: this.rec.fsPath
+    })
     this.player.play(() => {
       this.setState({
         playing: true
       })
     })
       .on('ended', () => {
-        this.setState({ stopButtonDisabled: true, recordButtonDisabled: false, playPauseButton: t("AudioInputTask_003"), playButtonDisabled: false });
+        this.setState({ stopButtonDisabled: true, recordButtonDisabled: false, playPauseButton: t("AudioInputTask_003"), playPauseButtonIcon: null, playButtonDisabled: false });
       });
   }
 
@@ -78,6 +93,7 @@ class AudioInputTaskScreen extends Component {
     this.player.stop(() => {
       this.setState({
         playPauseButton: t("AudioInputTask_003"),
+        playPauseButtonIcon: null,
         recordButtonDisabled: false,
         playButtonDisabled: false,
         playing: false
@@ -105,42 +121,44 @@ class AudioInputTaskScreen extends Component {
   render() {
     const task = this.props.model.tasks[this.props.currentTask];
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>{task.name}</Text>
-        <Text style={styles.text}>{task.instruction}</Text>
+      <>
+        <Header />
+        <View style={styles.container}>
+          <Text style={styles.title}>{task.name}</Text>
+          <Text style={styles.text}>{task.instruction}</Text>
 
-        <View>
-          <Button title={this.state.recordButton} disabled={this.state.recordButtonDisabled} onPress={() => this._toggleRecord()} />
-        </View>
-
-        <View style={styles.flexContainer}>
-          <View style={styles.buttonContainer}>
-            <Button title={this.state.playPauseButton} disabled={this.state.playButtonDisabled} onPress={() => this._playPause()} />
+          <View>
+            <Button title={this.state.recordButton} disabled={this.state.recordButtonDisabled} onPress={() => this._toggleRecord()} />
           </View>
-          <View style={styles.buttonContainer}>
-            <Button title={t("AudioInputTask_004")} disabled={this.state.stopButtonDisabled} onPress={() => this._stop()} />
+
+          <View style={styles.flexContainer}>
+            <View style={styles.buttonContainer}>
+              <Button title={this.state.playPauseButton} icon={this.state.playPauseButtonIcon} disabled={this.state.playButtonDisabled} onPress={() => this._playPause()} />
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button title={t("AudioInputTask_004")} disabled={this.state.stopButtonDisabled} onPress={() => this._stop()} />
+            </View>
           </View>
+
+
+          <NextTaskButtons condition={this.state.filePath} result={this.state.filePath} task={task}
+            navigate={this.props.navigation.navigate} setTaskResult={this.props.setTaskResult} />
+          <View><Text /></View>
         </View>
-
-
-        <NextTaskButtons condition={this.state.filePath} result={this.state.filePath} task={task}
-          navigate={this.props.navigation.navigate} setTaskResult={this.props.setTaskResult} />
-      </View>
+      </>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignContent: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'skyblue',
+    ...container
   },
   text: {
-    textAlign: 'center',
-    fontSize: 20,
-    margin: 10,
+    ...text
+  },
+  title: {
+    ...title
   },
   flexContainer: {
     flex: 1,

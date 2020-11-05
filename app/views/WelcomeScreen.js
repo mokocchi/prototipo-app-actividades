@@ -6,11 +6,16 @@ import {
     View,
     Text,
     StyleSheet,
-    Button,
     BackHandler,
 } from 'react-native';
 
 import { mapScreen } from '../utils/functions'
+import { Colors } from '../assets/styles'
+import Header from '../components/Header'
+import Button from '../components/Button'
+import title from './styles/title';
+import subtitle from './styles/subtitle';
+import container from './styles/container';
 
 
 class WelcomeScreen extends Component {
@@ -46,35 +51,37 @@ class WelcomeScreen extends Component {
         let { t } = this.props.screenProps;
         const activity = this.props.model.educationalActivity;
         return (
-            <View style={styles.container}>
-                <Text style={styles.text}>{activity.name}</Text>
-                <Text style={styles.text}>{activity.goal}</Text>
-                <Button title={t("Welcome_001")} onPress={() => this.calculateFirstScreen(activity.sequential)} />
-            </View>
+            <>
+                <Header />
+                <View style={styles.container}>
+                    <Text style={styles.title}>{activity.name}</Text>
+                    <Text style={styles.subtitle}>{t("Welcome_001")}: {activity.goal}</Text>
+                    <Button title={t("Welcome_002")} onPress={() => this.calculateFirstScreen(activity.sequential)} />
+                    <View />
+                </View>
+            </>
         );
     }
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignContent: "center",
-        justifyContent: "center",
-        backgroundColor: "skyblue"
+        ...container
     },
-    text: {
-        textAlign: "center",
-        fontSize: 20,
-        margin: 10
+    subtitle: {
+        ...subtitle
+    },
+    title: {
+        ...title
     }
 })
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      setCurrentTask
-    },
-    dispatch,
-  );
+    bindActionCreators(
+        {
+            setCurrentTask
+        },
+        dispatch,
+    );
 const mapStateToProps = (state) => {
     const { model } = state
     return { model }
