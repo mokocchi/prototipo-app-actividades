@@ -1,6 +1,11 @@
 export default {
+    "PermissionsNotice_001": "Permisos",
+    "PermissionsNotice_002": "La aplicación pedirá permisos (almacenamiento, cámara, grabación) cuando sea necesario. Por favor habilitalo cuando te lo pida.",
+    "PermissionsNotice_003": "Entendido",
+
     "Splash_001": "Permisos",
     "Splash_002": "Se necesita permiso para usar el almacenamiento",
+    "Splash_003": "Por favor cree la carpeta /Prototipo4/configuracion",
 
     "SelectFile_001": "Configuraciones disponibles",
     "SelectFile_002": "Permisos",

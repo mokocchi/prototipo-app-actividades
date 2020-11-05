@@ -1,4 +1,8 @@
 export default {
+    "PermissionsNotice_001": "Permissions",
+    "PermissionsNotice_002": "The application will ask you to enable some permissions (storage, camera, recording) when necessary. Please enable them when asked.",
+    "PermissionsNotice_003": "OK",
+
     "Splash_001": "Permissions",
     "Splash_002": "Storage permission needed",
 

@@ -4,7 +4,8 @@ import {
     Text,
     StyleSheet,
     PermissionsAndroid,
-    ActivityIndicator
+    ActivityIndicator,
+    Alert
 } from 'react-native';
 import * as RNFS from 'react-native-fs';
 import { connect } from 'react-redux';
@@ -29,6 +30,9 @@ class SplashScreen extends Component {
                         .then((result) => {
                             result = result.map((file) => file.name);
                             that.props.navigation.navigate("SelectFile", { files: result });
+                        })
+                        .catch(e => {
+                            Alert.alert(t("Splash_003"));
                         })
                 } else {
                     console.log("permission denied");

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, StyleSheet, BackHandler } from 'react-native';
+import { View, Text, StyleSheet, BackHandler, ScrollView } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { setCurrentTask, setTaskResult } from '../redux/actions';
 import SkipTaskButton from '../components/SkipTaskButton';
@@ -46,7 +46,7 @@ class CountersTaskScreen extends Component {
           <Text style={styles.title}>{task.name}</Text>
           <Text style={styles.text}>{task.instruction}</Text>
 
-          <View>
+          <ScrollView>
             {task.elements.map((element, index) => (
               <ListItem
                 key={index}
@@ -71,7 +71,7 @@ class CountersTaskScreen extends Component {
                 }}
               />
             ))}
-          </View>
+          </ScrollView>
 
           <Button
             title={t("CountersTask_001")}

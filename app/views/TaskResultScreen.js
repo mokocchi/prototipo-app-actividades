@@ -83,7 +83,7 @@ class TaskResultScreen extends Component {
           return;
         }
         const jumpWhenNotPassed = task.jumps.find((jump) => jump.on == "NO_TASK");
-        if (jumpWhenNotPassed && !this.props.taskResults.find(task => task.code == jumpWhenPassed.answer)) {
+        if (jumpWhenNotPassed && !this.props.taskResults.find(task => task.code == jumpWhenNotPassed.answer)) {
           this.jump(jumpWhenNotPassed, tasks);
           return;
         }

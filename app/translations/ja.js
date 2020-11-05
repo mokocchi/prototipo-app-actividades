@@ -1,4 +1,8 @@
 export default {
+    "PermissionsNotice_001": "権限",
+    "PermissionsNotice_002": "必要な時に権限が求められます。メッセージが現れたら許可してください。",
+    "PermissionsNotice_003": "了承",
+    
     "Splash_001": "許可",
     "Splash_002": "ストレージ権限が必要です",
     
