@@ -80,6 +80,14 @@ project.ext.react = [
     enableHermes: false,  // clean and rebuild if changing
 ]
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def googleMapApiKeyFromFile = properties.getProperty('google.map.key')
+printf googleMapApiKeyFromFile
+if (googleMapApiKeyFromFile == null) {
+    throw new GradleException("Maps API Key missing! Create a local.properties file in the android folder")
+}
+
 apply from: "../../node_modules/react-native/react.gradle"
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
@@ -134,7 +142,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        manifestPlaceholders = [googleMapApiKey:"$System.env.googleMapApiKey"]
+        manifestPlaceholders = [googleMapApiKey: googleMapApiKeyFromFile]
     }
     splits {
         abi {
