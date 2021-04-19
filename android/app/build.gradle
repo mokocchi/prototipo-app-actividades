@@ -83,7 +83,7 @@ project.ext.react = [
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 def googleMapApiKeyFromFile = properties.getProperty('google.map.key')
-printf googleMapApiKeyFromFile
+
 if (googleMapApiKeyFromFile == null) {
     throw new GradleException("Maps API Key missing! Create a local.properties file in the android folder")
 }

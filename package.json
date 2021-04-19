@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-native-community/audio-toolkit": "^2.0.2",
     "@react-native-community/geolocation": "^2.0.2",
+    "@react-native-community/toolbar-android": "^0.1.0-rc.2",
     "@react-native-picker/picker": "^1.15.0",
     "i18n-js": "^3.5.0",
     "react": "16.9.0",
