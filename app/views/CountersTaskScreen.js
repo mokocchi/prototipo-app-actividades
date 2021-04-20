@@ -77,7 +77,8 @@ class CountersTaskScreen extends Component {
             title={t("CountersTask_001")}
             onPress={() => {
               if (task.byScore) {
-                const result = task.elements.map((element, index) => ({ [element.code]: parseInt(this.state.counters[index]) || "0" }));
+                const result = {};
+                task.elements.forEach((item, index) => result[item.code] = (parseInt(this.state.counters[index]) || 0) )
                 this.props.setTaskResult(task.code, result, task.type);
                 this.props.navigation.navigate('ResultByScore', { result: result });
               } else {

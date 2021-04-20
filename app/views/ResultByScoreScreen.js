@@ -27,18 +27,17 @@ class ResultByScoreScreen extends Component {
     const t = this.props.screenProps.t;
     const result = this.props.navigation.getParam('result', []);
     const task = this.props.model.tasks[this.props.currentTask];
-    var total = 0;
-    const resultRows = result.map((element, index) => {
-      const value = task.byScore[0].scores[Object.keys(element)[0]] *
-        Object.values(result.find(item => Object.keys(item)[0] == Object.keys(element)[0]))[0];
-      total += value;
+
+    const resultScores = Object.keys(result).map((item, index) => {return {name: task.elements.find(it => it.code === item).name, score: parseFloat(task.byScore[0].scores[item]) * result[item]}});
+    
+    const resultRows = resultScores.map((element, index) => {
       return (<Text style={styles.text} key={index}>
-        {task.elements.find(item => {
-          return item.code == Object.keys(element)[0];
-        }).name}
-        : {value}
+        {element.name}
+        : {element. score}
       </Text>);
     });
+
+    const total = resultRows.reduce((item, tot) => item.score + tot);
     return (
       <>
         <Header />
