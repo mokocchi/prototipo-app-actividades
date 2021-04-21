@@ -11,12 +11,12 @@ import {
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { Alert } from 'react-native';
-import { RESULTS_URL } from '../config';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import container from './styles/container';
 import title from './styles/title';
 import text from './styles/text';
+import { RESULTS_SOURCE } from '../config';
 
 class SendAnswersScreen extends Component {
 
@@ -41,7 +41,9 @@ class SendAnswersScreen extends Component {
         object["code"] = this.props.model.educationalActivity.code;
         object["responses"] = results;
         try {
-            const data = await fetch(RESULTS_URL, {
+            const pre_url = await fetch(RESULTS_SOURCE);
+            const url = await pre_url.text();
+            const data = await fetch(url, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
