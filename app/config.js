@@ -1,1 +1,0 @@
-export const RESULTS_URL = "http://192.168.0.107:8000/api/v1.0/public/entries"
