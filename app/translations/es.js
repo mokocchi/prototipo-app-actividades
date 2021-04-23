@@ -5,7 +5,7 @@ export default {
 
     "Splash_001": "Permisos",
     "Splash_002": "Se necesita permiso para usar el almacenamiento",
-    "Splash_003": "Por favor cree la carpeta /Prototipo4/configuracion",
+    "Splash_003": "Por favor cree la carpeta /Prototipo5/configuracion",
 
     "SelectFile_001": "Configuraciones disponibles",
     "SelectFile_002": "Permisos",

@@ -13,7 +13,7 @@ import container from './styles/container';
 
 class SelectFileScreen extends Component {
     async getNameFromJson(filename, t) {
-        return await RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo4/configuracion/' + filename).then(data => {
+        return await RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo5/configuracion/' + filename).then(data => {
             parsedJSON = JSON.parse(data);
             const name = parsedJSON.educationalActivity ? parsedJSON.educationalActivity.name : ""
             const file = {
@@ -28,7 +28,7 @@ class SelectFileScreen extends Component {
 
     loadJSON(that) {
         const file = that.state.value;
-        RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo4/configuracion/' + file).then(data => {
+        RNFS.readFile(RNFS.ExternalStorageDirectoryPath + '/Prototipo5/configuracion/' + file).then(data => {
             parsedJSON = JSON.parse(data);
             that.props.loadModel(parsedJSON);
             that.props.screenProps.setLocale(parsedJSON.language);
