@@ -43,7 +43,7 @@ class SendAnswersScreen extends Component {
         try {
             const pre_url = await fetch(RESULTS_SOURCE);
             const url = await pre_url.text();
-            const data = await fetch(url, {
+            const data = await fetch(url + "/api/v1.0/public/entries", {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"

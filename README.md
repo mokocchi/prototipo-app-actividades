@@ -34,6 +34,20 @@ npx react-native run-android
 ```
 5. The app will open in debug mode in the device.
 ## Building for Android
+```
+keytool -genkey -v -keystore dehia_alpha_key.keystore -alias dehia_alpha -keyalg RSA -keysize 2048 -validity 10000
+```
+```
+npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle      --assets-dest android/app/src/main/res/
+```
+```
+cd android && ./gradlew assembleRelease
+```
+Troubleshooting:
+```
+rm -rf android/app/src/main/res/drawable-*
+rm -rf android/app/src/main/res/raw
+```
 ## Environment Variables
 ## See Also
 - [DEHIA Frontend](https://github.com/mokocchi/autores-demo-client)
